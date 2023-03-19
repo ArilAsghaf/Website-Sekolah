@@ -1,0 +1,2190 @@
+body {
+    font-family: sans-serif;
+    background-color: #fff;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+}
+
+
+/* CSS NAVBAR */
+.navbar {
+    z-index: 3;
+    padding: 0;
+}
+
+* {
+    z-index: 1;
+}
+
+.navbar-brand h2 {
+    font-weight: 700;
+    margin-left: 10px;
+    margin-top: 8px;
+    color: #fff;
+    /* text-shadow: 2px 2px 2px #fff; */
+}
+
+.nav-link {
+    font-size: 14px;
+    color: #dfd701 !important;
+    font-weight: bold;
+    padding: 15px 0 15px 0;
+}
+
+.nav-link:hover {
+    color: #fff;
+    transition-duration: 0.3s;
+}
+
+/* .nav-link2 {
+    font-size: 14px;
+    color: #11418A;
+    font-weight: bold;
+    padding: 15px 8px 15px 8px;
+}
+
+.nav-link2:hover {
+    color: #dfd701;
+    transition-duration: 0.3s;
+} */
+
+.nav-item {
+    text-transform: uppercase;
+}
+
+
+@media only screen and (min-width: 1000px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}
+
+.dropdown-menu {
+    background-color: #fff;
+    font-size: 14px;
+    width: 220px;
+    border-radius: 3px;
+}
+
+.dropdown-item {
+    color: #11418A;
+    font-weight: 550;
+}
+
+.dropdown-item:hover {
+    padding-left: 20px;
+    color: #dfd701;
+    background-color: #fff;
+    transition-duration: 0.3s;
+}
+
+.nav-color {
+    background-color: #11418A;
+    transition: all ease-in-out 0.2s;
+    /* box-shadow: 0px 0.1px 25px rgba(196, 196, 196, 0.8); */
+}
+
+.bg-transparant {
+    transition: all ease-in 0.2s;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.nav-color2 {
+    background-color: #11418A;
+}
+/* END CSS NAVBAR */
+
+
+/* CSS PARALLAX */
+#bg-beranda .img {
+    width: 100%;
+    min-height: 950px;
+    background-position: center;
+    /* background-position: bottom; */
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#bg-beranda .search-beranda {
+    max-width: 100vh;
+    margin: auto;
+    margin-top: 400px;
+}
+
+#bg-beranda .search-beranda h1 {
+    font-size: 50px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 5px;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 5px #000;
+
+}
+
+.input-box {
+    position: absolute;
+    height: 60px;
+    width: 900px;
+    max-width: 100%;
+    background: #fff;
+    margin: 0 20px;
+    border-radius: 18px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.input-box i,
+.input-box .button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.input-box i {
+    left: 20px;
+    font-size: 25px;
+    color: #11418A;
+}
+
+.input-box input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    font-weight: 400;
+    border: none;
+    padding: 0 155px 0 65px;
+    background-color: transparent;
+}
+
+.input-box .button {
+    right: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #dfd701;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 15px;
+    background-color: #11418A;
+    cursor: pointer;
+}
+
+.input-box .button:active {
+    transform: translateY(-50%) scale(0.98);
+}
+
+/* #bg-beranda .input {
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #e8e8e8;
+    box-shadow: 20px 20px 60px #c5c5c5,
+        -20px -20px 60px #ffffff;
+    transition: 0.3s;
+    position: relative;
+    top: 300px;
+}
+
+#bg-beranda .input:focus {
+    outline-color: #e8e8e8;
+    background: #e8e8e8;
+    box-shadow: inset 20px 20px 60px #c5c5c5,
+        inset -20px -20px 60px #ffffff;
+    transition: 0.3s;
+} */
+
+
+
+/* #bg-beranda .img:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+} */
+/* END CSS PARALLAX */
+
+
+/* CSS HEADER */
+header .bg-header {
+    width: 100%;
+    height: 450px;
+    background-position: 0 -200px;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+    text-shadow: 2px 2px 5px #000;
+    /* background-position: center; */
+    /* background-position: bottom; */
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+header .bg-header:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+/* END CSS HEADER */
+
+
+/* CSS PAGE */
+.page-item {
+    margin-top: 20px;
+    padding: 15px 20px 1px 20px;
+    background-color: #e9e9e9;
+    text-align: center;
+    border-radius: 8px;
+}
+
+#page ol li i {
+    color: #D6261A;
+}
+/* END CSS PAGE */
+
+
+/* CSS PAGINATION */
+.pagination {
+    text-align: center;
+    margin: 30px 30px 30px;
+    user-select: none;
+}
+
+.pagination li {
+    display: inline-block;
+    margin: 5px;
+    box-shadow: 0 5px 25px rgb(1 1 1 /10%);
+}
+
+.pagination li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    line-height: 45px;
+}
+
+.pagination .previous-pagination,.pagination .next-pagination {
+    background: #0ab1ce;
+    width: 80px;
+    border-radius: 45px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.pagination .previous-pagination:hover {
+    transform: translateX(-5px);
+}
+
+.pagination .next-pagination:hover{
+    transform: translateX(5px);
+}
+
+.pagination .current-pagination, .dots {
+    background: #ccc;
+    width: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.pagination .active {
+    background: #0ab1ce;
+}
+
+.pagination .disable {
+    background-color: #ccc;
+}
+/* END CSS PAGINATION */
+
+
+/* CSS BERITA BERANDA*/
+#berita-beranda {
+    min-height: 250px;
+    padding-top: 70px;
+    padding-bottom: 60px;
+}
+
+#berita-beranda .berita-beranda-title {
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+#berita-beranda .berita-beranda-title h2 {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #11418A;
+    font-weight: 600;
+}
+
+#berita-beranda .berita-beranda-title h2:after {
+    position: absolute;
+    content: "";
+    width: 220px;
+    height: 3px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#berita-beranda .center-berita {
+    margin: auto;
+    width: 99%;
+}
+
+#berita-beranda .berita-beranda-item {
+    margin: 0px 10px 50px 10px;
+    border-radius: 0;
+    min-height: 540px;
+    background-color: #FBF9FF;
+    box-shadow: 1px 1px 10px #ddd;
+}
+
+#berita-beranda .card {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+    max-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#berita-beranda img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform .5s;
+}
+
+#berita-beranda .card:hover img {
+    transform: scale(1.15);
+    opacity: 1;
+    transition-duration: 0.5s;
+}
+
+#berita-beranda .berita-beranda-item-title {
+    border-bottom: 1px solid #D6261A;
+    padding: 5px 0;
+    margin: 0 20px 20px 20px;
+}
+
+#berita-beranda .berita-beranda-item-title h3 {
+    font-size: 18px;
+    color: #11418A;
+    line-height: 35px;
+    font-weight: 600;
+    padding-right: 40px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+#berita-beranda .berita-beranda-item-title h3:hover {
+    color: #3c72c2;
+}
+
+#berita-beranda .berita-beranda-item-title span {
+    font-size: 12px;
+    font-weight: 700;
+    color: #D6261A;
+
+}
+
+#berita-beranda .berita-beranda-item-body p {
+    font-size: 16px;
+    line-height: 25px;
+    color: #666;
+    margin: 0 20px 0 20px;
+    text-align: justify;
+    padding-bottom: 10px;
+}
+
+#berita-beranda .berita-beranda-button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#berita-beranda a.btn.btn-primary {
+    background-color: #fff;
+    color: #11418A;
+    border-color: #11418A;
+    text-transform: uppercase;
+    border-radius: 0;
+    font-weight: 600;
+    width: 100%;
+    letter-spacing: 1px;
+    padding: 15px 0 15px 0;
+    font-size: 15px;
+}
+
+#berita-beranda a.btn.btn-primary:hover {
+    background-color: #11418A;
+    color: #FEF501;
+    transition-duration: 0.3s;
+}
+/* END CSS BERITA BERANDA */
+
+
+/* CSS EKSTRAKULIKULER */
+#ekstrakul {
+    background-color: #F9F9F9;
+    padding-top: 90px;
+    padding-bottom: 40px;
+}
+
+#ekstrakul .section-title {
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+#ekstrakul .section-title h2 {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 28px;
+    text-transform: uppercase;
+    color: #11418A;
+    font-weight: 600;
+}
+
+#ekstrakul .section-title h2:after {
+    position: absolute;
+    content: "";
+    width: 220px;
+    height: 3px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#ekstrakul .center {
+    width: 95%;
+    margin: auto;
+}
+
+.ekstrakul-button {
+    width: 97%;
+    height: 190px;
+    text-align: center;
+    border-radius: 7px;
+    /* box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.3); */
+    margin-bottom: 35px;
+    background-color: #11418A;
+    border-color: #11418A;
+}
+
+.ekstrakul-button:hover {
+    transition-duration: 0.3s;
+    background-color: #1351ad;
+    border-color: #1351ad;
+}
+
+.ekstrakul-button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
+}
+
+.ekstrakul-body h4 {
+    color: #fff;
+    margin-left: 10px;
+    font-size: 25px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+/* END CSS EKSTRAKULIKULER */
+
+
+/* CSS PRESTASI */
+#prestasi-beranda {
+    padding-top: 90px;
+    padding-bottom: 60px;
+    min-height: 250px;
+    background-color: #fff;
+}
+
+#prestasi-beranda .section-title {
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+#prestasi-beranda .section-title h2 {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 28px;
+    text-transform: uppercase;
+    color: #11418A;
+    font-weight: 600;
+}
+
+#prestasi-beranda .section-title h2:after {
+    position: absolute;
+    content: "";
+    width: 220px;
+    height: 3px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#prestasi-beranda .prestasi-item {
+    margin-top: 60px;
+    box-shadow: 0 0 25px #ddd;
+    border-radius: 10px;
+    min-height: 260px;
+    overflow: hidden;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 60px;
+}
+
+#prestasi-beranda .prestasi-item-thumbnail {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+    max-height: 100%;
+}
+
+#prestasi-beranda .prestasi-item-title {
+    border-bottom: 1px solid #D6261A;
+    padding: 20px 0;
+    margin: 5px 15px 20px 0;
+}
+
+#prestasi-beranda .prestasi-item-title h3 {
+    font-size: 18px;
+    color: #11418A;
+    line-height: 25px;
+    font-weight: 600;
+    padding-right: 40px;
+}
+
+#prestasi-beranda .prestasi-item-title h3:hover {
+    color: #3c72c2;
+}
+
+#prestasi-beranda .prestasi-item-title span {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+#prestasi-beranda .prestasi-item-title span i {
+    margin-right: 5px;
+}
+
+#prestasi-beranda .prestasi-item-title span:first-of-type {
+    margin-right: 15px;
+}
+
+#prestasi-beranda .prestasi-item-body p {
+    font-size: 14px;
+    margin-right: 15px;
+    line-height: 25px;
+    color: #666;
+    text-align: justify;
+}
+
+#prestasi-beranda .prestasi-button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#prestasi-beranda a.btn.btn-primary {
+    background-color: #fff;
+    color: #11418A;
+    border-color: #11418A;
+    text-transform: uppercase;
+    border-radius: 0;
+    font-weight: 600;
+    width: 100%;
+    letter-spacing: 1px;
+    padding: 15px 0 15px 0;
+    font-size: 15px;
+}
+
+#prestasi-beranda a.btn.btn-primary:hover {
+    background-color: #11418A;
+    color: #FEF501;
+    transition-duration: 0.3s;
+}
+/* END CSS PRESTASI */
+
+
+/* CSS FOOTER */
+footer {
+    background-color: #11418A;
+    color: #fff;
+    padding: 50px 0 0 0;
+    margin-top: 60px;
+    min-height: 380px;
+}
+
+footer .footer-col:first-of-type {
+    padding-right: 30px;
+}
+
+footer .brand {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+footer .brand img {
+    width: 50px;
+    height: 65px;
+    margin-right: 20px;
+}
+
+footer .brand h1 {
+    margin-top: 15px;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 25px;
+    text-transform: uppercase;
+}
+
+footer .tentang {
+    font-size: 14px;
+    line-height: 26px;
+    border-bottom: 1px dashed rgb(255, 255, 255, 0.5);
+    text-align: justify;
+    padding-bottom: 10px;
+}
+
+footer .sosmed {
+    list-style: none;
+    margin-bottom: 30px;
+    padding: 0;
+}
+
+footer .sosmed li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+footer .sosmed li a {
+    color: #fff;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.5);
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 50px;
+}
+
+footer .sosmed li a:hover {
+    color: #FEF501;
+    transition-duration: 0.3s;
+}
+
+/* .lokasi-footer h2 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.lokasi-footer {
+    width: 100%;
+    margin: auto;
+} */
+
+.footer-col h2 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-col .alamat {
+    font-size: 14px;
+    line-height: 25px;
+    padding: 10px 0;
+    text-align: justify;
+}
+
+.footer-col .kontak {
+    list-style: none;
+    padding: 0;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.footer-col .kontak li {
+    margin: 10px 0;
+}
+
+.footer-col .kontak i {
+    margin-right: 10px;
+}
+
+.footer-col .footer-nav {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.footer-col .footer-nav li {
+    margin: 10px 0;
+}
+
+.footer-col .footer-nav a {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 28px;
+}
+
+.footer-col .footer-nav a:hover {
+    border-bottom: 1px solid #fff;
+    transition-duration: 0.3s;
+}
+
+.footer-copyright {
+    border-top: 1px solid #fff;
+    margin-top: 30px;
+    padding: 10px 0;
+    font-weight: 300;
+    border-bottom: 1px solid #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.footer-copyright h6 a {
+    color: #fff;
+}
+
+.footer-copyright h6 a:hover {
+    color: #FEF501;
+    transition-duration: 0.3s;
+}
+/* END CSS FOOTER */
+
+
+
+/* CSS PAGE SAMBUTAN */
+header .sambutan-title {
+    padding-top: 80px;
+    text-align: center;
+}
+
+header .sambutan-title h2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header .sambutan-title h2:after {
+    position: absolute;
+    content: "";
+    width: 140px;
+    height: 5px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#sambutan {
+    margin-top: 60px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+}
+
+#sambutan .card {
+    width: 93%;
+    height: 300px;
+    margin: auto;
+    margin-bottom: 110px;
+}
+
+#sambutan img {
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+}
+
+#sambutan p {
+    text-align: justify;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+/* END CSS PAGE SAMBUTAN */
+
+
+
+/* CSS PAGE VISI MISI */
+header .visimisi-title {
+    padding-top: 80px;
+    text-align: center;
+}
+
+header .visimisi-title h2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header .visimisi-title h2:after {
+    position: absolute;
+    content: "";
+    width: 180px;
+    height: 5px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.visi,
+.misi {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 30px 0 20px 0;
+    color: #11418A;
+}
+
+#visi-misi p {
+    text-align: center;
+}
+
+#visi-misi ol {
+    width: 60%;
+    margin: auto;
+}
+/* END CSS PAGE VISI MISI */
+
+
+
+/* CSS PAGE GALERI */
+header .galeri-title {
+    padding-top: 80px;
+    text-align: center;
+}
+
+header .galeri-title h2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header .galeri-title h2:after {
+    position: absolute;
+    content: "";
+    width: 90px;
+    height: 5px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.galeri-item {
+    margin-top: 30px;
+}
+
+.galeri-item .card {
+    object-fit: cover;
+    max-width: 410px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.img-title {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(5, 5, 5, 0.5); */
+    background: rgb(5, 5, 5);
+    background: linear-gradient(0deg, rgba(5, 5, 5, 1) 0%, rgba(5, 5, 5, 0) 80%);
+    top: 273px;
+    transition: all 0.5s ease-in;
+}
+
+.img-title p,h5 {
+    text-align: center;
+    color: #fff;
+    line-height: 2px;
+    position: relative;
+    top: 230px;
+    text-shadow: 1px 1px rgba(5, 5, 5, 0.5);
+}
+
+.img-title p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.img-title h5 {
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #FEF501;
+}
+
+.galeri-item .card:hover .img-title {
+    top: 0;
+    transition: all 0.5s ease-out;
+}
+
+.galeri-item .card img {
+    inset: 0;
+    object-fit: cover;
+    transform: scale(1);
+    transition: all 0.3s ease-out;
+}
+
+.galeri-item .card:hover img {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in;
+}
+/* END CSS PAGE GALERI */
+
+
+
+/* CSS PAGE PETA LOKASI */
+/* header .lokasi-title {
+    padding-top: 80px;
+    text-align: center;
+}
+
+header .lokasi-title h2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header .lokasi-title h2:after {
+    position: absolute;
+    content: "";
+    width: 190px;
+    height: 5px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#lokasi {
+    margin-top: 50px;
+}
+
+#lokasi i {
+    font-size: 50px;
+    color: #0a0092;
+}
+
+#lokasi h3 {
+    margin-left: 20px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+#lokasi .lokasi-alamat {
+    width: 90%;
+    margin: auto;
+}
+
+#lokasi .lokasi-alamat h4 {
+    margin-left: 70px;
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: 1px;
+}
+
+#lokasi .card {
+    width: 98%;
+    height: 400px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 2px rgba(103, 103, 103, 0.8);
+    padding: 20px;
+    margin: auto;
+}
+
+#lokasi img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform .5s;
+}
+
+#lokasi .card:hover img {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.lokasi-item {
+    width: 95%;
+    margin: auto;
+    margin-top: 100px;
+} */
+/* END CSS PAGE LOKASI */
+
+
+
+/* CSS SECTION SEARCHBOX DAN KATEGORI BERITA */
+.searchbox {
+    background-color: #FBF9FF;
+    padding: 30px 20px 50px 20px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    width: 90%;
+}
+
+.searchbox .search h4 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #D6261A;
+}
+
+.searchbox .form-control {
+    height: 50px;
+    border-radius: 0;
+    border-color: #eeeeee;
+}
+
+.searchbox a.btn.btn-primary {
+    background-color: #fff;
+    color: #D6261A;
+    border-color: #D6261A;
+    text-transform: uppercase;
+    border-radius: 0;
+    font-weight: 600;
+    margin-top: 20px;
+    width: 100%;
+    /* border-radius: 8px;
+    margin-bottom: 20px; */
+}
+
+.searchbox a.btn.btn-primary:hover {
+    background-color: #D6261A;
+    color: #fff;
+}
+
+.kategori {
+    background-color: #FBF9FF;
+    padding: 30px 20px 30px 20px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    width: 90%;
+}
+
+.kategori .kategori-berita h4 {
+    font-size: 20px;
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #D6261A;
+}
+
+.kategori .berita-sekolah, .info-sekolah, .agenda-sekolah {
+    margin-bottom: 30px;
+    padding-bottom: -10px;
+    border-bottom: 1px solid #D6261A;
+}
+
+.kategori .berita-sekolah p, .info-sekolah p, .agenda-sekolah p{
+    color: #000;
+}
+
+.kategori .berita-sekolah p:hover, .info-sekolah p:hover, .agenda-sekolah p:hover{
+    color: #dfd701;
+}
+/* END CSS SECTION SEARCHBOX DAN KATEGORI BERITA */
+
+
+
+/* CSS PAGE BERITA */
+header .berita-title {
+    padding-top: 80px;
+    text-align: center;
+}
+
+header .berita-title h2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header .berita-title h2:after {
+    position: absolute;
+    content: "";
+    width: 250px;
+    height: 5px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#berita {
+    min-height: 250px;
+    margin-top: 70px;
+}
+
+#berita .berita {
+    width: 95%;
+    margin: auto;
+}
+
+.berita-item {
+    margin: auto;
+    margin-bottom: 50px;
+    border-radius: 0;
+    max-width: 730px;
+    min-height: 550px;
+    background-color: #FBF9FF;
+    box-shadow: 1px 1px 10px #ddd;
+    
+}
+
+#berita .card {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    height: 350px;
+    max-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#berita img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform .5s;
+}
+
+#berita .card:hover img {
+    transform: scale(1.15);
+    opacity: 1;
+}
+
+.berita-item-title {
+    border-bottom: 1px solid #D6261A;
+    padding: 5px 0;
+    margin: 0 20px 20px 20px;
+}
+
+.berita-item-title h3 {
+    font-size: 18px;
+    color: #11418A;
+    line-height: 35px;
+    font-weight: 600;
+    padding-right: 40px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.berita-item-title h3:hover{
+    color: #3c72c2;
+}
+
+.berita-item-title span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #D6261A;
+}
+
+.berita-item-body p {
+    font-size: 16px;
+    line-height: 25px;
+    color: #666;
+    margin: 0 20px 0 20px;
+    padding-bottom: 10px;
+    text-align: justify;
+}
+/* END CSS PAGE BERITA */
+
+
+
+/* CSS PAGE INFO */
+header .info-title {
+    padding-top: 80px;
+    text-align: center;
+}
+
+header .info-title h2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header .info-title h2:after {
+    position: absolute;
+    content: "";
+    width: 220px;
+    height: 5px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#info {
+    min-height: 250px;
+    margin-top: 50px;
+}
+
+#info .info {
+    width: 95%;
+    margin: auto;
+}
+
+.info-item {
+    margin: auto;
+    margin-bottom: 50px;
+    border-radius: 0;
+    max-width: 730px;
+    min-height: 500px;
+    overflow: hidden;
+    background-color: #FBF9FF;
+    box-shadow: 1px 1px 10px #ddd;
+    
+}
+
+#info .card {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    height: 350px;
+    max-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#info img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform .5s;
+}
+
+#info .card:hover img {
+    transform: scale(1.15);
+    opacity: 1;
+}
+
+.info-item-title {
+    border-bottom: 1px solid #D6261A;
+    padding: 5px 0;
+    margin: 0 20px 20px 20px;
+}
+
+.info-item-title h3 {
+    font-size: 18px;
+    color: #11418A;
+    line-height: 35px;
+    font-weight: 600;
+    padding-right: 40px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.info-item-title h3:hover {
+    color: #3c72c2;
+}
+
+.info-item-title span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #D6261A;
+}
+
+.info-item-body p {
+    font-size: 16px;
+    line-height: 25px;
+    color: #666;
+    margin: 0 20px 20px 20px;
+    text-align: justify;
+}
+/* END CSS PAGE INFO */
+
+
+
+/* CSS PAGE AGENDA */
+header .agenda-title {
+    padding-top: 80px;
+    text-align: center;
+}
+
+header .agenda-title h2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header .agenda-title h2:after {
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 5px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#agenda {
+    min-height: 250px;
+    margin-top: 70px;
+}
+
+#agenda .agenda {
+    width: 95%;
+    margin: auto;
+}
+
+.agenda-item {
+    margin: auto;
+    margin-bottom: 50px;
+    border-radius: 0;
+    max-width: 730px;
+    min-height: 500px;
+    overflow: hidden;
+    background-color: #FBF9FF;
+    box-shadow: 1px 1px 10px #ddd;
+    
+}
+
+#agenda .card {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    height: 350px;
+    max-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#agenda img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform .5s;
+}
+
+#agenda .card:hover img {
+    transform: scale(1.15);
+    opacity: 1;
+}
+
+.agenda-item-title {
+    border-bottom: 1px solid #D6261A;
+    padding: 5px 0;
+    margin: 0 20px 20px 20px;
+}
+
+.agenda-item-title h3 {
+    font-size: 18px;
+    color: #11418A;
+    line-height: 35px;
+    font-weight: 600;
+    padding-right: 40px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.agenda-item-title h3:hover {
+    color: #3c72c2;
+}
+
+.agenda-item-title span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #D6261A;
+}
+
+.agenda-item-body p {
+    font-size: 16px;
+    line-height: 25px;
+    color: #666;
+    margin: 0 20px 20px 20px;
+}
+/* END CSS PAGE AGENDA */
+
+
+
+/* CSS PAGE EKSTRAKULIKULER */
+header .ekstra-title {
+    padding-top: 80px;
+    text-align: center;
+}
+
+header .ekstra-title h2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header .ekstra-title h2:after {
+    position: absolute;
+    content: "";
+    width: 250px;
+    height: 5px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.ekstra-item {
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 25px #ddd;
+    border-radius: 10px;
+    min-height: 250px;
+    width: 85%;
+    overflow: hidden;
+}
+
+#ekstra .card {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+    max-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#ekstra img {
+    position: absolute;
+    inset: 0;
+    max-width: 100%;
+    max-height: 100%;
+    height: 300px;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform .5s;
+}
+
+#ekstra .card:hover img {
+    transform: scale(1.15);
+    opacity: 1;
+    transition-duration: 0.5s;
+}
+
+.ekstra-item-title {
+    border-bottom: 1px solid #D6261A;
+    padding: 20px 0;
+    margin: 0 20px 20px 0;
+    max-width: 100%;
+}
+
+.ekstra-item-title h3 {
+    font-size: 25px;
+    color: #11418A;
+    line-height: 25px;
+    font-weight: 600;
+    padding-right: 40px;
+    margin-top: 20px;
+    line-height: 35px;
+}
+
+.ekstra-item-title span {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.ekstra-item-body p {
+    font-size: 14px;
+    line-height: 25px;
+    color: #666;
+    text-align: justify;
+    margin: 0 20px 10px 0;
+}
+/* END CSS PAGE EKSTRAKULIKULER */
+
+
+
+/* CSS PAGE PRESTASI */
+header .prestasi-title {
+    padding-top: 80px;
+    text-align: center;
+}
+
+header .prestasi-title h2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header .prestasi-title h2:after {
+    position: absolute;
+    content: "";
+    width: 130px;
+    height: 5px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.pres-item {
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 25px #ddd;
+    border-radius: 7px;
+    min-height: 250px;
+    overflow: hidden;
+    width: 85%;
+}
+
+.pres-item-thumbnail {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+    max-height: 100%;
+}
+
+.pres-item-title {
+    border-bottom: 1px solid #D6261A;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.pres-item-title h3 {
+    font-size: 18px;
+    color: #11418A;
+    line-height: 25px;
+    font-weight: 600;
+    padding-right: 40px;
+}
+
+.pres-item-title span {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.pres-item-title span i {
+    margin-right: 5px;
+}
+
+.pres-item-title span:first-of-type {
+    margin-right: 15px;
+}
+
+.pres-item-body p {
+    font-size: 14px;
+    margin-right: 20px;
+    line-height: 25px;
+    color: #666;
+    text-align: justify;
+}
+/* END CSS PAGE PRESTASI */
+
+
+
+/* CSS PAGE SARANA PRASARANA */
+header .sarpras-title {
+    padding-top: 80px;
+    text-align: center;
+}
+
+header .sarpras-title h2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header .sarpras-title h2:after {
+    position: absolute;
+    content: "";
+    width: 310px;
+    height: 5px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.sarpras-item {
+    margin-top: 30px;
+}
+
+.sarpras-item .card {
+    object-fit: cover;
+    max-width: 410px;
+    height: 273px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.sarpras-item .img-title {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(5, 5, 5, 0.5); */
+    background: rgb(5, 5, 5);
+    background: linear-gradient(0deg, rgba(5, 5, 5, 1) 0%, rgba(5, 5, 5, 0) 80%);
+    top: 273px;
+    transition: all 0.5s ease-in;
+}
+
+.sarpras-item .img-title h5 {
+    text-align: center;
+    color: #fff;
+    line-height: 2px;
+    position: relative;
+    top: 250px;
+    text-shadow: 1px 1px rgba(5, 5, 5, 0.5);
+}
+
+.sarpras-item .img-title p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.sarpras-item .img-title h5 {
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #FEF501;
+}
+
+.sarpras-item .card:hover .img-title {
+    top: 0;
+    transition: all 0.5s ease-out;
+}
+
+.sarpras-item .card img {
+    inset: 0;
+    object-fit: cover;
+    transform: scale(1);
+    transition: all 0.3s ease-out;
+}
+
+.sarpras-item .card:hover img {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in;
+}
+/* END CSS PAGE SARANA PRASARANA */
+
+
+
+/* CSS PAGE KONTAK */
+header .kontak-title {
+    padding-top: 80px;
+    text-align: center;
+}
+
+header .kontak-title h2 {
+    position: relative;
+    display: inline-block;
+    margin-top: 130px;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+header .kontak-title h2:after {
+    position: absolute;
+    content: "";
+    width: 200px;
+    height: 5px;
+    background-color: #D6261A;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#kontak {
+    margin-top: 50px;
+}
+
+#kontak .kotak-saran {
+    width: 90%;
+    margin: auto;
+    position: relative;
+    left: 10px;
+}
+
+#kontak h3 {
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.nama {
+    background-color: whitesmoke;
+    border: 1px solid #11418A;
+    color: black;
+    width: 100%;
+    height: 50px;
+    padding: 6px;
+    font-size: 15px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.email {
+    background-color: whitesmoke;
+    border: 1px solid #11418A;
+    color: black;
+    width: 100%;
+    height: 50px;
+    padding: 6px;
+    font-size: 15px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.subjek {
+    background-color: whitesmoke;
+    border: 1px solid #11418A;
+    color: black;
+    width: 100%;
+    height: 50px;
+    padding: 6px;
+    font-size: 15px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.pesan {
+    background-color: whitesmoke;
+    border: 1px solid #11418A;
+    color: black;
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    min-height: 100px;
+    max-height: 300px;
+    resize: vertical;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.btn-send {
+    width: 100%;
+    height: 35px;
+    margin: 10px 0 50px 0;
+    border: none;
+    background-color: #11418A;
+    color: #FEF501;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.3);
+    transform: translate(0, 0);
+    transition-duration: .1s;
+    text-transform: uppercase;
+}
+
+.btn-send:active {
+    transform: translate(3px, 3px);
+    box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
+    background-color: #0a0092;
+
+}
+
+.nama:hover {
+    border-color: #3c72c2;
+}
+
+.email:hover {
+    border-color: #3c72c2;
+}
+
+.subjek:hover {
+    border-color: #3c72c2;
+}
+
+.pesan:hover {
+    border-color: #3c72c2;
+}
+
+/* .alert{
+    width: 93.5%;
+}
+.spinner{
+    width: 93.5%;
+    color: black;
+} */
+
+#kontak .kontak {
+    width: 80%;
+    margin: auto;
+}
+
+#kontak .kontak-item {
+    margin-top: 50px;
+}
+
+#kontak h6 {
+    font-weight: bold;
+    color: #11418A;
+}
+
+#kontak i {
+    font-size: 20px;
+    color: #11418A;
+}
+
+#kontak p {
+    margin-left: 39px;
+}
+.lokasi-item {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.lokasi-item iframe {
+    width: 100%;
+    margin: auto;
+    height: 400px;
+}
+/* END CSS PAGE KONTAK */
+
+
+
+/* CSS ISI INFORMASI */
+#isi {
+    margin-top: 30px;
+}
+
+.isi-item {
+    margin: auto;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    border-radius: 0;
+    max-width: 95%;
+    min-height: 550px;
+    background-color: #fff;
+    
+}
+
+#isi .card {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    height: 450px;
+    max-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#isi img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s;
+}
+
+#isi .card:hover img {
+    transform: scale(1.15);
+}
+
+.isi-item-title {
+    border-bottom: 1px solid #dfdfdf;
+    padding: 5px 0 20px 0;
+    margin-bottom: 30px;
+}
+
+.isi-item-title h3 {
+    font-size: 20px;
+    color: #11418A;
+    line-height: 35px;
+    font-weight: 600;
+    padding-right: 40px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.isi-item-title span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #D6261A;
+}
+
+.isi-item-body p {
+    font-size: 16px;
+    line-height: 25px;
+    color: #666;
+    padding-bottom: 10px;
+    text-align: justify;
+}
+/* END CSS ISI INFORMASI */
+
+
+
+/* CSS PAGE 404 */
+#error img {
+    max-width: 900px;
+    height: auto;
+    margin: auto;
+    margin-top: 60px;
+    
+}
+
+#error h1 {
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #D6261A;
+    text-shadow: 1px 1px 3px #11418A;
+}
+/* END CSS PAGE 404 */
+
+
+
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width:560px) {
+    /* CSS NAVBAR */
+    .navbar img {
+        width: 38px;
+        height: 53px;
+    }
+
+    .navbar-brand h2 {
+        margin-top: 10px;
+    }
+
+    .nav-item {
+        text-transform: uppercase;
+        border-bottom: 1px solid #fffdc6;
+        margin-bottom: 5px;
+    }
+    /* END CSS NAVBAR */
+
+    /* CSS SEARCH BERANDA */
+    #bg-beranda .search-beranda h1 {
+        font-size: 30px;
+        letter-spacing: 2px;
+    }
+
+    .input-box {
+        width: 85%;
+    }
+    /* END CSS SEARCH BERNADA */
+
+    /* CSS BERITA BERANDA */
+    #berita-beranda .center-berita {
+        width: 100%;
+    }
+
+    #berita-beranda .berita-beranda-item {
+        margin: 0 0 50px 0;
+    }
+
+    #berita-beranda .berita-beranda-item-title {
+        margin: 0 10px 20px 10px;
+    }
+    
+    #berita-beranda .berita-beranda-item-body p {
+        margin: 0 10px 0 10px;
+    }
+    /* END CSS BERITA BERANDA */
+
+    /* CSS PRESTASI BERANDA */
+    #prestasi-beranda .prestasi-item-title {
+        margin: 5px 15px 20px 15px;
+    }
+    
+    #prestasi-beranda .prestasi-item-body p {
+        margin-left: 15px;
+    }
+
+    #prestasi-beranda .prestasi-button {
+        width: 94%;
+    }
+    /* END CSS PRESTASI BERANDA */
+
+    /* CSS PAGE VISI MISI */
+    #visi-misi ol {
+        width: 95%;
+        margin: auto;
+        text-align: justify;
+    }
+    /* END CSS PAGE VISI MISI */
+
+    /* CSS PAGE GALERI */
+    .img-title p,h5 {
+        top: 210px;
+    }
+    /* END PAGE CSS GALERI */
+
+    /* CSS PAGE BERITA SEKOLAH */
+    #berita .berita {
+        width: 100%;
+    }
+    /* END CSS PAGE BERITA SEKOLAH */
+
+    /* CSS PAGE INFO */
+    #info .info {
+        width: 100%;
+    }
+    /* END CSS PAGE INFO */
+
+    /* CSS PAGE AGENDA */
+    #agenda .agenda {
+        width: 100%;
+    }
+    /* END CSS PAGE AGENDA */
+
+    /* CSS PAGE EKSTRAKULIKULER */
+    .ekstra-item {
+        width: 95%;
+    }
+
+    .ekstra-item-title {
+        margin: 0 20px 20px 20px;
+    }
+    
+    .ekstra-item-body p {
+        margin: 0 20px 20px 20px;
+    }
+    /* END CSS PAGE EKSTRAKULIKULER */
+
+    /* CSS PAGE PRESTASI */
+    .pres-item {
+        width: 95%;
+    }
+
+    .pres-item-title {
+        margin: 0 20px 20px 20px;
+    }
+    
+    .pres-item-body p {
+
+        margin: 0 20px 0 20px;
+        padding-bottom: 20px;
+    }
+    /* END CSS PAGE PRESTASI */
+
+    /* CSS PAGE KONTAK */
+    #kontak .kotak-saran {
+        position: relative;
+        left: 0;
+    }
+
+    #kontak .kontak {
+        width: 88%;
+        margin: auto;
+    }
+    /* END CSS PAGE KONTAK */
+
+    /* CSS FOOTER */
+    .footer-col {
+        margin-left: 20px;
+    }
+    /* END CSS FOOTER */
+
+    /* CSS ISI INFORMASI */
+    .isi-item {
+        margin: auto;
+    }
+    /* END CSS INFORMASI */
+
+}
+
+#berita-beranda .card span {
+    position: absolute;
+	left: 40px;
+	top: 120px;
+	color: red;
+} 
+/* ??????????????????????????????? */

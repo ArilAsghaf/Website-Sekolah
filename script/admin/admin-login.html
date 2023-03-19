@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin</title>
+    <!-- Logo Titile Bar -->
+    <link rel="icon" href="../../../../assets/img/icon.png" type="image/x-icon">
+    <!-- Bootstrap -->
+	<link rel="stylesheet" href="../../assets/css/bootstrap.css">
+    <!-- font awesome / icon -->
+    <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
+    <!-- style css custom  -->
+    <link rel="stylesheet" href="../../assets/css/style-login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="login">
+            <form action="">
+                <h1>Login</h1>
+                <hr>
+                <label for="">Email</label>
+                <input type="email" class="email" placeholder="Email">
+                <label for="">Password</label>
+                <input type="password" class="password" placeholder="Password">
+                <button class="btnLogin">Login</button>
+                <p>
+                    <a href="#">Forgot Password?</a>
+                </p>
+            </form>
+        </div>
+        <div class="right">
+            <img src="../../assets/img/login.svg" alt="">
+        </div>
+    </div>
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAc4tRSj1ENgI3oGU5ZUsAk684_fKyFVfU",
+            authDomain: "smpn-2-pati.firebaseapp.com",
+            projectId: "smpn-2-pati",
+            storageBucket: "smpn-2-pati.appspot.com",
+            messagingSenderId: "392087494788",
+            appId: "1:392087494788:web:924c46eb0a810c6067a2d1"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig)
+
+
+        const emailInputan = document.querySelector(".email");
+        const pass = document.querySelector(".password");
+        const btnLogin = document.querySelector(".btnLogin");
+
+        let dataInputUser = {
+            email: "",
+            password: ""
+        };
+
+        emailInputan.addEventListener("change", e => {
+            dataInputUser = {
+                ...dataInputUser,
+                email: e.target.value
+            }
+        })
+        pass.addEventListener("change", e => {
+            dataInputUser = {
+                ...dataInputUser,
+                password: e.target.value
+            }
+        })
+
+        const loginByEmailPass = (data) => {
+            return new Promise((resolve, reject) => {
+                const auth = getAuth(app);
+                signInWithEmailAndPassword(auth, data.email, data.password)
+                    .then((userCredential) => {
+                        // Signed in
+                        const user = userCredential.user;
+                        console.log(user)
+                        resolve(user);
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        reject(errorCode);
+                    });
+            });
+        };
+
+        btnLogin.addEventListener("click", async () => {
+            const resp = await loginByEmailPass(dataInputUser)
+            if (resp) {
+                window.location.href = "admin-index.html"
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

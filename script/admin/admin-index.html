@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <!-- Logo Titile Bar -->
+    <link rel="icon" href="../../assets/img/icon.png" type="image/x-icon">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="../../assets/css/bootstrap.css">
+    <!-- font awesome / icon -->
+    <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
+    <!-- style css custom  -->
+    <link rel="stylesheet" href="../../assets/css/style-admin.css">
+</head>
+<body>
+    <!-- Section Sidebar -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class="fas fa-user-cog"></i>
+			<span class="text">Admin</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="admin-index.html">
+					<i class="fas fa-columns"></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="admin-berita.html">
+					<i class="fas fa-newspaper"></i>
+					<span class="text">Berita Sekolah</span>
+				</a>
+			</li>
+			<li>
+				<a href="admin-Info.html">
+					<i class="fas fa-bullhorn"></i>
+					<span class="text">Info Sekolah</span>
+				</a>
+			</li>
+			<li>
+				<a href="admin-agenda.html">
+					<i class="fas fa-calendar-week"></i>
+					<span class="text">Agenda Sekolah</span>
+				</a>
+			</li>
+			<li>
+				<a href="admin-prestasi.html">
+					<i class="fas fa-trophy"></i>
+					<span class="text">Prestasi</span>
+				</a>
+			</li>
+			<li>
+				<a href="admin-galeri.html">
+					<i class="fas fa-images"></i>
+					<span class="text">Galeri</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class="fas fa-cog"></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="logout">
+					<i class="fas fa-sign-out-alt"></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- End Section Sidebar -->
+
+    <!-- Section Dashboard -->
+    <div id="dashboard">
+        <!-- Section Navbar -->
+        <nav>
+			<i class="fas fa-bars"></i>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class="fas fa-bell"></i>
+				<span class="num">8</span>
+			</a>
+			<a href="#" class="profile">
+				<img src="assets/img/cfd.jpg">
+			</a>
+		</nav>
+        <!-- End Section Navbar -->
+
+        <!-- Section Main -->
+        <main>
+            <div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class="fas fa-chevron-right"></i></li>
+						<li>
+							<a class="active" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+				<a href="#" class="btn-download">
+					<i class="fas fa-cloud-download-alt"></i>
+					<span class="text">Download PDF</span>
+				</a>
+			</div>
+
+			<div>
+				<ul class="box-info">
+					<li>
+						<i class="fas fa-user-friends"></i>
+						<span class="text">
+							<h3>120</h3>
+							<p>Pengunjung</p>
+						</span>
+					</li>
+					<li>
+						<i class='bx bxs-group' ></i>
+						<span class="text">
+							<h3>2834</h3>
+							<p>Visitors</p>
+						</span>
+					</li>
+					<li>
+						<i class="fas fa-comment-alt"></i>
+						<span class="text">
+							<h3>43</h3>
+							<p>Kotak Saran</p>
+						</span>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Section Kotak Saran -->
+			<div id="kotak-saran">
+				<div class="card-header d-flex justify-content-between align-items-center">
+					<h4 class="card-title">Kotak Saran</h4>
+					<div class="d-flex ">
+						<i data-feather="download"></i>
+					</div>
+				</div>
+				<div class="card-body px-0 pb-0">
+					<div class="table-responsive">
+						<table class='table table-striped mb-0' id="table1" style="width: 100%;">
+							<thead>
+								<tr>
+									<th style="width: 15%;">Nama</th>
+									<th style="width: 20%;">Email</th>
+									<th style="width: 20%;">Subjek</th>
+									<th style="width: 40%;">Pesan</th>
+									<th style="width: 5%;">Hapus</th>
+								</tr>
+							</thead>
+							<tbody class="kotak_saran">
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- End Section Kotak Saran -->
+        </main>
+        <!-- End Section Main -->
+    </div>
+    <!-- End Section Dashboard -->
+
+	<script src="../../assets/js/bootstrap.js"></script>
+	<script src="../../assets/js/admin/main-admin.js"></script>
+	<script type="module" src="../../assets/js/admin/admin-index.js"></script>
+</body>
+</html>

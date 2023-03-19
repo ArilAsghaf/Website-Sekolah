@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Image</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+    <!-- Font Awesome / Icon -->
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css" />
+    <!-- Style CSS  -->
+    <link rel="stylesheet" href="assets/css/" />
+    <!-- library AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: grid;
+            height: 100%;
+            place-items: center;
+            text-align: center;
+        } */
+        .container{
+            height: 350px;
+            width: 430px;
+        }
+        .container .wrapper{
+            position: relative;
+            height: 300px;
+            width: 100%;
+            border-radius: 10px;
+            background: #fff;
+            border: 2px dashed #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .wrapper.active{
+            border: none;
+        }
+        .wrapper .image{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .wrapper .image img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        .wrapper .icon{
+            font-size: 100px;
+            color: blue;
+        }
+        .wrapper .text{
+            font-size: 20px;
+            font-weight: 500;
+            color: aqua;
+        }
+        .wrapper #cancel-btn{
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: brown;
+            display: none;
+        }
+        .wrapper.active:hover #cancel-btn{
+            display: block;
+        }
+        .wrapper #cancel-btn:hover{
+            color: yellow;
+        }
+        .wrapper .file-name{
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            color: #fff;
+            padding: 8px 0;
+            font-size: 18px;
+            text-align: center;
+            display: none;
+            background: linear-gradient(135deg, #3a8ffe 0%, #9658fe) 100%;
+        }
+        .wrapper.active:hover .file-name{
+            display: block;
+        }
+        .container #custom-btn{
+            margin-top: 30px;
+            width: 100%;
+            height: 50px;
+            display: block;
+            border: none;
+            outline: none;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            background: linear-gradient(135deg, #3a8ffe 0%, #9658fe) 100%;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="image">
+                <img>
+            </div>
+            <div class="content">
+                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <div class="text">No file choose</div>
+            </div>
+            <div id="cancel-btn"><i class="fas fa-times"></i></div>
+            <div class="file-name">File name here</div>
+        </div>
+        <input id="default-btn" type="file" hidden>
+        <button onclick="defaultBtnActive()" id="custom-btn"> Choose a file</button>
+    </div>
+
+
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+        const wrapper = document.querySelector(".wrapper");
+        const fileName = document.querySelector(".file-name");
+        const cancelBtn = document.querySelector("#cancel-btn");
+        const defaultBtn = document.querySelector("#default-btn");
+        const customBtn = document.querySelector("#custom-btn");
+        const img = document.querySelector("img");
+        let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\, \$\=\!\-\#\(\)\ . \%\+\~\_ ]+$/;
+        function defaultBtnActive(){
+            defaultBtn.click();
+        }
+        defaultBtn.addEventListener("change", function(){
+            const file = this.files[0];
+            if(file){
+                const reader = new FileReader();
+                reader.onload = function(){
+                    const result = reader.result;
+                    // img.src = result;
+                    wrapper.classList.add("active");
+                }
+                cancelBtn.addEventListener("click", function(){
+                    img.src = "";
+                    wrapper.classList.remove("active");
+                }); // ???
+                reader.readAsDataURL(file);
+            }
+            if(this.value){
+                let valueStore = this.value.match(regExp);
+                fileName.textContent = valueStore;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
