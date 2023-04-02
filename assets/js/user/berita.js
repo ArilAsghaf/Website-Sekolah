@@ -16,7 +16,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
-const cariBerita = document.querySelector(".cariBerita")
+
 
 
 // TIMESTAMP
@@ -45,16 +45,15 @@ const limitBodyText = (text, long) => {
 // TAMPIL BERITA SEKOLAH
 const beritaSekolah = document.querySelector(".beritaSekolah");
 const btnSearch = document.querySelector(".input-group-append")
+const pagination = document.querySelector(".pagination")
 const addElBerita = (data, id) => {
     return `
     <div class="berita-item">
         <div class="card">
             <img src=${data.url_img} alt="">
+            <span>${changeTimestamp(data.tgl_uploud)}</span>
         </div>
         <div class="berita-item-title">
-            <div>
-                <span>${changeTimestamp(data.tgl_uploud)}</span>
-            </div>
             <a href="isi-infor.html" ><h3 id=${id} class="btnPage">${data.judul}</h3></a>
         </div>
         <div class="berita-item-body">
@@ -80,7 +79,10 @@ const getAllBerita = () => {
             .then(querySnapshot => {
                 let data = []
                 querySnapshot.forEach((doc) => {
-                    data.push(doc.data())
+                    data.push({
+                        ...doc.data(),
+                        id:doc.id
+                    })
                     beritaSekolah.innerHTML += addElBerita(doc.data(), doc.id)
                 });
                 resolve(data)
@@ -89,22 +91,29 @@ const getAllBerita = () => {
             .catch((error) => {
                 reject(error)
             });
-        })
-    }
-    getAllBerita()
-    // END TAMPIL BERITA SEKOLAH
+    })
+}
+getAllBerita()
+// END TAMPIL BERITA SEKOLAH
+
+
+// SEARCH
+const cariBerita = document.querySelector(".cariBerita")
 let dataSearch = {
     txt : ''
 }
 btnSearch.addEventListener('click', async() => {
     beritaSekolah.innerHTML = ''
     dataTemp[0].forEach(data => {
-        if(data.judul.includes(cariBerita.value.toUpperCase())){
-            beritaSekolah.innerHTML += addElBerita(data, '')
+        if(data.judul == cariBerita.value.toUpperCase()){
+            beritaSekolah.innerHTML += addElBerita(data, data.id)
+            pagination.style.display = 'none';
+        }else if(data.judul != cariBerita.value.toUpperCase()){
+            pagination.style.display = 'none';
         }else if (cariBerita.value == '') {
-            console.log("haii")
+            beritaSekolah.innerHTML += addElBerita(data, data.id)
+            pagination.style.display = 'flex';
         } 
-        
     })
 })
 
@@ -142,7 +151,7 @@ function getPageList(totalPages, page, maxLength) {
 $(async function () {
     const data = await getAllBerita()
     var numberOfItems = data.length
-    var limitPerPage = 3;
+    var limitPerPage = 4;
     var totalPages = Math.ceil(numberOfItems / limitPerPage);
     var paginationSize = 7;
     var currentPage;

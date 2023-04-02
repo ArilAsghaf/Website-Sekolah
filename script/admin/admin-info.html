@@ -14,9 +14,8 @@
     <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
     <!-- Style css custom  -->
     <link rel="stylesheet" href="../../assets/css/style-admin.css">
-
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-	<link href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
+	<!-- css data table -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
 </head>
 
@@ -87,45 +86,17 @@
 		<!-- Section Navbar -->
 		<nav>
 			<i class="fas fa-bars"></i>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
-				</div>
-			</form>
+			<h1>Kelola Info Sekolah</h1>
 			<input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class="fas fa-bell"></i>
-				<span class="num">8</span>
-			</a>
 			<a href="#" class="profile">
-				<img src="../../assets/img/cfd.jpg">
+				<img src="../../assets/img/logo-smpn2.png">
 			</a>
 		</nav>
 		<!-- End Section Navbar -->
 
 		<!-- Section Main -->
 		<main>
-			<div class="head-title">
-				<div class="left">
-					<h1>Upload Info Sekolah</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a class="active" href="admin-index.html">Dashboard</a>
-						</li>
-						<li><i class="fas fa-chevron-right"></i></li>
-						<li>
-							<a href="#">Upload Info Sekolah</a>
-						</li>
-					</ul>
-				</div>
-				<a href="#" class="btn-download">
-					<i class="fas fa-cloud-download-alt"></i>
-					<span class="text">Download PDF</span>
-				</a>
-			</div>
-
 			<!-- Section Upload Berita -->
 			<div id="up-informasi">
 				<div class="row">
@@ -156,7 +127,6 @@
 						<div class="berita">
 							<label for="exampleFormControlTextarea1" class="form-label">Isi Info</label>
 							<textarea class="isiInfo form-control" id="FormControlInformasi" rows="5" placeholder="Masukan isi berita..."></textarea>
-							<!-- <textarea name="berita" class="isiInfo texteditor"></textarea> -->
 						</div>
 						<button type="submit" class="btnInfo btn-primary">Unggah</button>
 					</div>
@@ -167,7 +137,7 @@
 			<!-- Section Tabel Berita -->
 			<div class="card-upload">
 				<div class="card-header-upload d-flex justify-content-between align-items-center">
-					<h4 class="card-title-upload">Info Sekolah</h4>
+					<h4 class="card-title-upload">Tabel Info Sekolah</h4>
 					<div class="d-flex ">
 						<i data-feather="download"></i>
 					</div>
@@ -219,10 +189,10 @@
 													<!-- <p>Ukuran gambar kurang dari <span>2MB</span></p> -->
 												</div>
 												<div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
-												<div class="file-name">Nama file</div>
+												<div class="filename-edit">Nama file</div>
 											</div>
 											<input type="file" id="btn-image-edit" class="input-img-edit" hidden>
-											<button onclick="btnImageEditActive()" class="select-image">Pilih
+											<button onclick="btnImageEditActive()" class="select-image-edit">Pilih
 												Gambar</button>
 										</div>
 									</div>
@@ -287,8 +257,10 @@
     <script type="module" src="../../assets/js/admin/admin-info.js"></script>
 	<!-- Jquery -->
 	<script type="text/javascript" src="../../assets/js/jquery-3.6.3.min.js"></script>
-	<script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+	<!-- Data Tables -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
 </body>
 

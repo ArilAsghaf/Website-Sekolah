@@ -229,7 +229,14 @@ body {
 	margin: auto;
 }
 
-#dashboard nav form .form-input {
+#dashboard nav h1 {
+	margin: auto;
+	font-size: 25px;
+	font-weight: 600;
+	color: var(--dark);
+}
+
+/* #dashboard nav form .form-input {
 	display: flex;
 	align-items: center;
 	height: 36px;
@@ -260,9 +267,9 @@ body {
 	outline: none;
 	border-radius: 0 36px 36px 0;
 	cursor: pointer;
-}
+} */
 
-#dashboard nav .notification {
+/* #dashboard nav .notification {
 	font-size: 20px;
 	position: relative;
 	color: var(--blue);
@@ -283,13 +290,13 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
+} */
 
 #dashboard nav .profile img {
-	width: 36px;
+	width: 30px;
 	height: 36px;
 	object-fit: cover;
-	border-radius: 50%;
+	justify-content: end;
 }
 
 #dashboard nav .switch-mode {
@@ -329,7 +336,7 @@ body {
 	overflow-y: auto;
 }
 
-#dashboard main .head-title {
+/* #dashboard main .head-title {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -375,14 +382,14 @@ body {
 	align-items: center;
 	grid-gap: 10px;
 	font-weight: 500;
-}
+} */
 
 #dashboard main .box-info {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	grid-gap: 24px;
+	grid-gap: 35px;
 	margin-top: 36px;
-	margin-right: 30px;
+	/* margin-right: 30px; */
 }
 
 #dashboard main .box-info li {
@@ -410,11 +417,6 @@ body {
 }
 
 #dashboard main .box-info li:nth-child(2) .fas {
-	background: var(--light-yellow);
-	color: var(--yellow);
-}
-
-#dashboard main .box-info li:nth-child(3) .fas {
 	background: var(--light-orange);
 	color: var(--orange);
 }
@@ -428,12 +430,65 @@ body {
 #dashboard main .box-info li .text p {
 	color: var(--dark);	
 }
+
+#dashboard .sambutan {
+	margin: auto;
+	background: var(--light);
+	border-radius: 20px;
+	min-height: 300px;
+	overflow: hidden;
+}
+
+#dashboard .sambutan h4 {
+	margin: 15px 0 5px 20px;
+	font-weight: 500;
+}
+
+#dashboard .sambutan .card {
+	width: 200px;
+    min-height: 100px;
+    margin: 20px 20px 20px 20px;
+    float: left;
+}
+
+#dashboard .sambutan img {
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+}
+
+#dashboard .sambutan p {
+	margin-top: 25px;
+	margin-right: 15px;
+	text-align: justify;
+}
+
+#dashboard .sambutan .btnSunting {
+	width: 100px;
+    height: 40px;
+    border: none;
+    background: var(--blue);
+    color: var(--yellow);
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.3);
+    transform: translate(0, 0);
+    transition-duration: .1s;
+    text-transform: uppercase;
+	float: left;
+}
+
+#dashboard .sambutan .btnSunting:active {
+    transform: translate(3px, 3px);
+    box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
+    background: var(--blue);
+}
 /* END CSS MAIN */
 
 
 /* CSS KOTAK SARAN */
-#kotak-saran {
-	/* box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.13); */
+/* #kotak-saran {
 	margin: 30px;
 	background: var(--light);
 	border-radius: 20px;
@@ -475,7 +530,7 @@ body {
 #kotak-saran button:active {
     transform: translate(3px, 3px);
     box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
-}
+} */
 /* END CSS KOTAK SARAN */
 
 /* END CSS DASHBOARD */
@@ -485,7 +540,7 @@ body {
 /* CSS UPLOAD INFORMASI */
 #up-informasi {
 	margin: auto;
-	margin: 30px;
+	margin: 20px 30px 30px 30px;
 	background: var(--light);
 	border-radius: 20px;
 	min-height: 500px;
@@ -625,7 +680,7 @@ body {
 }
 
 #up-informasi .judul, .berita, .lokasi {
-	margin: 20px 50px 20px 0;
+	margin: 40px 50px 20px 0;
 	/* align-items: flex-start; */
 }
 
@@ -665,7 +720,7 @@ body {
 
 
 /* TABEL INFORMASI */
-.card-upload {
+.card-upload, #kotak-saran {
 	/* box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.13); */
 	margin: 30px;
 	background: var(--light);
@@ -673,7 +728,7 @@ body {
 	border: 1px solid rgb(220, 220, 220);
 }
 
-.card-upload .card-header-upload {
+.card-upload .card-header-upload, #kotak-saran .card-header {
 	border: none;
 	background: var(--light);
 	border-radius: 20px;
@@ -685,28 +740,34 @@ body {
 	color: var(--dark);
 }
 
-.card-upload .card-header-upload ~ .card-body-upload {
+#kotak-saran .card-header h4 {
+	font-size: 25px;
+	color: var(--dark);
+}
+
+.card-upload .card-header-upload ~ .card-body-upload, #kotak-saran .card-header ~ .card-body {
 	padding-top: 20px;
 }
 
-.card-upload .dataTables_length {
+.card-upload .dataTables_length, #kotak-saran .dataTables_length {
 	padding-left: 20px;
 }
 
-.card-upload .dataTables_filter{
+.card-upload .dataTables_filter, #kotak-saran .dataTables_filter{
 	padding-right: 20px;
 }
 
-.card-upload .dataTables_info, .card-upload .dataTables_paginate {
+.card-upload .dataTables_info, .card-upload .dataTables_paginate, #kotak-saran .dataTables_info, #kotak-saran .dataTables_paginate{
 	padding: 20px 20px 20px 20px;
 }
 
-.card-upload .card-body-upload th {
+.card-upload .card-body-upload th, #kotak-saran .card-body th {
 	padding: 20px;
 	color: var(--dark);
 }
 
-.card-upload .card-body-upload td {
+.card-upload .card-body-upload td, #kotak-saran .card-body td {
+	/* white-space: pre; */
 	padding: 20px;
 	color: var(--dark);
 }
@@ -718,7 +779,7 @@ body {
 	object-fit: contain;
 }
 
-.card-upload button {
+.card-upload button, #kotak-saran button {
     border: none;
     padding: 12px 15px;
 	color: var(--yellow);
@@ -732,11 +793,11 @@ body {
     transition-duration: .1s;
 }
 
-.card-upload button:hover {
+.card-upload button:hover, #kotak-saran button:hover {
 	color: var(--orange);
 }
 
-.card-upload button:active {
+.card-upload button:active, #kotak-saran button:active {
     width: 50px;
 	height: 50px;
 	transform: translate(3px, 3px);
@@ -746,7 +807,7 @@ body {
 
 
 
-/* CSS MODAL EDIT INFORMASI */
+/* CSS MODAL EDIT */
 #staticBackdrop .modal-content {
 	margin: auto;
 	background: var(--light);
@@ -850,7 +911,7 @@ body {
 	color: var(--dark);
 }
 
-#staticBackdrop .edit-img-area .file-name{
+#staticBackdrop .edit-img-area .filename-edit{
 	position: absolute;
 	bottom: 0px;
 	width: 100%;
@@ -862,11 +923,11 @@ body {
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
-#staticBackdrop .edit-img-area.active:hover .file-name{
+#staticBackdrop .edit-img-area.active:hover .filename-edit{
 	display: block;
 }
 
-#staticBackdrop .select-image {
+#staticBackdrop .select-image-edit {
     width: 100%;
     height: 55px;
     border: none;
@@ -882,7 +943,7 @@ body {
     text-transform: uppercase;
 }
 
-#staticBackdrop .select-image:active {
+#staticBackdrop .select-image-edit:active {
     transform: translate(3px, 3px);
     box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
     background: var(--blue);
@@ -940,7 +1001,7 @@ body {
     box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
     background: var(--blue);
 }
-/* CSS MODAL EDIT INFORMASI */
+/* CSS MODAL EDIT */
 
 
 /* CSS MODAL HAPUS INFORMASI */

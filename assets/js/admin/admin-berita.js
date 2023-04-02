@@ -25,16 +25,14 @@ const judulBerita = document.querySelector(".judulBerita");
 const isiBerita = document.querySelector(".isiBerita");
 const btnBerita = document.querySelector(".btnBerita");
 const input_img = document.querySelector('.input-img');
-const inputJudul = document.querySelector('.editModal')
-const btnImage = document.querySelector(".input-img-edit");
-const inputBerita = document.querySelector(".editTextarea")
+const editJudulBerita = document.querySelector('.editModal')
+const editIsiBerita = document.querySelector(".editTextarea")
 const simpanBtn = document.querySelector(".btnSimpan")
 var fileItem;
 var fileName;
-var fileText = document.querySelector(".fileText"); // ???
-var img = document.querySelector(".img-area"); // ???
 
-let dataInputUser = {
+
+let dataInputAdmin = {
 	judul: "",
 	isi: "",
 	url_img: "",
@@ -46,36 +44,22 @@ async function getFile() {
 	fileName = fileItem.name;
 	const resp = await uploadImage(fileItem, fileName)
 	if (resp) {
-		const resp = await addBerita(dataInputUser)
+		const resp = await addBerita(dataInputAdmin)
 		console.log(resp);
-	}
-}
-
-async function getFileUpdateBerita() {
-	fileItem = input_img.files[0];
-	fileName = fileItem.name;
-	const resp = await uploadImage(fileItem, fileName)
-	if (resp) {
-		console.log(resp)
-	}
-}
-
-const getDataBerita = (id) => {
-	return new Promise((resolve, reject) => {
-	  const db = getFirestore(app);
-	  getDoc(doc(db, "Berita", id))
-	  .then(docSnap => {
-		if (docSnap.exists()) {
-		  resolve(docSnap.data())
-		} else {
-		  resolve("Data Kosong");
+		if (resp) {
+			Swal.fire({
+				icon: 'success',
+				title: 'Data berhasil disimpan',
+				showConfirmButton: false,
+				timer: 1500
+			})
+			setTimeout(() => {
+				location.reload()
+			}, 1610);
 		}
-	  })
-	  .catch((error) => {
-		reject(error)
-	  });
-	})
-  }
+	}
+}
+
 
 // UPLOAD IMAGE
 function uploadImage(file, name) {
@@ -101,8 +85,8 @@ function uploadImage(file, name) {
 			() => {
 				// Upload completed successfully, now we can get the download URL
 				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-					dataInputUser = {
-						...dataInputUser,
+					dataInputAdmin = {
+						...dataInputAdmin,
 						url_img: downloadURL
 					}
 					resolve(true)
@@ -112,6 +96,7 @@ function uploadImage(file, name) {
 	})
 }
 // END UPLOAD IMAGE
+
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
@@ -127,29 +112,15 @@ const changeTimestamp = (data) => {
 // END TIMESTAMP
 
 judulBerita.addEventListener("change", e => {
-	dataInputUser = {
-		...dataInputUser,
+	dataInputAdmin = {
+		...dataInputAdmin,
 		judul: e.target.value
-	}
-})
-
-inputJudul.addEventListener("change",(e) => {
-	dataInputUser = {
-		...dataInputUser,
-		judul: e.target.value
-	}
-})
-
-inputBerita.addEventListener("change",(e) => {
-	dataInputUser = {
-		...dataInputUser,
-		isi: e.target.value
 	}
 })
 
 isiBerita.addEventListener("change", e => {
-	dataInputUser = {
-		...dataInputUser,
+	dataInputAdmin = {
+		...dataInputAdmin,
 		isi: e.target.value
 	}
 })
@@ -160,48 +131,35 @@ const addBerita = (data) => {
 		addDoc(collection(db, "Berita"), data)
 			.then(() => {
 				console.log("succes !!!")
+				resolve(true)
 			})
 	});
 };
 
- const updateBerita = (id, data) => {
-	return new Promise((resolve , reject) => {
-	  const db = getFirestore(app);
-	  setDoc(doc(db, "Berita", id), data, { merge: true })
-		.then(() => {
-		  resolve(true)
-		}).catch((error) => {
-		  reject(error)
-		  console.log(error)
-		});
-	});
-  };
-
 btnBerita.addEventListener("click", async () => {
-	// uploadImage()
-	getFile()
+	fileItem = input_img.files[0];
+	dataInputAdmin = {
+		...dataInputAdmin,
+		url_img: fileItem
+	}
+	const { judul, isi, url_img } =dataInputAdmin;
+	if (judul== "" || isi== "" || url_img== undefined ) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Data tidak boleh kosong !!!',
+		})
+	}
+	else {
+		console.log(dataInputAdmin)
+		getFile()
+	}
 })
 // END INPUT BERITA SEKOLAH
 
 
 // TAMPIL BERITA SEKOLAH
-// const beritaSekolah = document.querySelector(".beritaSekolah");
-
-// const addElBerita = (data, id) => {
-// 	return `
-// 	<tr>
-// 		<td><img src=${data.url_img} alt=""></td>
-// 		<td>${data.judul}</td>
-// 		<td>${changeTimestamp(data.tgl_uploud)}</td>
-// 		<td>${data.isi}</td>
-// 		<td >
-// 			<button title="Edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
-// 			<button id=${id} class="btnDelete" title="Hapus"><i class="fas fa-trash"></i></button>
-// 		</td>
-// 	</tr>
-// 	`
-// }
-
+// DATA TABEL
 let dataBerita = [];
 
 const getAllBerita = () => {
@@ -239,15 +197,16 @@ const getAllBerita = () => {
 								}
 							},
 							{ data: 'judul' },
-							{ render: function (data, type, JsonResultRow, meta) {
-								return changeTimestamp(JsonResultRow.tgl_uploud)
-								
-							} },
+							{
+								render: function (data, type, JsonResultRow, meta) {
+									return changeTimestamp(JsonResultRow.tgl_uploud)
+								}
+							},
 							{ data: 'isi' },
 							{
 								render: function (data, type, JsonResultRow, meta) {
 									return `
-									<button title="Edit" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#staticBackdrop"><i id=${JsonResultRow.id} class="fas fa-edit"></i></button>
+									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#staticBackdrop"><i id=${JsonResultRow.id} class="fas fa-edit"></i></button>
 									<button class="btnDeleteId" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
 									`
 								}
@@ -262,17 +221,100 @@ const getAllBerita = () => {
 	})
 }
 getAllBerita()
+//  END DATA TABEL
 
-simpanBtn.addEventListener("click", async () => {
+
+// EDIT BERITA SEKOLAH
+async function getFileUpdateBerita() {
 	const id = localStorage.getItem("idUpdate")
-	
-	const resp = await updateBerita(id, dataInputUser)
-	console.log(resp)
+	fileItem = input_img.files[0];
+	fileName = fileItem.name;
+
+	const resp = await uploadImage(fileItem, fileName)
+	if (resp) {
+		const update = await updateBerita(id, dataInputAdmin)
+		console.log(update)
+		if (resp) {
+			Swal.fire({
+				icon: 'success',
+				title: 'Data berhasil disimpan',
+				showConfirmButton: false,
+				timer: 1500
+			})
+			setTimeout(() => {
+				location.reload()
+			}, 1610);
+		}
+	}
+}
+
+const getDataBerita = (id) => {
+	return new Promise((resolve, reject) => {
+		const db = getFirestore(app);
+		getDoc(doc(db, "Berita", id))
+			.then(docSnap => {
+				if (docSnap.exists()) {
+					resolve(docSnap.data())
+				} else {
+					resolve("Data Kosong");
+				}
+			})
+			.catch((error) => {
+				reject(error)
+			});
+	})
+}
+
+editJudulBerita.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		judul: e.target.value
+	}
 })
 
-// <button id=${JsonResultRow.id} class="btnDelete" title="Hapus"><i class="fas fa-trash"></i></button>
+editIsiBerita.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		isi: e.target.value
+	}
+})
+
+const updateBerita = (id, data) => {
+	return new Promise((resolve, reject) => {
+		const db = getFirestore(app);
+		setDoc(doc(db, "Berita", id), data, { merge: true })
+			.then(() => {
+				resolve(true)
+			}).catch((error) => {
+				reject(error)
+				console.log(error)
+			});
+	});
+};
+
+simpanBtn.addEventListener("click", async () => {
+	fileItem = input_img.files[0];
+	dataInputAdmin = {
+		...dataInputAdmin,
+		url_img: fileItem
+	}
+	const { judul, isi, url_img } =dataInputAdmin;
+	if (judul== "" || isi== "" || url_img== undefined ) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Data harus disunting !!!',
+		})
+	}
+	else {
+		console.log(dataInputAdmin)
+		await getFileUpdateBerita()
+	}
+})
+// END EDIT BERITA SEKOLAH
 
 
+// BUTTON ACTION
 window.addEventListener("click", async (e) => {
 	if (e.target.classList.value == "btnDelete btn-primary") {
 		const id = localStorage.getItem("idDel")
@@ -281,19 +323,38 @@ window.addEventListener("click", async (e) => {
 		localStorage.removeItem("idDel")
 		location.reload()
 	} else if (e.target.classList.value == "btnDeleteId") {
-		localStorage.setItem("idDel",e.target.id)
-	}else if (e.target.classList.value == "fas fa-edit"){
+		localStorage.setItem("idDel", e.target.id)
+	} else if (e.target.classList.value == "editData") {
 		localStorage.setItem("idUpdate", e.target.id)
 		const resp = await getDataBerita(e.target.id)
-		if(resp){
-			inputJudul.value = resp.judul
-			inputBerita.value = resp.isi
-			dataInputUser = {
-				...dataInputUser,
-				url_img : resp.url_img
+		if (resp) {
+			editJudulBerita.value = resp.judul
+			editIsiBerita.value = resp.isi
+			dataInputAdmin = {
+				...dataInputAdmin,
+				url_img: resp.url_img
 			}
 		}
 	}
 })
+//  END BUTTON ACTION
 // END TAMPIL BERITA SEKOLAH
 
+
+
+// const beritaSekolah = document.querySelector(".beritaSekolah");
+
+// const addElBerita = (data, id) => {
+// 	return `
+// 	<tr>
+// 		<td><img src=${data.url_img} alt=""></td>
+// 		<td>${data.judul}</td>
+// 		<td>${changeTimestamp(data.tgl_uploud)}</td>
+// 		<td>${data.isi}</td>
+// 		<td >
+// 			<button title="Edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
+// 			<button id=${id} class="btnDelete" title="Hapus"><i class="fas fa-trash"></i></button>
+// 		</td>
+// 	</tr>
+// 	`
+// }

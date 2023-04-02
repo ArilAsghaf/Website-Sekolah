@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
     <!-- style css custom  -->
     <link rel="stylesheet" href="../../assets/css/style-admin.css">
+	<!-- css data table -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
 </head>
 <body>
     <!-- Section Sidebar -->
@@ -81,27 +84,18 @@
         <!-- Section Navbar -->
         <nav>
 			<i class="fas fa-bars"></i>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
-				</div>
-			</form>
+			<h1>Dashboard</h1>
 			<input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class="fas fa-bell"></i>
-				<span class="num">8</span>
-			</a>
 			<a href="#" class="profile">
-				<img src="assets/img/cfd.jpg">
+				<img src="../../assets/img/logo-smpn2.png">
 			</a>
 		</nav>
         <!-- End Section Navbar -->
 
         <!-- Section Main -->
         <main>
-            <div class="head-title">
+            <!-- <div class="head-title">
 				<div class="left">
 					<h1>Dashboard</h1>
 					<ul class="breadcrumb">
@@ -118,33 +112,90 @@
 					<i class="fas fa-cloud-download-alt"></i>
 					<span class="text">Download PDF</span>
 				</a>
-			</div>
+			</div> -->
 
 			<div>
-				<ul class="box-info">
-					<li>
-						<i class="fas fa-user-friends"></i>
-						<span class="text">
-							<h3>120</h3>
-							<p>Pengunjung</p>
-						</span>
-					</li>
-					<li>
-						<i class='bx bxs-group' ></i>
-						<span class="text">
-							<h3>2834</h3>
-							<p>Visitors</p>
-						</span>
-					</li>
-					<li>
-						<i class="fas fa-comment-alt"></i>
-						<span class="text">
-							<h3>43</h3>
-							<p>Kotak Saran</p>
-						</span>
-					</li>
-				</ul>
+				<div class="row">
+					<div class="col-md-4">
+						<ul class="box-info">
+						<li>
+							<i class="fas fa-user-friends"></i>
+							<span class="text">
+								<h3>120</h3>
+								<p>Pengunjung</p>
+							</span>
+						</li>
+						<li>
+							<i class="fas fa-comment-alt"></i>
+							<span class="text">
+								<h3>43</h3>
+								<p>Kotak Saran</p>
+							</span>
+						</li>
+					</ul>
+					</div>
+					
+					<div class="col-md-7 sambutan">
+						<h4>Sambutan</h4>
+						<div class="card">
+							<img src="../../assets/img/kepsek.jpg" alt="">
+						</div>
+						<p>Lorem ipsum dolor sit amet, Repellendus necessitatibus voluptatibus quibusdam, veniam voluptatum quo iusto placeat rerum! Architecto mollitia perferendis in magni deserunt? Neque ex libero dignissimos dolore eos? Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam nihil quam qui quidem! Temporibus vel aliquam minus tempore, ipsa esse porro omnis? Illo, culpa blanditiis voluptate doloribus adipisci inventore facilis!</p>
+						<button type="submit" class="btnSunting" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Sunting</button>
+					</div>
+				</div>
 			</div>
+			<!-- Section Modal Edit -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Edit Sambutan
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Section Edit Informasi -->
+                            <div class="edit-informasi">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="edit-image">
+                                            <div class="edit-img-area">
+                                                <div class="image">
+                                                    <img class="img-edit">
+                                                </div>
+                                                <div class="content">
+                                                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                                    <h4 class="text">Unggah Gambar</h4>
+                                                    <!-- <p>Ukuran gambar kurang dari <span>2MB</span></p> -->
+                                                </div>
+                                                <div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
+                                                <div class="filename-edit">Nama file</div>
+                                            </div>
+                                            <input type="file" id="btn-image-edit" class="input-img-edit" hidden>
+                                            <button onclick="btnImageActive()" class="select-image-edit">Pilih
+                                                Gambar</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="sambutan">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Isi Sambutan</label>
+                                            <textarea class="form-control editTextarea" id="FormControlInformasi" rows="9"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Section Edit Informasi -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>
+                            <button type="button" class="btn btn-primary btnSimpan">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Section Modal Edit -->
 
 			<!-- Section Kotak Saran -->
 			<div id="kotak-saran">
@@ -163,7 +214,7 @@
 									<th style="width: 20%;">Email</th>
 									<th style="width: 20%;">Subjek</th>
 									<th style="width: 40%;">Pesan</th>
-									<th style="width: 5%;">Hapus</th>
+									<th style="width: 5%;">Aksi</th>
 								</tr>
 							</thead>
 							<tbody class="kotak_saran">
@@ -174,6 +225,27 @@
 				</div>
 			</div>
 			<!-- End Section Kotak Saran -->
+
+			<!-- Section Modal Hapus -->
+            <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus Berita</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah ada yakin ingin menghapus berita ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                            <button  type="button" class="btnDelete btn-primary">Ya</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Section Modal Hapus -->
         </main>
         <!-- End Section Main -->
     </div>
@@ -182,5 +254,8 @@
 	<script src="../../assets/js/bootstrap.js"></script>
 	<script src="../../assets/js/admin/main-admin.js"></script>
 	<script type="module" src="../../assets/js/admin/admin-index.js"></script>
+	<script type="text/javascript" src="../../assets/js/jquery-3.6.3.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
 </body>
 </html>

@@ -79,7 +79,7 @@ const cancelBtn = document.querySelector("#cancel-btn");
 const btnImage = document.querySelector("#btn-image");
 const selectImage = document.querySelector(".select-image");
 const img = document.querySelector(".img");
-let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\, \$\=\!\-\#\(\)\ . \%\+\~\_ ]+$/;
+var regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\, \$\=\!\-\#\(\)\ . \%\+\~\_ ]+$/;
 function btnImageActive(){
     btnImage.click();
 }
@@ -104,3 +104,37 @@ btnImage.addEventListener("change", function(){
     }
 });
 // END UPLOAD GAMBAR
+
+
+// EDIT GAMBAR
+const editImgArea = document.querySelector(".edit-img-area");
+const filenameEdit = document.querySelector(".filename-edit");
+const cancelBtnEdit = document.querySelector("#cancel-btn-edit");
+const btnImageEdit = document.querySelector("#btn-image-edit");
+const selectImageEdit = document.querySelector(".select-image-edit");
+const imgEdit = document.querySelector(".img-edit");
+var regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\, \$\=\!\-\#\(\)\ . \%\+\~\_ ]+$/;
+function btnImageActive(){
+    btnImage.click();
+}
+btnImage.addEventListener("change", function(){
+    const file = this.files[0];
+    if(file){
+        const reader = new FileReader();
+        reader.onload = function(){
+            const result = reader.result;
+            imgEdit.src = result;
+            editImgArea.classList.add("active");
+        }
+        cancelBtnEdit.addEventListener("click", function(){
+            imgEdit.src = "";
+            editImgArea.classList.remove("active");
+        }); // ???
+        reader.readAsDataURL(file);
+    }
+    if(this.value){
+        let valueStore = this.value.match(regExp);
+        filenameEdit.textContent = valueStore;
+    }
+});
+// END EDIT GAMBAR

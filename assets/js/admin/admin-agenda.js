@@ -25,12 +25,14 @@ const judulAgenda = document.querySelector(".judulAgenda");
 const isiAgenda = document.querySelector(".isiAgenda");
 const btnAgenda = document.querySelector(".btnAgenda");
 const input_img = document.querySelector(".input-img");
+const editJudulAgenda = document.querySelector('.editModal')
+const editIsiAgenda = document.querySelector(".editTextarea")
+const simpanBtn = document.querySelector(".btnSimpan")
 var fileItem;
 var fileName;
-var fileText = document.querySelector(".fileText"); // ???
-var img = document.querySelector(".img-area"); // ???
 
-let dataInputUser = {
+
+let dataInputAdmin = {
 	judul: "",
 	isi: "",
 	url_img: "",
@@ -42,10 +44,22 @@ async function getFile() {
 	fileName = fileItem.name;
 	const resp = await uploadImage(fileItem, fileName)
 	if (resp) {
-		const resp = await addAgenda(dataInputUser)
+		const resp = await addAgenda(dataInputAdmin)
 		console.log(resp);
+		if (resp) {
+			Swal.fire({
+				icon: 'success',
+				title: 'Data berhasil disimpan',
+				showConfirmButton: false,
+				timer: 1500
+			})
+			setTimeout(() => {
+				location.reload()
+			}, 1610);
+		}
 	}
 }
+
 
 // UPLOAD IMAGE
 function uploadImage(file, name) {
@@ -71,8 +85,8 @@ function uploadImage(file, name) {
 			() => {
 				// Upload completed successfully, now we can get the download URL
 				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-					dataInputUser = {
-						...dataInputUser,
+					dataInputAdmin = {
+						...dataInputAdmin,
 						url_img: downloadURL
 					}
 					resolve(true)
@@ -82,6 +96,7 @@ function uploadImage(file, name) {
 	})
 }
 // END UPLOAD IMAGE
+
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
@@ -97,15 +112,15 @@ const changeTimestamp = (data) => {
 // END TIMESTAMP
 
 judulAgenda.addEventListener("change", e => {
-	dataInputUser = {
-		...dataInputUser,
+	dataInputAdmin = {
+		...dataInputAdmin,
 		judul: e.target.value
 	}
 })
 
 isiAgenda.addEventListener("change", e => {
-	dataInputUser = {
-		...dataInputUser,
+	dataInputAdmin = {
+		...dataInputAdmin,
 		isi: e.target.value
 	}
 })
@@ -116,18 +131,215 @@ const addAgenda = (data) => {
 		addDoc(collection(db, "Agenda"), data)
 			.then(() => {
 				console.log("succes !!!")
+				resolve(true)
 			})
 	});
 };
 
 btnAgenda.addEventListener("click", async () => {
-	// uploadImage()
-	getFile()
+	fileItem = input_img.files[0];
+	dataInputAdmin = {
+		...dataInputAdmin,
+		url_img: fileItem
+	}
+	const { judul, isi, url_img } =dataInputAdmin;
+	if (judul== "" || isi== "" || url_img== undefined ) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Data tidak boleh kosong !!!',
+		})
+	}
+	else {
+		console.log(dataInputAdmin)
+		getFile()
+	}
 })
 // END INPUT BERITA SEKOLAH
 
 
 // TAMPIL BERITA SEKOLAH
+// DATA TABEL
+let dataAgenda = [];
+
+const getAllAgenda = () => {
+	return new Promise((resolve, reject) => {
+		const db = getFirestore(app);
+		getDocs(collection(db, "Agenda"))
+			.then(querySnapshot => {
+				querySnapshot.forEach((doc) => {
+					dataAgenda.push({
+						...doc.data(),
+						id: doc.id
+					})
+				});
+				console.log(dataAgenda)
+				$(document).ready(function () {
+					$('#table1').DataTable({
+						lengthMenu: [
+							[5, 8, 10],
+							[5, 8, 10],
+						],
+						scrollY: false,
+						destroy: true,
+						data: dataAgenda,
+						columnDefs: [{
+							"defaultContent": "-",
+							"targets": "_all"
+						}],
+						columns: [
+							{
+								render: function (data, type, JsonResultRow, meta) {
+									return '<img src="' + JsonResultRow.url_img + '"/>'
+								}
+							},
+							{ data: 'judul' },
+							{ 
+								render: function (data, type, JsonResultRow, meta) {
+									return changeTimestamp(JsonResultRow.tgl_uploud)
+								}
+							},
+							{ data: 'isi' },
+							{
+								render: function (data, type, JsonResultRow, meta) {
+									return `
+									<button title="Edit" class="editData" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
+									<button class="btnDeleteId" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
+									`
+								}
+							}
+						],
+					});
+				});
+			})
+			.catch((error) => {
+				reject(error)
+			});
+	})
+}
+getAllAgenda()
+// END DATA TABEL
+
+
+// EDIT BERITA SEKOLAH
+async function getFileUpdateAgenda() {
+	const id = localStorage.getItem("idUpdate")
+	fileItem = input_img.files[0];
+	fileName = fileItem.name;
+
+	const resp = await uploadImage(fileItem, fileName)
+	if (resp) {
+		const update = await updateAgenda(id, dataInputAdmin)
+		console.log(update)
+		if (resp) {
+			Swal.fire({
+				icon: 'success',
+				title: 'Data berhasil disimpan',
+				showConfirmButton: false,
+				timer: 1500
+			})
+			setTimeout(() => {
+				location.reload()
+			}, 1610);
+		}
+	}
+}
+
+const getDataAgenda = (id) => {
+	return new Promise((resolve, reject) => {
+		const db = getFirestore(app);
+		getDoc(doc(db, "Agenda", id))
+			.then(docSnap => {
+				if (docSnap.exists()) {
+					resolve(docSnap.data())
+				} else {
+					resolve("Data Kosong");
+				}
+			})
+			.catch((error) => {
+				reject(error)
+			});
+	})
+}
+
+editJudulAgenda.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		judul: e.target.value
+	}
+})
+
+editIsiAgenda.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		isi: e.target.value
+	}
+})
+
+const updateAgenda = (id, data) => {
+	return new Promise((resolve, reject) => {
+		const db = getFirestore(app);
+		setDoc(doc(db, "Agenda", id), data, { merge: true })
+			.then(() => {
+				resolve(true)
+			}).catch((error) => {
+				reject(error)
+				console.log(error)
+			});
+	});
+};
+
+simpanBtn.addEventListener("click", async () => {
+	fileItem = input_img.files[0];
+	dataInputAdmin = {
+		...dataInputAdmin,
+		url_img: fileItem
+	}
+	const { judul, isi, url_img } =dataInputAdmin;
+	if (judul== "" || isi== "" || url_img== undefined ) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Data harus disunting !!!',
+		})
+	}
+	else {
+		console.log(dataInputAdmin)
+		await getFileUpdateAgenda()
+	}
+})
+// END EDIT BERITA SEKOLAH
+
+
+// BUTTON ACTION
+window.addEventListener("click", async (e) => {
+	if (e.target.classList.value == "btnDelete btn-primary") {
+		const id = localStorage.getItem("idDel")
+		const db = getFirestore(app);
+		await deleteDoc(doc(db, "Agenda", id));
+		localStorage.removeItem("idDel")
+		location.reload()
+	} else if (e.target.classList.value == "btnDeleteId") {
+		localStorage.setItem("idDel",e.target.id)
+	} else if (e.target.classList.value == "editData") {
+		localStorage.setItem("idUpdate", e.target.id)
+		const resp = await getDataAgenda(e.target.id)
+		if (resp) {
+			editJudulAgenda.value = resp.judul
+			editIsiAgenda.value = resp.isi
+			dataInputAdmin = {
+				...dataInputAdmin,
+				url_img: resp.url_img
+			}
+		}
+	}
+})
+// END BUTTON ACTION
+// END TAMPIL BERITA SEKOLAH
+
+
+
+
 // const agendaSekolah = document.querySelector(".agendaSekolah");
 
 // const addElAgenda = (data, id) => {
@@ -144,70 +356,3 @@ btnAgenda.addEventListener("click", async () => {
 // 	</tr>
 // 	`
 // }
-
-let dataBerita = [];
-
-const getAllAgenda = () => {
-	return new Promise((resolve, reject) => {
-		const db = getFirestore(app);
-		getDocs(collection(db, "Agenda"))
-			.then(querySnapshot => {
-				querySnapshot.forEach((doc) => {
-					dataBerita.push({
-						...doc.data(),
-						id: doc.id
-					})
-				});
-				console.log(dataBerita)
-				$(document).ready(function () {
-					$('#table1').DataTable({
-						destroy: true,
-						data: dataBerita,
-						columnDefs: [{
-							"defaultContent": "-",
-							"targets": "_all"
-						}],
-						columns: [
-							{
-								render: function (data, type, JsonResultRow, meta) {
-									return '<img src="' + JsonResultRow.url_img + '"/>'
-								}
-							},
-							{ data: 'judul' },
-							{ render: function (data, type, JsonResultRow, meta) {
-								return changeTimestamp(JsonResultRow.tgl_uploud)
-								
-							} },
-							{ data: 'isi' },
-							{
-								render: function (data, type, JsonResultRow, meta) {
-									return `
-									<button title="Edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
-									<button class="btnDeleteId" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
-									`
-								}
-							}
-						],
-					});
-				});
-			})
-			.catch((error) => {
-				reject(error)
-			});
-	})
-}
-getAllAgenda()
-
-
-window.addEventListener("click", async (e) => {
-	if (e.target.classList.value == "btnDelete btn-primary") {
-		const id = localStorage.getItem("idDel")
-		const db = getFirestore(app);
-		await deleteDoc(doc(db, "Agenda", id));
-		localStorage.removeItem("idDel")
-		location.reload()
-	} else if (e.target.classList.value == "btnDeleteId") {
-		localStorage.setItem("idDel",e.target.id)
-	}
-})
-// END TAMPIL BERITA SEKOLAH

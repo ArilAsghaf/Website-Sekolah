@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import { doc, setDoc, getFirestore, getDoc, updateDoc, Timestamp, addDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+import { doc, setDoc, getFirestore, orderBy, query, getDoc, updateDoc, Timestamp, addDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -44,17 +44,16 @@ const limitBodyText = (text, long) => {
 
 // TAMPIL BERITA SEKOLAH
 const infoSekolah = document.querySelector(".infoSekolah")
+const pagination = document.querySelector(".pagination")
 
 const addElInfo = (data, id) => {
 	return `
 	<div class="info-item">
         <div class="card">
             <img src=${data.url_img}>
+            <span>${changeTimestamp(data.tgl_uploud)}</span>
         </div>
         <div class="info-item-title">
-            <div>
-                <span>${changeTimestamp(data.tgl_uploud)}</span>
-            </div>
             <a href="isi-infor.html"><h3 id=${id} class="btnPage">${data.judul}</h3></a>
         </div>
         <div class="info-item-body">
@@ -70,14 +69,23 @@ window.addEventListener("click", (e) => {
     }
 })
 
+let dataTemp = []
+
 const getAllInfo = () => {
 	return new Promise((resolve, reject) => {
 		const db = getFirestore(app);
-		getDocs(collection(db, "Info"))
+		getDocs(query(collection(db, "Info"), orderBy('tgl_uploud', 'desc')))
 			.then(querySnapshot => {
+                let data = []
 				querySnapshot.forEach((doc) => {
+                    data.push({
+                        ...doc.data(),
+                        id:doc.id
+                    })
 					infoSekolah.innerHTML += addElInfo(doc.data(), doc.id)
 				});
+                resolve(data)
+                dataTemp.push(data)
 			})
 			.catch((error) => {
 				reject(error)
@@ -86,3 +94,75 @@ const getAllInfo = () => {
 }
 getAllInfo()
 // END TAMPIL BERITA SEKOLAH
+
+
+function getPageList(totalPages, page, maxLength) {
+    function range(start, end) {
+        return Array.from(Array(end - start + 1), (_, i) => i + start);
+    }
+
+    var sideWidth = maxLength < 9 ? 1 : 2;
+    var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+    var rightWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+
+    if (totalPages <= maxLength) {
+        return range(1, totalPages);
+    }
+
+    if (page <= maxLength - sideWidth - 1 - rightWidth) {
+        return range(1, maxLength - sideWidth - 1).concat(0, range(totalPages - sideWidth + 1, totalPages));
+    }
+
+    if (page >= totalPages - sideWidth - 1 - rightWidth) {
+        return range(1, sideWidth).concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+    }
+
+    return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
+}
+
+$(async function () {
+    const data = await getAllInfo()
+    var numberOfItems = data.length
+    var limitPerPage = 4;
+    var totalPages = Math.ceil(numberOfItems / limitPerPage);
+    var paginationSize = 7;
+    var currentPage;
+
+    function showPage(whichPage) {
+        if (whichPage < 1 || whichPage > totalPages) return false;
+
+        currentPage = whichPage;
+
+        $(".infoSekolah .info-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+
+        $(".pagination li").slice(1, -1).remove();
+
+        getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+            $("<li>").addClass("pagination-item").addClass(item ? "current-pagination" : "dots").toggleClass("active", item === currentPage).append($("<a>").addClass("pagination-link").attr({ href: "javascript:void(0)" }).text(item || "...")).insertBefore(".next-pagination");
+        });
+
+        $(".previous-pagination").toggleClass("disable", currentPage === 1);
+        $(".next-pagination").toggleClass("disable", currentPage === totalPages);
+        return true;
+    }
+
+    $(".pagination").append(
+        $("<li>").addClass("pagination-item").addClass("previous-pagination").append($("<a>").addClass("pagination-link").attr({ href: "javascript:void(0)" }).text("Prev")),
+        $("<li>").addClass("pagination-item").addClass("next-pagination").append($("<a>").addClass("pagination-link").attr({ href: "javascript:void(0)" }).text("Next"))
+    );
+
+    $(".infoSekolah").show();
+    showPage(1);
+
+    $(document).on("click", ".pagination li.current-pagination:not(.active)", function () {
+        return showPage(+$(this).text());
+    });
+
+    $(".next-pagination").on("click", function () {
+        return showPage(currentPage + 1);
+    });
+
+    $(".previous-pagination").on("click", function () {
+        return showPage(currentPage - 1);
+    });
+});

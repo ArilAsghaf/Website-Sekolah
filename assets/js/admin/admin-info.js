@@ -25,10 +25,12 @@ const judulInfo = document.querySelector(".judulInfo");
 const isiInfo = document.querySelector(".isiInfo");
 const btnInfo = document.querySelector(".btnInfo");
 const input_img = document.querySelector('.input-img');
+const editJudulInfo = document.querySelector('.editModal')
+const editIsiInfo = document.querySelector(".editTextarea")
+const simpanBtn = document.querySelector(".btnSimpan")
 var fileItem;
 var fileName;
-var fileText = document.querySelector(".fileText"); // ???
-var img = document.querySelector(".img-area"); // ???
+
 
 let dataInputAdmin = {
 	judul: "",
@@ -44,8 +46,21 @@ async function getFile() {
 	if (resp) {
 		const resp = await addInfo(dataInputAdmin)
 		console.log(resp);
+		if (resp) {
+			Swal.fire({
+				// position: 'top-end',
+				icon: 'success',
+				title: 'Data berhasil disimpan',
+				showConfirmButton: false,
+				timer: 1500
+			})
+			setTimeout(() => {
+				location.reload()
+			}, 1610);
+		}
 	}
 }
+
 
 // UPLOAD IMAGE
 function uploadImage(file, name) {
@@ -116,36 +131,36 @@ const addInfo = (data) => {
 		addDoc(collection(db, "Info"), data)
 			.then(() => {
 				console.log("succes !!!")
+				resolve(true)
 			})
 	});
 };
 
 btnInfo.addEventListener("click", async () => {
-	// uploadImage()
-	getFile()
+	fileItem = input_img.files[0];
+	dataInputAdmin = {
+		...dataInputAdmin,
+		url_img: fileItem
+	}
+	const { judul, isi, url_img } =dataInputAdmin;
+	if (judul== "" || isi== "" || url_img== undefined ) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Data tidak boleh kosong !!!',
+		})
+	}
+	else {
+		console.log(dataInputAdmin)
+		getFile()
+	}
 })
 // END INPUT BERITA SEKOLAH
 
 
-// TAMPIL BERITA SEKOLAH
-// const infoSekolah = document.querySelector(".infoSekolah")
-
-// const addElInfo = (data, id) => {
-// 	return `
-// 	<tr>
-// 		<td><img src=${data.url_img} alt=""></td>
-// 		<td>${data.judul}</td>
-// 		<td>${changeTimestamp(data.tgl_uploud)}</td>
-// 		<td>${data.isi}</td>
-// 		<td >
-// 			<button title="Edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
-// 			<button id=${id} class="btnDelete" title="Hapus"><i class="fas fa-trash"></i></button>
-// 		</td>
-// 	</tr>
-// 	`
-// }
-
-let dataBerita = [];
+// TAMPIL INFO SEKOLAH
+// DATA TABEL
+let dataInfo = [];
 
 const getAllInfo = () => {
 	return new Promise((resolve, reject) => {
@@ -153,16 +168,21 @@ const getAllInfo = () => {
 		getDocs(collection(db, "Info"))
 			.then(querySnapshot => {
 				querySnapshot.forEach((doc) => {
-					dataBerita.push({
+					dataInfo.push({
 						...doc.data(),
 						id: doc.id
 					})
 				});
-				console.log(dataBerita)
+				console.log(dataInfo)
 				$(document).ready(function () {
 					$('#table1').DataTable({
+						lengthMenu: [
+							[5, 8, 10],
+							[5, 8, 10],
+						],
+						scrollY: false,
 						destroy: true,
-						data: dataBerita,
+						data: dataInfo,
 						columnDefs: [{
 							"defaultContent": "-",
 							"targets": "_all"
@@ -197,8 +217,10 @@ const getAllInfo = () => {
 	})
 }
 getAllInfo()
+// END DATA TABEL
 
 
+// BUTTON ACTION
 window.addEventListener("click", async (e) => {
 	if (e.target.classList.value == "btnDelete btn-primary") {
 		const id = localStorage.getItem("idDel")
@@ -210,4 +232,24 @@ window.addEventListener("click", async (e) => {
 		localStorage.setItem("idDel",e.target.id)
 	}
 })
+//  END BUTTON ACTION
 // END TAMPIL BERITA SEKOLAH
+
+
+
+// const infoSekolah = document.querySelector(".infoSekolah")
+
+// const addElInfo = (data, id) => {
+// 	return `
+// 	<tr>
+// 		<td><img src=${data.url_img} alt=""></td>
+// 		<td>${data.judul}</td>
+// 		<td>${changeTimestamp(data.tgl_uploud)}</td>
+// 		<td>${data.isi}</td>
+// 		<td >
+// 			<button title="Edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
+// 			<button id=${id} class="btnDelete" title="Hapus"><i class="fas fa-trash"></i></button>
+// 		</td>
+// 	</tr>
+// 	`
+// }

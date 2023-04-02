@@ -86,45 +86,17 @@
         <!-- Section Navbar -->
         <nav>
             <i class="fas fa-bars"></i>
-            <form action="#">
-                <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
-            <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="#" class="notification">
-                <i class="fas fa-bell"></i>
-                <span class="num">8</span>
-            </a>
-            <a href="#" class="profile">
-                <img src="../../assets/img/cfd.jpg">
-            </a>
+			<h1>Kelola Berita Sekolah</h1>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="profile">
+				<img src="../../assets/img/logo-smpn2.png">
+			</a>
         </nav>
         <!-- End Section Navbar -->
 
         <!-- Section Main -->
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Upload Berita Sekolah</h1>
-                    <ul class="breadcrumb">
-                        <li>
-                            <a class="active" href="#">Dashboard</a>
-                        </li>
-                        <li><i class="fas fa-chevron-right"></i></li>
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                    </ul>
-                </div>
-                <a href="#" class="btn-download">
-                    <i class="fas fa-cloud-download-alt"></i>
-                    <span class="text">Download PDF</span>
-                </a>
-            </div>
-
             <!-- Section Upload Berita -->
             <div id="up-informasi">
                 <div class="row">
@@ -156,7 +128,6 @@
                             <label for="exampleFormControlTextarea1" class="form-label">Isi Berita</label>
                             <textarea class="isiBerita form-control" id="FormControlInformasi" rows="5"
                                 placeholder="Masukan isi berita..."></textarea>
-                            <!-- <div id="editor" class="isiBerita"></div> -->
                         </div>
                         <input type="date" class="tgl">
                         <button type="submit" class="btnBerita btn-primary">Unggah</button>
@@ -168,7 +139,7 @@
             <!-- Section Tabel Berita -->
             <div class="card-upload">
                 <div class="card-header-upload d-flex justify-content-between align-items-center">
-                    <h4 class="card-title-upload">Berita Sekolah</h4>
+                    <h4 class="card-title-upload">Tabel Berita Sekolah</h4>
                     <div class="d-flex ">
                         <i data-feather="download"></i>
                     </div>
@@ -200,7 +171,7 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Edit Info Sekolah
+                            <h5 class="modal-title" id="staticBackdropLabel">Edit Berita Sekolah
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -220,10 +191,10 @@
                                                     <!-- <p>Ukuran gambar kurang dari <span>2MB</span></p> -->
                                                 </div>
                                                 <div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
-                                                <div class="file-name">Nama file</div>
+                                                <div class="filename-edit">Nama file</div>
                                             </div>
                                             <input type="file" id="btn-image-edit" class="input-img-edit" hidden>
-                                            <button onclick="btnImageActive()" class="select-image">Pilih
+                                            <button onclick="btnImageActive()" class="select-image-edit">Pilih
                                                 Gambar</button>
                                         </div>
                                     </div>
@@ -239,7 +210,6 @@
                                             <textarea class="form-control editTextarea" id="FormControlInformasi" rows="5"
                                                 value="Masukan isi agenda..."></textarea>
                                         </div>
-                                        <!-- <button type="submit" class="btn btn-primary">Unggah</button> -->
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +234,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Apakah ada yakin ingin menghapus agenda ?
+                            Apakah ada yakin ingin menghapus berita ?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
@@ -291,6 +261,8 @@
     <script type="text/javascript" src="../../assets/js/jquery-3.6.3.min.js"></script>
     <!-- Data Tables -->
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Ckeditor -->
     <script src="../../assets/ckeditor5/ckeditor.js"></script>
