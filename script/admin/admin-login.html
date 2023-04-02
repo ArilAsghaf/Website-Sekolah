@@ -9,7 +9,7 @@
     <!-- Logo Titile Bar -->
     <link rel="icon" href="../../../../assets/img/icon.png" type="image/x-icon">
     <!-- Bootstrap -->
-	<link rel="stylesheet" href="../../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../../assets/css/bootstrap.css">
     <!-- font awesome / icon -->
     <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
     <!-- style css custom  -->
@@ -37,6 +37,9 @@
         </div>
     </div>
 
+
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -99,9 +102,15 @@
         };
 
         btnLogin.addEventListener("click", async () => {
-            const resp = await loginByEmailPass(dataInputUser)
-            if (resp) {
+            const resp = await loginByEmailPass(dataInputUser).catch(err => err)
+            if (resp.uid !== undefined) {
                 window.location.href = "admin-index.html"
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${resp}`,
+                })
             }
         })
 
