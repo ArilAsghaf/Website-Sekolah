@@ -118,9 +118,6 @@ function btnImageActive(){
     btnImage.click();
 }
 
-function testGuyss() {
-    console.log("yeayyy")
-}
 btnImage.addEventListener("change", function(){
     const file = this.files[0];
     if(file){

@@ -123,7 +123,10 @@ cariBerita.addEventListener("change", async (e) => {
     }
     
 })
+// END SEARCH
 
+
+// PAGE LIST
 function getPageList(totalPages, page, maxLength) {
     function range(start, end) {
         return Array.from(Array(end - start + 1), (_, i) => i + start);
@@ -194,3 +197,4 @@ $(async function () {
         return showPage(currentPage - 1);
     });
 });
+// END PAGE LIST

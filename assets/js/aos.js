@@ -156,5 +156,5 @@ aosKontak.forEach((kontaks, i) => {
 
 
 AOS.init({
-    // once: true,
+    once: true,
 });

@@ -93,7 +93,7 @@
                             style="color: #000; margin: 0 10px 0 10px">Home</a>
                     </li>
                     <li>
-                        <i class="fas fa-caret-right"></i><a href="berita.html"
+                        <i class="fas fa-caret-right"></i><a class="breadcrumbPage" href="berita.html"
                             style="margin: 0 10px 0 10px; color: #000">Berita</a>
                     </li>
                     <li>
@@ -264,8 +264,10 @@
         }
 
         const infor_sekolah = document.querySelector(".infor_sekolah");
-        const  page_isi = document.querySelector(" .page_isi");
+        const page_isi = document.querySelector(" .page_isi");
+        // const breadcrumbPage = document.querySelector(".breadcrumbPage")
         const addElb = (data) => {
+            // breadcrumbPage.innerText = ''
             page_isi.innerText = data.judul
             return `
             <div class="isi-item">

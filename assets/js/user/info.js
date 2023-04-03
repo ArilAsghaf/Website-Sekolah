@@ -21,14 +21,14 @@ const app = initializeApp(firebaseConfig)
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
-	const tanggal = new Date(data);
-	const tgl = tanggal.getDate();
-	const bln = tanggal.getMonth();
-	const thn = tanggal.getFullYear();
-	const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-	const bulan = dataBulan[bln];
+    const tanggal = new Date(data);
+    const tgl = tanggal.getDate();
+    const bln = tanggal.getMonth();
+    const thn = tanggal.getFullYear();
+    const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    const bulan = dataBulan[bln];
 
-	return tgl + " " + bulan + " " + thn;
+    return tgl + " " + bulan + " " + thn;
 }
 // END TIMESTAMP
 
@@ -47,7 +47,7 @@ const infoSekolah = document.querySelector(".infoSekolah")
 const pagination = document.querySelector(".pagination")
 
 const addElInfo = (data, id) => {
-	return `
+    return `
 	<div class="info-item">
         <div class="card">
             <img src=${data.url_img}>
@@ -71,26 +71,27 @@ window.addEventListener("click", (e) => {
 
 let dataTemp = []
 
+
 const getAllInfo = () => {
-	return new Promise((resolve, reject) => {
-		const db = getFirestore(app);
-		getDocs(query(collection(db, "Info"), orderBy('tgl_uploud', 'desc')))
-			.then(querySnapshot => {
+    return new Promise((resolve, reject) => {
+        const db = getFirestore(app);
+        getDocs(query(collection(db, "Info"), orderBy('tgl_uploud', 'desc')))
+            .then(querySnapshot => {
                 let data = []
-				querySnapshot.forEach((doc) => {
+                querySnapshot.forEach((doc) => {
                     data.push({
                         ...doc.data(),
-                        id:doc.id
+                        id: doc.id
                     })
-					infoSekolah.innerHTML += addElInfo(doc.data(), doc.id)
-				});
+                    infoSekolah.innerHTML += addElInfo(doc.data(), doc.id)
+                });
                 resolve(data)
                 dataTemp.push(data)
-			})
-			.catch((error) => {
-				reject(error)
-			});
-	})
+            })
+            .catch((error) => {
+                reject(error)
+            });
+    })
 }
 getAllInfo()
 // END TAMPIL BERITA SEKOLAH
