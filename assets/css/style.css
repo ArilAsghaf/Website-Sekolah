@@ -1472,6 +1472,17 @@ header .agenda-title h2:after {
     transition: transform .5s;
 }
 
+#agenda .card span {
+    position: absolute;
+	left: 5px;
+	top: 300px;
+	color: #dfd701;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: default;
+}
+
 #agenda .card:hover img {
     transform: scale(1.15);
     opacity: 1;
@@ -1495,12 +1506,6 @@ header .agenda-title h2:after {
 
 .agenda-item-title h3:hover {
     color: #3c72c2;
-}
-
-.agenda-item-title span {
-    font-size: 12px;
-    font-weight: bold;
-    color: #D6261A;
 }
 
 .agenda-item-body p {

@@ -131,7 +131,7 @@ const addBerita = (data) => {
 		addDoc(collection(db, "Berita"), data)
 			.then(() => {
 				console.log("succes !!!")
-				resolve(true)
+				resolve(true) //TRIGGER SWEET ALERT SUCCES
 			})
 	});
 };

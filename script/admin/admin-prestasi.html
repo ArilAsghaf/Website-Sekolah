@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
     <!-- Style css custom  -->
     <link rel="stylesheet" href="../../assets/css/style-admin.css">
+	<!-- css data table -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+	<!-- css Flatpickr -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 </head>
 <body>
@@ -62,12 +66,6 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class="fas fa-cog"></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
 				<a href="#" class="logout">
 					<i class="fas fa-sign-out-alt"></i>
 					<span class="text">Logout</span>
@@ -82,45 +80,17 @@
         <!-- Section Navbar -->
         <nav>
 			<i class="fas fa-bars"></i>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
-				</div>
-			</form>
+			<h1>Kelola Prestasi</h1>
 			<input type="checkbox" id="switch-mode" hidden>
 			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class="fas fa-bell"></i>
-				<span class="num">8</span>
-			</a>
 			<a href="#" class="profile">
-				<img src="../../assets/img/cfd.jpg">
+				<img src="../../assets/img/logo-smpn2.png">
 			</a>
 		</nav>
         <!-- End Section Navbar -->
 
         <!-- Section Main -->
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Upload Prestasi</h1>
-                    <ul class="breadcrumb">
-                        <li>
-                            <a class="active" href="admin-index.html">Dashboard</a>
-                        </li>
-                        <li><i class="fas fa-chevron-right"></i></li>
-                        <li>
-                            <a href="#">Upload Prestasi</a>
-                        </li>
-                    </ul>
-                </div>
-                <a href="#" class="btn-download">
-                    <i class="fas fa-cloud-download-alt"></i>
-                    <span class="text">Download PDF</span>
-                </a>
-            </div>
-
             <!-- Section Upload Berita -->
             <div id="up-informasi">
                 <div class="row">
@@ -161,6 +131,7 @@
                             <label for="exampleFormControlTextarea1" class="form-label">Isi Prestasi</label>
                             <textarea class="isiPrestasi form-control" id="FormControlInformasi" rows="5" placeholder="Masukan isi prestasi..."></textarea>
                         </div>
+						<input id="date" type="date" class="tgl" placeholder="Pilih Tanggal">
                         <button type="submit" class="btnPrestasi btn-primary">Unggah</button>
                     </div>
                 </div>
@@ -223,10 +194,10 @@
 													<!-- <p>Ukuran gambar kurang dari <span>2MB</span></p> -->
 												</div>
 												<div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
-												<div class="file-name">Nama file</div>
+												<div class="filename-edit">Nama file</div>
 											</div>
 											<input type="file" id="btn-image-edit" class="input-img-edit" hidden>
-											<button onclick="btnImageEditActive()" class="select-image">Pilih
+											<button onclick="btnImageEditActive()" class="select-image-edit">Pilih
 												Gambar</button>
 										</div>
 									</div>
@@ -251,7 +222,6 @@
 											<textarea class="form-control" id="FormControlInformasi" rows="5"
 												placeholder="Masukan isi agenda..."></textarea>
 										</div>
-										<!-- <button type="submit" class="btn btn-primary">Unggah</button> -->
 									</div>
 								</div>
 							</div>
@@ -264,7 +234,28 @@
 					</div>
 				</div>
 			</div>
-			<!-- End Modal -->
+			<!-- End Section Modal Hapus -->
+
+			<!-- Section Modal Hapus -->
+            <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus Berita</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah ada yakin ingin menghapus berita ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                            <button  type="button" class="btnDelete btn-primary">Ya</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Section Modal Hapus -->
         </main>
         <!-- End Section Main -->
     </div>
@@ -278,8 +269,19 @@
 	<!-- Javascript admin agenda -->
 	<script type="module" src="../../assets/js/admin/admin-prestasi.js"></script>
 	<script type="text/javascript" src="../../assets/js/jquery-3.6.3.min.js"></script>
-	<script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap5.min.js"></script>
+	<!-- Data Tables -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- Flatpickr -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<!-- <script>
+		flatpickr("#date", {
+			altInput: true,
+			altFormat: "F j, Y",
+			dateFormat: "Y-m-d",
+		});
+	</script> -->
 
 </body>
 </html>
