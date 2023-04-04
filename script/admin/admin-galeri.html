@@ -49,6 +49,12 @@
 					<span class="text">Agenda Sekolah</span>
 				</a>
 			</li>
+            <li>
+				<a href="admin-ekstrakulikuler.html">
+					<i class="fas fa-volleyball-ball"></i>
+					<span class="text">Ekstrakulikuler</span>
+				</a>
+			</li>
 			<li>
 				<a href="admin-prestasi.html">
 					<i class="fas fa-trophy"></i>
@@ -61,14 +67,14 @@
 					<span class="text">Galeri</span>
 				</a>
 			</li>
-		</ul>
-		<ul class="side-menu">
-			<li>
-				<a href="#">
-					<i class="fas fa-cog"></i>
-					<span class="text">Settings</span>
+            <li>
+				<a href="admin-sarpras.html">
+					<i class="fas fa-building"></i>
+					<span class="text">Sarana Prasarana</span>
 				</a>
 			</li>
+		</ul>
+		<ul class="side-menu">
 			<li>
 				<a href="#" class="logout">
 					<i class="fas fa-sign-out-alt"></i>
@@ -117,14 +123,10 @@
                     </div>
                     <div class="col-md-8">
                         <div class="judul">
-                            <label for="exampleFormControlInput1" class="form-label">Judul</label>
+                            <label for="exampleFormControlInput1" class="form-label">Keterangan</label>
                             <input type="text" class="judulGaleri form-control" id="exampleFormControlInput1"
-                                placeholder="Masukan judul berita...">
+                                placeholder="Masukan keterangan...">
                         </div>
-                        <!-- <div class="judul">
-                            <label for="exampleFormControlInput1" class="form-label">Tanggal</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan tanggal...">
-                        </div> -->
                         <button type="submit" class="btnGaleri btn-primary">Unggah</button>
                     </div>
                 </div>
@@ -194,15 +196,8 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="judul">
-                                            <label for="exampleFormControlInput1" class="form-label">Judul</label>
-                                            <input type="text" class="form-control editModal" id="exampleFormControlInput1"
-                                                value="Masukkan judul">
-                                        </div>
-                                        <div class="berita">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Isi
-                                                Agenda</label>
-                                            <textarea class="form-control editTextarea" id="FormControlInformasi" rows="5"
-                                                value="Masukan isi agenda..."></textarea>
+                                            <label for="exampleFormControlInput1" class="form-label">Keterangan</label>
+                                            <input type="text" class="form-control editModal" id="exampleFormControlInput1">
                                         </div>
                                     </div>
                                 </div>
@@ -211,7 +206,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>
-                            <button type="button" class="btn btn-primary btnSimpan">Simpan</button>
+                            <button type="button" class="btnSimpan btn-primary">Simpan</button>
                         </div>
                     </div>
                 </div>
@@ -231,7 +226,7 @@
                             Apakah ada yakin ingin menghapus berita ?
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                            <button type="button" class="btn-secondary" data-bs-dismiss="modal">Tidak</button>
                             <button  type="button" class="btnDelete btn-primary">Ya</button>
                         </div>
                     </div>
