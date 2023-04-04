@@ -123,14 +123,9 @@
                     </div>
                     <div class="col-md-8">
                         <div class="judul">
-                            <label for="exampleFormControlInput1" class="form-label">Judul</label>
+                            <label for="exampleFormControlInput1" class="form-label">Keterangan</label>
                             <input type="text" class="judulSarpras form-control" id="exampleFormControlInput1"
-                                placeholder="Masukan ekstrakulikuler...">
-                        </div>
-                        <div class="berita">
-                            <label for="exampleFormControlTextarea1" class="form-label">Keterangan</label>
-                            <textarea class="isiSarpras form-control" id="FormControlInformasi" rows="5"
-                                placeholder="Masukan keterangan..."></textarea>
+                                placeholder="Masukan keterangan...">
                         </div>
                         <button type="submit" class="btnSarpras btn-primary">Unggah</button>
                     </div>
@@ -152,8 +147,7 @@
 							<thead>
 								<tr>
 									<th style="width: 20%;">Gambar</th>
-									<th style="width: 40%;">Judul</th>
-									<th style="width: 30%;">Tanggal</th>
+									<th style="width: 50%;">Judul</th>
 									<th style="width: 10%;">Aksi</th>
 								</tr>
 							</thead>
@@ -172,7 +166,7 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Edit Berita Sekolah
+                            <h5 class="modal-title" id="staticBackdropLabel">Edit Sarana Prasarana
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -189,7 +183,6 @@
                                                 <div class="content">
                                                     <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                                                     <h4 class="text">Unggah Gambar</h4>
-                                                    <!-- <p>Ukuran gambar kurang dari <span>2MB</span></p> -->
                                                 </div>
                                                 <div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
                                                 <div class="filename-edit">Nama file</div>
@@ -203,11 +196,6 @@
                                         <div class="judul">
                                             <label for="exampleFormControlInput1" class="form-label">Judul</label>
                                             <input type="text" class="form-control editModal" id="exampleFormControlInput1">
-                                        </div>
-                                        <div class="berita">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Isi
-                                                Agenda</label>
-                                            <textarea class="form-control editTextarea" id="FormControlInformasi" rows="5"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -254,7 +242,7 @@
 	<!-- Main admin -->
 	<script src="../../assets/js/admin/main-admin.js"></script>
 	<!-- Javascript admin galeri -->
-	<script type="module" src="../../assets/js/admin/admin-ekstrakulikuler.js"></script>
+	<script type="module" src="../../assets/js/admin/admin-sarpras.js"></script>
 	<!-- Jquery -->
 	<script type="text/javascript" src="../../assets/js/jquery-3.6.3.min.js"></script>
 	<!-- Data Tables -->
