@@ -944,6 +944,7 @@ header .galeri-title h2:after {
 .galeri-item .card {
     object-fit: cover;
     max-width: 410px;
+    height: 273px;
     margin: auto;
     overflow: hidden;
     border-radius: 5px;
