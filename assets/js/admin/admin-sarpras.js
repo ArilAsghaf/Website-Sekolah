@@ -20,11 +20,11 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT BERITA SEKOLAH
+// INPUT SARPRAS SEKOLAH
 const judulSarpras = document.querySelector(".judulSarpras");
 const btnSarpras = document.querySelector(".btnSarpras");
 const input_img = document.querySelector('.input-img');
-const editJudulSarpras = document.querySelector('.editModal')
+const editKetSarpras = document.querySelector('.editKetSarpras')
 const simpanBtn = document.querySelector(".btnSimpan")
 var fileItem;
 var fileName;
@@ -116,8 +116,8 @@ btnSarpras.addEventListener("click", async () => {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, isi, url_img } =dataInputAdmin;
-	if (judul== "" || isi== "" || url_img== undefined ) {
+	const { judul, url_img } =dataInputAdmin;
+	if (judul== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -129,10 +129,10 @@ btnSarpras.addEventListener("click", async () => {
 		getFile()
 	}
 })
-// END INPUT BERITA SEKOLAH
+// END INPUT SARPRAS SEKOLAH
 
 
-// TAMPIL BERITA SEKOLAH
+// TAMPIL SARPRAS SEKOLAH
 // DATA TABEL
 let dataSarpras = [];
 
@@ -189,7 +189,7 @@ getAllSarpras()
 //  END DATA TABEL
 
 
-// EDIT BERITA SEKOLAH
+// EDIT SARPRAS SEKOLAH
 async function getFileUpdateSarpras() {
 	const id = localStorage.getItem("idUpdate")
 	fileItem = input_img.files[0];
@@ -230,7 +230,7 @@ const getDataSarpras = (id) => {
 	})
 }
 
-editJudulSarpras.addEventListener("change", (e) => {
+editKetSarpras.addEventListener("change", (e) => {
 	dataInputAdmin = {
 		...dataInputAdmin,
 		judul: e.target.value
@@ -257,8 +257,8 @@ simpanBtn.addEventListener("click", async () => {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, isi, url_img } =dataInputAdmin;
-	if (judul== "" || isi== "" || url_img== undefined ) {
+	const { judul, url_img } =dataInputAdmin;
+	if (judul== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -270,7 +270,7 @@ simpanBtn.addEventListener("click", async () => {
 		await getFileUpdateSarpras()
 	}
 })
-// END EDIT BERITA SEKOLAH
+// END EDIT SARPRAS SEKOLAH
 
 
 // BUTTON ACTION
@@ -287,7 +287,7 @@ window.addEventListener("click", async (e) => {
 		localStorage.setItem("idUpdate", e.target.id)
 		const resp = await getDataSarpras(e.target.id)
 		if (resp) {
-			editJudulSarpras.value = resp.judul
+			editKetSarpras.value = resp.judul
 			dataInputAdmin = {
 				...dataInputAdmin,
 				url_img: resp.url_img
@@ -296,4 +296,4 @@ window.addEventListener("click", async (e) => {
 	}
 })
 //  END BUTTON ACTION
-// END TAMPIL BERITA SEKOLAH
+// END TAMPIL SARPRAS SEKOLAH

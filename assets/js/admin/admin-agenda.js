@@ -20,13 +20,13 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT BERITA SEKOLAH
+// INPUT AGENDA SEKOLAH
 const judulAgenda = document.querySelector(".judulAgenda");
 const isiAgenda = document.querySelector(".isiAgenda");
 const btnAgenda = document.querySelector(".btnAgenda");
 const input_img = document.querySelector(".input-img");
-const editJudulAgenda = document.querySelector('.editModal')
-const editIsiAgenda = document.querySelector(".editTextarea")
+const editJudulAgenda = document.querySelector('.editJudulAgenda')
+const editIsiAgenda = document.querySelector(".editIsiAgenda")
 const simpanBtn = document.querySelector(".btnSimpan")
 var fileItem;
 var fileName;
@@ -83,7 +83,6 @@ function uploadImage(file, name) {
 				reject(error)
 			},
 			() => {
-				// Upload completed successfully, now we can get the download URL
 				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
 					dataInputAdmin = {
 						...dataInputAdmin,
@@ -155,10 +154,10 @@ btnAgenda.addEventListener("click", async () => {
 		getFile()
 	}
 })
-// END INPUT BERITA SEKOLAH
+// END INPUT AGENDA SEKOLAH
 
 
-// TAMPIL BERITA SEKOLAH
+// TAMPIL AGENDA SEKOLAH
 // DATA TABEL
 let dataAgenda = [];
 
@@ -221,7 +220,7 @@ getAllAgenda()
 // END DATA TABEL
 
 
-// EDIT BERITA SEKOLAH
+// EDIT AGENDA SEKOLAH
 async function getFileUpdateAgenda() {
 	const id = localStorage.getItem("idUpdate")
 	fileItem = input_img.files[0];
@@ -308,7 +307,7 @@ simpanBtn.addEventListener("click", async () => {
 		await getFileUpdateAgenda()
 	}
 })
-// END EDIT BERITA SEKOLAH
+// END EDIT AGENDA SEKOLAH
 
 
 // BUTTON ACTION
@@ -335,24 +334,4 @@ window.addEventListener("click", async (e) => {
 	}
 })
 // END BUTTON ACTION
-// END TAMPIL BERITA SEKOLAH
-
-
-
-
-// const agendaSekolah = document.querySelector(".agendaSekolah");
-
-// const addElAgenda = (data, id) => {
-// 	return `
-// 	<tr>
-// 		<td><img src=${data.url_img} alt=""></td>
-// 		<td>${data.judul}</td>
-// 		<td>${changeTimestamp(data.tgl_uploud)}</td>
-// 		<td>${data.isi}</td>
-// 		<td >
-// 			<button title="Edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
-// 			<button data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
-// 		</td>
-// 	</tr>
-// 	`
-// }
+// END TAMPIL AGENDA SEKOLAH

@@ -5,19 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <!-- Logo Titile Bar -->
     <link rel="icon" href="../../assets/img/icon.png" type="image/x-icon">
-	<!-- Bootstrap -->
 	<link rel="stylesheet" href="../../assets/css/bootstrap.css">
-    <!-- Font awesome / icon -->
     <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
-    <!-- Style css custom  -->
     <link rel="stylesheet" href="../../assets/css/style-admin.css">
-	<!-- css data table -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-	<!-- css Flatpickr -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
 </head>
 <body>
     <!-- Section Sidebar -->
@@ -51,6 +43,12 @@
 					<span class="text">Agenda Sekolah</span>
 				</a>
 			</li>
+			<li>
+				<a href="admin-ekstrakulikuler.html">
+					<i class="fas fa-volleyball-ball"></i>
+					<span class="text">Ekstrakulikuler</span>
+				</a>
+			</li>
 			<li class="active">
 				<a href="admin-prestasi.html">
 					<i class="fas fa-trophy"></i>
@@ -61,6 +59,12 @@
 				<a href="admin-galeri.html">
 					<i class="fas fa-images"></i>
 					<span class="text">Galeri</span>
+				</a>
+			</li>
+            <li>
+				<a href="admin-sarpras.html">
+					<i class="fas fa-building"></i>
+					<span class="text">Sarana Prasarana</span>
 				</a>
 			</li>
 		</ul>
@@ -91,7 +95,7 @@
 
         <!-- Section Main -->
         <main>
-            <!-- Section Upload Berita -->
+            <!-- Section Upload Prestasi -->
             <div id="up-informasi">
                 <div class="row">
                     <div class="col-md-4">
@@ -136,12 +140,12 @@
                     </div>
                 </div>
             </div>
-            <!-- End Section Upload Berita -->
+            <!-- End Section Upload Prestasi -->
 
-            <!-- Section Tabel Berita -->
+            <!-- Section Tabel Data Prestasi -->
             <div class="card-upload">
 				<div class="card-header-upload d-flex justify-content-between align-items-center">
-					<h4 class="card-title-upload">Prestasi</h4>
+					<h4 class="card-title-upload">Tabel Data Prestasi</h4>
 					<div class="d-flex ">
 						<i data-feather="download"></i>
 					</div>
@@ -166,7 +170,7 @@
 					</div>
 				</div>
 			</div>
-            <!-- Section Tabel Berita -->
+            <!-- Section Tabel Data Prestasi -->
 
 			<!-- Modal -->
 			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -174,12 +178,11 @@
 				<div class="modal-dialog modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="staticBackdropLabel">Edit Agenda
-							</h5>
+							<h5 class="modal-title" id="staticBackdropLabel">Edit Prestasi</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
-							<!-- Section Edit Informasi -->
+							<!-- Section Edit Prestasi -->
 							<div class="edit-informasi">
 								<div class="row">
 									<div class="col-md-4">
@@ -191,7 +194,6 @@
 												<div class="content">
 													<div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
 													<h4 class="text">Unggah Gambar</h4>
-													<!-- <p>Ukuran gambar kurang dari <span>2MB</span></p> -->
 												</div>
 												<div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
 												<div class="filename-edit">Nama file</div>
@@ -206,30 +208,28 @@
 											<div class="col-md-8">
 												<div class="judul">
 													<label for="exampleFormControlInput1" class="form-label">Judul</label>
-													<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan judul prestasi...">
+													<input type="text" class="form-control editJudulPrestasi" id="exampleFormControlInput1">
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="lokasi">
 													<label for="exampleFormControlInput1" class="form-label">Lokasi</label>
-													<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukan lokasi...">
+													<input type="text" class="form-control editLokasiPrestasi" id="exampleFormControlInput1">
 												</div>
 											</div>
 										</div>
 										<div class="berita">
-											<label for="exampleFormControlTextarea1" class="form-label">Isi
-												Agenda</label>
-											<textarea class="form-control" id="FormControlInformasi" rows="5"
-												placeholder="Masukan isi agenda..."></textarea>
+											<label for="exampleFormControlTextarea1" class="form-label">Isi Prestasi</label>
+											<textarea class="form-control editIsiPrestasi" id="FormControlInformasi" rows="5"></textarea>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- End Section Edit Informasi -->
+							<!-- End Section Edit Prestasi -->
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>
-							<button type="button" class="btn btn-primary">Simpan</button>
+							<button type="button" class="btn-secondary" data-bs-dismiss="modal">Keluar</button>
+                            <button type="button" class="btnSimpan btn-primary">Simpan</button>
 						</div>
 					</div>
 				</div>
@@ -242,11 +242,11 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Hapus Berita</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus Prestasi</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Apakah ada yakin ingin menghapus berita ?
+                            Apakah ada yakin ingin menghapus data prestasi ?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
@@ -264,24 +264,10 @@
 
 	<!-- Bootstrap -->
 	<script src="../../assets/js/bootstrap.js"></script>
-	<!-- Main admin -->
 	<script src="../../assets/js/admin/main-admin.js"></script>
-	<!-- Javascript admin agenda -->
 	<script type="module" src="../../assets/js/admin/admin-prestasi.js"></script>
 	<script type="text/javascript" src="../../assets/js/jquery-3.6.3.min.js"></script>
-	<!-- Data Tables -->
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<!-- Flatpickr -->
-	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-	<!-- <script>
-		flatpickr("#date", {
-			altInput: true,
-			altFormat: "F j, Y",
-			dateFormat: "Y-m-d",
-		});
-	</script> -->
-
 </body>
 </html>

@@ -20,12 +20,11 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT BERITA SEKOLAH
+// INPUT GALERI SEKOLAH
 const judulGaleri = document.querySelector(".judulGaleri");
 const btnGaleri = document.querySelector(".btnGaleri");
 const input_img = document.querySelector('.input-img');
-const editJudulGaleri = document.querySelector('.editModal')
-const editIsiGaleri = document.querySelector(".editTextarea")
+const editJudulGaleri = document.querySelector('.editJudulGaleri')
 const simpanBtn = document.querySelector(".btnSimpan")
 var fileItem;
 var fileName;
@@ -146,10 +145,10 @@ btnGaleri.addEventListener("click", async () => {
 		getFile()
 	}
 })
-// END INPUT BERITA SEKOLAH
+// END INPUT GALERI SEKOLAH
 
 
-// TAMPIL BERITA SEKOLAH
+// TAMPIL GALERI SEKOLAH
 // DATA TABEL
 let dataGaleri = [];
 
@@ -214,6 +213,90 @@ getAllGaleri()
 //  END DATA TABEL
 
 
+// EDIT GALERI SEKOLAH
+async function getFileUpdateGaleri() {
+	const id = localStorage.getItem("idUpdate")
+	fileItem = input_img.files[0];
+	fileName = fileItem.name;
+
+	const resp = await uploadImage(fileItem, fileName)
+	if (resp) {
+		const update = await updateGaleri(id, dataInputAdmin)
+		console.log(update)
+		if (resp) {
+			Swal.fire({
+				icon: 'success',
+				title: 'Data berhasil disimpan',
+				showConfirmButton: false,
+				timer: 1500
+			})
+			setTimeout(() => {
+				location.reload()
+			}, 1610);
+		}
+	}
+}
+
+const getDataGaleri = (id) => {
+	return new Promise((resolve, reject) => {
+		const db = getFirestore(app);
+		getDoc(doc(db, "Galeri", id))
+			.then(docSnap => {
+				if (docSnap.exists()) {
+					resolve(docSnap.data())
+				} else {
+					resolve("Data Kosong");
+				}
+			})
+			.catch((error) => {
+				reject(error)
+			});
+	})
+}
+
+editJudulGaleri.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		judul: e.target.value
+	}
+})
+
+
+const updateGaleri = (id, data) => {
+	return new Promise((resolve, reject) => {
+		const db = getFirestore(app);
+		setDoc(doc(db, "Galeri", id), data, { merge: true })
+			.then(() => {
+				resolve(true)
+			}).catch((error) => {
+				reject(error)
+				console.log(error)
+			});
+	});
+};
+
+simpanBtn.addEventListener("click", async () => {
+	fileItem = input_img.files[0];
+	dataInputAdmin = {
+		...dataInputAdmin,
+		url_img: fileItem
+	}
+	const { judul, isi, url_img } =dataInputAdmin;
+	if (judul== "" || isi== "" || url_img== undefined ) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Data harus disunting !!!',
+		})
+	}
+	else {
+		console.log(dataInputAdmin)
+		await getFileUpdateGaleri()
+	}
+})
+// END EDIT GALERI SEKOLAH
+
+
 // BUTTON ACTION
 window.addEventListener("click", async (e) => {
 	if (e.target.classList.value == "btnDelete btn-primary") {
@@ -224,7 +307,17 @@ window.addEventListener("click", async (e) => {
 		location.reload()
 	} else if (e.target.classList.value == "btnDeleteId") {
 		localStorage.setItem("idDel", e.target.id)
+	} else if (e.target.classList.value == "editData") {
+		localStorage.setItem("idUpdate", e.target.id)
+		const resp = await getDataGaleri(e.target.id)
+		if (resp) {
+			editJudulGaleri.value = resp.judul
+			dataInputAdmin = {
+				...dataInputAdmin,
+				url_img: resp.url_img
+			}
+		}
 	}
 })
 //  END BUTTON ACTION
-// END TAMPIL BERITA SEKOLAH
+// END TAMPIL GALERI SEKOLAH

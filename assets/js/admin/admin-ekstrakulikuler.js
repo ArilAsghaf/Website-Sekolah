@@ -20,7 +20,7 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT BERITA SEKOLAH
+// INPUT EKSTRAKULIKULER SEKOLAH
 const judulEkstrakulikuler = document.querySelector(".judulEkstrakulikuler");
 const isiEkstrakulikuler = document.querySelector(".isiEkstrakulikuler");
 const btnEkstrakulikuler = document.querySelector(".btnEkstrakulikuler");
@@ -139,10 +139,10 @@ btnEkstrakulikuler.addEventListener("click", async () => {
 		getFile()
 	}
 })
-// END INPUT BERITA SEKOLAH
+// END INPUT EKSTRAKULIKULER SEKOLAH
 
 
-// TAMPIL BERITA SEKOLAH
+// TAMPIL EKSTRAKULIKULER SEKOLAH
 // DATA TABEL
 let dataEkstrakulikuler = [];
 
@@ -203,7 +203,7 @@ getAllEkstrakulikuler()
 //  END DATA TABEL
 
 
-// EDIT BERITA SEKOLAH
+// EDIT EKSTRAKULIKULER SEKOLAH
 async function getFileUpdateEkstrakulikuler() {
 	const id = localStorage.getItem("idUpdate")
 	fileItem = input_img.files[0];
@@ -290,7 +290,7 @@ simpanBtn.addEventListener("click", async () => {
 		await getFileUpdateEkstrakulikuler()
 	}
 })
-// END EDIT BERITA SEKOLAH
+// END EDIT EKSTRAKULIKULER SEKOLAH
 
 
 // BUTTON ACTION
@@ -317,4 +317,4 @@ window.addEventListener("click", async (e) => {
 	}
 })
 //  END BUTTON ACTION
-// END TAMPIL BERITA SEKOLAH
+// END TAMPIL EKSTRAKULIKULER SEKOLAH

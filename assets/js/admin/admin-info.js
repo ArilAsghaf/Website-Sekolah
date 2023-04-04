@@ -20,13 +20,13 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT BERITA SEKOLAH
+// INPUT INFO SEKOLAH
 const judulInfo = document.querySelector(".judulInfo");
 const isiInfo = document.querySelector(".isiInfo");
 const btnInfo = document.querySelector(".btnInfo");
 const input_img = document.querySelector('.input-img');
-const editJudulInfo = document.querySelector('.editModal')
-const editIsiInfo = document.querySelector(".editTextarea")
+const editJudulInfo = document.querySelector('.editJudulInfo')
+const editIsiInfo = document.querySelector(".editIsiInfo")
 const simpanBtn = document.querySelector(".btnSimpan")
 var fileItem;
 var fileName;
@@ -48,7 +48,6 @@ async function getFile() {
 		console.log(resp);
 		if (resp) {
 			Swal.fire({
-				// position: 'top-end',
 				icon: 'success',
 				title: 'Data berhasil disimpan',
 				showConfirmButton: false,
@@ -155,7 +154,7 @@ btnInfo.addEventListener("click", async () => {
 		getFile()
 	}
 })
-// END INPUT BERITA SEKOLAH
+// END INPUT INFO SEKOLAH
 
 
 // TAMPIL INFO SEKOLAH
@@ -202,7 +201,7 @@ const getAllInfo = () => {
 							{
 								render: function (data, type, JsonResultRow, meta) {
 									return `
-									<button title="Edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
+									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
 									<button class="btnDeleteId" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
 									`
 								}
@@ -220,6 +219,97 @@ getAllInfo()
 // END DATA TABEL
 
 
+// EDIT INFO SEKOLAH
+async function getFileUpdateInfo() {
+	const id = localStorage.getItem("idUpdate")
+	fileItem = input_img.files[0];
+	fileName = fileItem.name;
+
+	const resp = await uploadImage(fileItem, fileName)
+	if (resp) {
+		const update = await updateInfo(id, dataInputAdmin)
+		console.log(update)
+		if (resp) {
+			Swal.fire({
+				icon: 'success',
+				title: 'Data berhasil disimpan',
+				showConfirmButton: false,
+				timer: 1500
+			})
+			setTimeout(() => {
+				location.reload()
+			}, 1610);
+		}
+	}
+}
+
+const getDataInfo = (id) => {
+	return new Promise((resolve, reject) => {
+		const db = getFirestore(app);
+		getDoc(doc(db, "Info", id))
+			.then(docSnap => {
+				if (docSnap.exists()) {
+					resolve(docSnap.data())
+				} else {
+					resolve("Data Kosong");
+				}
+			})
+			.catch((error) => {
+				reject(error)
+			});
+	})
+}
+
+editJudulInfo.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		judul: e.target.value
+	}
+})
+
+editIsiInfo.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		isi: e.target.value
+	}
+})
+
+
+const updateInfo = (id, data) => {
+	return new Promise((resolve, reject) => {
+		const db = getFirestore(app);
+		setDoc(doc(db, "Info", id), data, { merge: true })
+			.then(() => {
+				resolve(true)
+			}).catch((error) => {
+				reject(error)
+				console.log(error)
+			});
+	});
+};
+
+simpanBtn.addEventListener("click", async () => {
+	fileItem = input_img.files[0];
+	dataInputAdmin = {
+		...dataInputAdmin,
+		url_img: fileItem
+	}
+	const { judul, isi, url_img } =dataInputAdmin;
+	if (judul== "" || isi== "" || url_img== undefined ) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Data harus disunting !!!',
+		})
+	}
+	else {
+		console.log(dataInputAdmin)
+		await getFileUpdateInfo()
+	}
+})
+// END EDIT INFO SEKOLAH
+
+
 // BUTTON ACTION
 window.addEventListener("click", async (e) => {
 	if (e.target.classList.value == "btnDelete btn-primary") {
@@ -230,10 +320,21 @@ window.addEventListener("click", async (e) => {
 		location.reload()
 	} else if (e.target.classList.value == "btnDeleteId") {
 		localStorage.setItem("idDel",e.target.id)
+	} else if (e.target.classList.value == "editData") {
+		localStorage.setItem("idUpdate", e.target.id)
+		const resp = await getDataInfo(e.target.id)
+		if (resp) {
+			editJudulInfo.value = resp.judul
+			editIsiInfo.value = resp.isi
+			dataInputAdmin = {
+				...dataInputAdmin,
+				url_img: resp.url_img
+			}
+		}
 	}
 })
 //  END BUTTON ACTION
-// END TAMPIL BERITA SEKOLAH
+// END TAMPIL INFO SEKOLAH
 
 
 

@@ -20,15 +20,19 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT BERITA SEKOLAH
+// INPUT PRESTASI
 const judulPrestasi = document.querySelector(".judulPrestasi");
 const lokasiPrestasi = document.querySelector(".lokasiPrestasi");
 const isiPrestasi = document.querySelector(".isiPrestasi");
 const btnPrestasi = document.querySelector(".btnPrestasi");
 const input_img = document.querySelector(".input-img");
+const editJudulPrestasi = document.querySelector('.editJudulPrestasi')
+const editLokasiPrestasi = document.querySelector('.editLokasiPrestasi')
+const editIsiPrestasi = document.querySelector(".editIsiPrestasi")
+const simpanBtn = document.querySelector(".btnSimpan")
 var fileItem;
 var fileName;
-const date = document.querySelector(".tgl")
+// const date = document.querySelector(".tgl")
 
 
 let dataInputAdmin = {
@@ -36,8 +40,8 @@ let dataInputAdmin = {
     lokasi: "",
 	isi: "",
 	url_img: "",
-	tanggal: "",
-	// tgl_uploud: + new Date()
+	// tanggal: "",
+	tgl_uploud: + new Date()
 };
 
 async function getFile() {
@@ -117,12 +121,12 @@ judulPrestasi.addEventListener("change", e => {
 	}
 })
 
-date.addEventListener("change", e => {
-	dataInputAdmin = {
-		...dataInputAdmin,
-		tanggal: e.target.value
-	}
-})
+// date.addEventListener("change", e => {
+// 	dataInputAdmin = {
+// 		...dataInputAdmin,
+// 		tanggal: e.target.value
+// 	}
+// })
 
 lokasiPrestasi.addEventListener("change", e => {
 	dataInputAdmin = {
@@ -155,8 +159,8 @@ btnPrestasi.addEventListener("click", async () => {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, tanggal,  lokasi, isi, url_img } =dataInputAdmin;
-	if (judul== "" || tanggal== "" || lokasi== "" || isi== "" || url_img== undefined ) {
+	const { judul, lokasi, isi, url_img } =dataInputAdmin;
+	if (judul== "" || lokasi== "" || isi== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -168,12 +172,12 @@ btnPrestasi.addEventListener("click", async () => {
 		getFile()
 	}
 })
-// END INPUT BERITA SEKOLAH
+// END INPUT PRESTASI
 
 
-// TAMPIL BERITA SEKOLAH
+// TAMPIL PRESTASI
 // DATA TABEL
-let dataBerita = [];
+let dataPrestasi = [];
 
 const getAllPrestasi = () => {
 	return new Promise((resolve, reject) => {
@@ -181,12 +185,12 @@ const getAllPrestasi = () => {
 		getDocs(collection(db, "Prestasi"))
 			.then(querySnapshot => {
 				querySnapshot.forEach((doc) => {
-					dataBerita.push({
+					dataPrestasi.push({
 						...doc.data(),
 						id: doc.id
 					})
 				});
-				console.log(dataBerita)
+				console.log(dataPrestasi)
 				$(document).ready(function () {
 					$('#table1').DataTable({
 						lengthMenu: [
@@ -195,7 +199,7 @@ const getAllPrestasi = () => {
 						],
 						scrollY: false,
 						destroy: true,
-						data: dataBerita,
+						data: dataPrestasi,
 						columnDefs: [{
 							"defaultContent": "-",
 							"targets": "_all"
@@ -207,13 +211,18 @@ const getAllPrestasi = () => {
 								}
 							},
 							{ data: 'judul' },
-							{ data: 'tanggal' },
+							{
+								render: function (data, type, JsonResultRow, meta) {
+									return changeTimestamp(JsonResultRow.tgl_uploud)
+								}
+							},
+							// { data: 'tanggal' },
 							{ data: 'lokasi' },
 							{ data: 'isi' },
 							{
 								render: function (data, type, JsonResultRow, meta) {
 									return `
-									<button title="Edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
+									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
 									<button class="btnDeleteId" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
 									`
 								}
@@ -231,6 +240,104 @@ getAllPrestasi()
 // END DATA TABEL
 
 
+// EDIT PRESTASI
+async function getFileUpdatePrestasi() {
+	const id = localStorage.getItem("idUpdate")
+	fileItem = input_img.files[0];
+	fileName = fileItem.name;
+
+	const resp = await uploadImage(fileItem, fileName)
+	if (resp) {
+		const update = await updatePrestasi(id, dataInputAdmin)
+		console.log(update)
+		if (resp) {
+			Swal.fire({
+				icon: 'success',
+				title: 'Data berhasil disimpan',
+				showConfirmButton: false,
+				timer: 1500
+			})
+			setTimeout(() => {
+				location.reload()
+			}, 1610);
+		}
+	}
+}
+
+const getDataPrestasi = (id) => {
+	return new Promise((resolve, reject) => {
+		const db = getFirestore(app);
+		getDoc(doc(db, "Prestasi", id))
+			.then(docSnap => {
+				if (docSnap.exists()) {
+					resolve(docSnap.data())
+				} else {
+					resolve("Data Kosong");
+				}
+			})
+			.catch((error) => {
+				reject(error)
+			});
+	})
+}
+
+editJudulPrestasi.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		judul: e.target.value
+	}
+})
+
+editLokasiPrestasi.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		lokasi: e.target.value
+	}
+})
+
+editIsiPrestasi.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		isi: e.target.value
+	}
+})
+
+
+const updatePrestasi = (id, data) => {
+	return new Promise((resolve, reject) => {
+		const db = getFirestore(app);
+		setDoc(doc(db, "Prestasi", id), data, { merge: true })
+			.then(() => {
+				resolve(true)
+			}).catch((error) => {
+				reject(error)
+				console.log(error)
+			});
+	});
+};
+
+simpanBtn.addEventListener("click", async () => {
+	fileItem = input_img.files[0];
+	dataInputAdmin = {
+		...dataInputAdmin,
+		url_img: fileItem
+	}
+	const { judul, lokasi, isi, url_img } =dataInputAdmin;
+	if (judul== "" || lokasi== "" || isi== "" || url_img== undefined ) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Data harus disunting !!!',
+		})
+	}
+	else {
+		console.log(dataInputAdmin)
+		await getFileUpdatePrestasi()
+	}
+})
+// END EDIT PRESTASI
+
+
 // BUTTON ACTION
 window.addEventListener("click", async (e) => {
 	if (e.target.classList.value == "btnDelete btn-primary") {
@@ -241,27 +348,19 @@ window.addEventListener("click", async (e) => {
 		location.reload()
 	} else if (e.target.classList.value == "btnDeleteId") {
 		localStorage.setItem("idDel", e.target.id)
+	} else if (e.target.classList.value == "editData") {
+		localStorage.setItem("idUpdate", e.target.id)
+		const resp = await getDataPrestasi(e.target.id)
+		if (resp) {
+			editJudulPrestasi.value = resp.judul
+			editLokasiPrestasi.value = resp.lokasi
+			editIsiPrestasi.value = resp.isi
+			dataInputAdmin = {
+				...dataInputAdmin,
+				url_img: resp.url_img
+			}
+		}
 	}
 })
 // END BUTTON ACTION
-// END TAMPIL BERITA SEKOLAH
-
-
-
-// const prestasi = document.querySelector(".prestasi");
-
-// const AddElPrestasi = (data, id) => {
-// 	return `
-// 	<tr>
-// 		<td><img src=${data.url_img} alt=""></td>
-// 		<td>${data.judul}</td>
-// 		<td>${changeTimestamp(data.tgl_uploud)}</td>
-//         <td>${data.lokasi}</td>
-// 		<td>${data.isi}</td>
-// 		<td >
-// 			<button title="Edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
-// 			<button id=${id} class="btnDelete" title="Hapus"><i class="fas fa-trash"></i></button>
-// 		</td>
-// 	</tr>
-// 	`
-// }
+// END TAMPIL PRESTASI

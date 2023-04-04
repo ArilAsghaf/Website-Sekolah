@@ -25,8 +25,8 @@ const judulBerita = document.querySelector(".judulBerita");
 const isiBerita = document.querySelector(".isiBerita");
 const btnBerita = document.querySelector(".btnBerita");
 const input_img = document.querySelector('.input-img');
-const editJudulBerita = document.querySelector('.editModal')
-const editIsiBerita = document.querySelector(".editTextarea")
+const editJudulBerita = document.querySelector('.editJudulBerita')
+const editIsiBerita = document.querySelector(".editIsiBerita")
 const simpanBtn = document.querySelector(".btnSimpan")
 var fileItem;
 var fileName;
