@@ -19,6 +19,8 @@ const app = initializeApp(firebaseConfig)
 
 
 
+let dataTemp = []
+
 // TIMESTAMP
 const changeTimestamp = (data) => {
     const tanggal = new Date(data);
@@ -70,32 +72,6 @@ window.addEventListener("click", (e) => {
     }
 })
 
-let dataLenth = 0
-let dataTemp = []
-
-// const getAllBerita = () => {
-//     return new Promise((resolve, reject) => {
-//         const db = getFirestore(app);
-//         getDocs(query(collection(db, "Berita"), orderBy('tgl_uploud', 'desc')))
-//             .then(querySnapshot => {
-//                 let data = []
-//                 querySnapshot.forEach((doc) => {
-//                     data.push({
-//                         ...doc.data(),
-//                         id: doc.id
-//                     })
-//                     beritaSekolahBeranda.innerHTML += addElBerita(doc.data(), doc.id)
-//                 });
-//                 resolve(data)
-//                 dataTemp.push(data)
-//             })
-//             .catch((error) => {
-//                 reject(error)
-//             });
-//     })
-// }
-// getAllBerita()
-
 const getLimitedBerita = (limitData) => {
     return new Promise((resolve, reject) => {
         const db = getFirestore(app);
@@ -125,5 +101,68 @@ getLimitedBerita(4)
     .catch(error => {
         console.error(error);
     });
-
 // END TAMPIL BERITA SEKOLAH
+
+
+// TAMPIL PRESTASI
+const prestasiBeranda = document.querySelector(".prestasiBeranda");
+const addElPrestasi = (data, id) => {
+    return `
+    <div class="prestasi-item">
+        <div class="row">
+            <div class="col-md-6">
+                <img class="prestasi-item-thumbnail" src=${data.url_img}>
+            </div>
+            <div class="col-md-6">
+                <div class="prestasi-item-title">
+                <h3>${data.judul}<</h3>
+                <div class="prestasi-item-meta">
+                    <span><i class="far fa-calendar-alt"></i> ${changeTimestamp(data.tgl_uploud)} </span>
+                    <span><i class="fas fa-map-marked-alt"></i> ${data.lokasi}</span>
+                </div>
+                </div>
+                <div class="prestasi-item-body">
+                <p>${limitBodyText(data.isi, 500)}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+`
+}
+
+window.addEventListener("click", (e) => {
+    if (e.target.classList == "btnPage") {
+        localStorage.setItem("idPrestasi", e.target.id)
+    }
+})
+
+const getLimitedPrestasi = (limitData) => {
+    return new Promise((resolve, reject) => {
+        const db = getFirestore(app);
+        getDocs(query(collection(db, "Prestasi"), orderBy('tgl_uploud', 'desc'), limit(limitData)))
+            .then(querySnapshot => {
+                let data = [];
+                querySnapshot.forEach(doc => {
+                    data.push({
+                        ...doc.data(),
+                        id: doc.id
+                    });
+                    prestasiBeranda.innerHTML += addElPrestasi(doc.data(), doc.id)
+                });
+                resolve(data)
+                dataTemp.push(data)
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+};
+
+getLimitedPrestasi(3)
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+// END TAMPIL PRESTASI
