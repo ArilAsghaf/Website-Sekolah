@@ -364,3 +364,18 @@ window.addEventListener("click", async (e) => {
 })
 // END BUTTON ACTION
 // END TAMPIL PRESTASI
+
+
+
+
+const logout = document.querySelector(".logout")
+const uid = localStorage.getItem("uid")
+
+logout.addEventListener("click", () => {
+	localStorage.clear()
+	window.location.href = "admin-login.html"
+})
+//cek if user login atau tidak
+if(uid == undefined) {
+	window.location.href = "admin-login.html"
+}

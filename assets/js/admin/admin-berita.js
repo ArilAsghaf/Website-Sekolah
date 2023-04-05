@@ -342,6 +342,20 @@ window.addEventListener("click", async (e) => {
 
 
 
+const logout = document.querySelector(".logout")
+const uid = localStorage.getItem("uid")
+
+logout.addEventListener("click", () => {
+	localStorage.clear()
+	window.location.href = "admin-login.html"
+})
+//cek if user login atau tidak
+if(uid == undefined) {
+	window.location.href = "admin-login.html"
+}
+
+
+
 // const beritaSekolah = document.querySelector(".beritaSekolah");
 
 // const addElBerita = (data, id) => {

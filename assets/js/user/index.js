@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-import { doc, setDoc, getFirestore, orderBy, query, getDoc, updateDoc, Timestamp, addDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+import { doc, setDoc, getFirestore, orderBy, query, getDoc, updateDoc, Timestamp, addDoc, collection, getDocs , limit} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -73,57 +73,57 @@ window.addEventListener("click", (e) => {
 let dataLenth = 0
 let dataTemp = []
 
-const getAllBerita = () => {
-    return new Promise((resolve, reject) => {
-        const db = getFirestore(app);
-        getDocs(query(collection(db, "Berita"), orderBy('tgl_uploud', 'desc')))
-            .then(querySnapshot => {
-                let data = []
-                querySnapshot.forEach((doc) => {
-                    data.push({
-                        ...doc.data(),
-                        id: doc.id
-                    })
-                    beritaSekolahBeranda.innerHTML += addElBerita(doc.data(), doc.id)
-                });
-                resolve(data)
-                dataTemp.push(data)
-            })
-            .catch((error) => {
-                reject(error)
-            });
-    })
-}
-getAllBerita()
-
-// const getLimitedBerita = (limit) => {
+// const getAllBerita = () => {
 //     return new Promise((resolve, reject) => {
 //         const db = getFirestore(app);
-//         getDocs(query(collection(db, "Berita"), orderBy('tgl_uploud', 'desc'), limit(limit)))
+//         getDocs(query(collection(db, "Berita"), orderBy('tgl_uploud', 'desc')))
 //             .then(querySnapshot => {
-//                 let data = [];
-//                 querySnapshot.forEach(doc => {
+//                 let data = []
+//                 querySnapshot.forEach((doc) => {
 //                     data.push({
 //                         ...doc.data(),
 //                         id: doc.id
-//                     });
+//                     })
 //                     beritaSekolahBeranda.innerHTML += addElBerita(doc.data(), doc.id)
 //                 });
 //                 resolve(data)
 //                 dataTemp.push(data)
 //             })
-//             .catch(error => {
-//                 reject(error);
+//             .catch((error) => {
+//                 reject(error)
 //             });
-//     });
-// };
-
-// getLimitedBerita(4)
-//     .then(data => {
-//         console.log(data);
 //     })
-//     .catch(error => {
-//         console.error(error);
-//     });
+// }
+// getAllBerita()
+
+const getLimitedBerita = (limitData) => {
+    return new Promise((resolve, reject) => {
+        const db = getFirestore(app);
+        getDocs(query(collection(db, "Berita"), orderBy('tgl_uploud', 'desc'), limit(limitData)))
+            .then(querySnapshot => {
+                let data = [];
+                querySnapshot.forEach(doc => {
+                    data.push({
+                        ...doc.data(),
+                        id: doc.id
+                    });
+                    beritaSekolahBeranda.innerHTML += addElBerita(doc.data(), doc.id)
+                });
+                resolve(data)
+                dataTemp.push(data)
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+};
+
+getLimitedBerita(4)
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
 // END TAMPIL BERITA SEKOLAH

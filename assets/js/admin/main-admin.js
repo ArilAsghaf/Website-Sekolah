@@ -73,36 +73,36 @@ switchMode.addEventListener('change', function () {
 
 
 // UPLOAD GAMBAR
-const imgArea = document.querySelector(".img-area");
-const fileName = document.querySelector(".file-name");
-const cancelBtn = document.querySelector("#cancel-btn");
-const btnImage = document.querySelector("#btn-image");
-const selectImage = document.querySelector(".select-image");
-const img = document.querySelector(".img");
-var regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\, \$\=\!\-\#\(\)\ . \%\+\~\_ ]+$/;
-function btnImageActive(){
-    btnImage.click();
-}
-btnImage.addEventListener("change", function(){
-    const file = this.files[0];
-    if(file){
-        const reader = new FileReader();
-        reader.onload = function(){
-            const result = reader.result;
-            img.src = result;
-            imgArea.classList.add("active");
-        }
-        cancelBtn.addEventListener("click", function(){
-            img.src = "";
-            imgArea.classList.remove("active");
-        }); // ???
-        reader.readAsDataURL(file);
-    }
-    if(this.value){
-        let valueStore = this.value.match(regExp);
-        fileName.textContent = valueStore;
-    }
-});
+// const imgArea = document.querySelector(".img-area");
+// const fileName = document.querySelector(".file-name");
+// const cancelBtn = document.querySelector("#cancel-btn");
+// const btnImage = document.querySelector("#btn-image");
+// const selectImage = document.querySelector(".select-image");
+// const img = document.querySelector(".img");
+// var regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\, \$\=\!\-\#\(\)\ . \%\+\~\_ ]+$/;
+// function btnImageActive(){
+//     btnImage.click();
+// }
+// btnImage.addEventListener("change", function(){
+//     const file = this.files[0];
+//     if(file){
+//         const reader = new FileReader();
+//         reader.onload = function(){
+//             const result = reader.result;
+//             img.src = result;
+//             imgArea.classList.add("active");
+//         }
+//         cancelBtn.addEventListener("click", function(){
+//             img.src = "";
+//             imgArea.classList.remove("active");
+//         }); // ???
+//         reader.readAsDataURL(file);
+//     }
+//     if(this.value){
+//         let valueStore = this.value.match(regExp);
+//         fileName.textContent = valueStore;
+//     }
+// });
 // END UPLOAD GAMBAR
 
 
@@ -114,11 +114,11 @@ const btnImageEdit = document.querySelector("#btn-image-edit");
 const selectImageEdit = document.querySelector(".select-image-edit");
 const imgEdit = document.querySelector(".img-edit");
 var regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\, \$\=\!\-\#\(\)\ . \%\+\~\_ ]+$/;
-function btnImageActive(){
-    btnImage.click();
+function btnImageEditActive(){
+    btnImageEdit.click();
 }
 
-btnImage.addEventListener("change", function(){
+btnImageEdit.addEventListener("change", function(){
     const file = this.files[0];
     if(file){
         const reader = new FileReader();

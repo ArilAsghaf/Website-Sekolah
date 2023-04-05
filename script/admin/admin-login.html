@@ -104,6 +104,7 @@
         async function Login() {
             const resp = await loginByEmailPass(dataInputUser).catch(err => err)
             if (resp.uid !== undefined) {
+                localStorage.setItem("uid", resp.uid)
                 window.location.href = "admin-index.html"
             } else {
                 Swal.fire({

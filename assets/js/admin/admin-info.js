@@ -338,19 +338,14 @@ window.addEventListener("click", async (e) => {
 
 
 
-// const infoSekolah = document.querySelector(".infoSekolah")
+const logout = document.querySelector(".logout")
+const uid = localStorage.getItem("uid")
 
-// const addElInfo = (data, id) => {
-// 	return `
-// 	<tr>
-// 		<td><img src=${data.url_img} alt=""></td>
-// 		<td>${data.judul}</td>
-// 		<td>${changeTimestamp(data.tgl_uploud)}</td>
-// 		<td>${data.isi}</td>
-// 		<td >
-// 			<button title="Edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
-// 			<button id=${id} class="btnDelete" title="Hapus"><i class="fas fa-trash"></i></button>
-// 		</td>
-// 	</tr>
-// 	`
-// }
+logout.addEventListener("click", () => {
+	localStorage.clear()
+	window.location.href = "admin-login.html"
+})
+//cek if user login atau tidak
+if(uid == undefined) {
+	window.location.href = "admin-login.html"
+}

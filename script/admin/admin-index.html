@@ -70,7 +70,7 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#" class="logout">
+				<a class="logout">
 					<i class="fas fa-sign-out-alt"></i>
 					<span class="text">Logout</span>
 				</a>
@@ -117,12 +117,12 @@
 					</div>
 					
 					<div class="col-md-7 sambutan">
-						<h4>Sambutan</h4>
+						<!-- <h4>Sambutan</h4>
 						<div class="card">
 							<img src="../../assets/img/kepsek.jpg" alt="">
 						</div>
 						<p>Lorem ipsum dolor sit amet, Repellendus necessitatibus voluptatibus quibusdam, veniam voluptatum quo iusto placeat rerum! Architecto mollitia perferendis in magni deserunt? Neque ex libero dignissimos dolore eos? Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam nihil quam qui quidem! Temporibus vel aliquam minus tempore, ipsa esse porro omnis? Illo, culpa blanditiis voluptate doloribus adipisci inventore facilis!</p>
-						<button type="submit" class="btnSunting" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Sunting</button>
+						<button type="submit" class="btnSunting" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Sunting</button> -->
 					</div>
 				</div>
 			</div>
@@ -132,12 +132,12 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Edit Sambutan
+                            <h5 class="modal-title" id="staticBackdropLabel">Sambutan
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Section Edit Informasi -->
+                            <!-- Section Sambutan -->
                             <div class="edit-informasi">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -149,20 +149,19 @@
                                                 <div class="content">
                                                     <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                                                     <h4 class="text">Unggah Gambar</h4>
-                                                    <!-- <p>Ukuran gambar kurang dari <span>2MB</span></p> -->
                                                 </div>
                                                 <div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
                                                 <div class="filename-edit">Nama file</div>
                                             </div>
                                             <input type="file" id="btn-image-edit" class="input-img-edit" hidden>
-                                            <button onclick="btnImageActive()" class="select-image-edit">Pilih
+                                            <button onclick="btnImageEditActive()" class="select-image-edit">Pilih
                                                 Gambar</button>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="sambutan">
                                             <label for="exampleFormControlTextarea1" class="form-label">Isi Sambutan</label>
-                                            <textarea class="form-control editTextarea" id="FormControlInformasi" rows="9"></textarea>
+                                            <textarea class="isiSambutan form-control" id="FormControlInformasi" rows="9"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -237,6 +236,6 @@
 	<script type="module" src="../../assets/js/admin/admin-index.js"></script>
 	<script type="text/javascript" src="../../assets/js/jquery-3.6.3.min.js"></script>
 	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
