@@ -120,7 +120,6 @@ cariAgenda.addEventListener("change", async (e) => {
     dataSearch = {
         txt : e.target.value
     }
-    
 })
 // END SEARCH
 

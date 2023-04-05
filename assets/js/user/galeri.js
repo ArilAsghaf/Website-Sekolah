@@ -32,6 +32,7 @@ const changeTimestamp = (data) => {
 }
 // END TIMESTAMP
 
+
 // TAMPIL BERITA SEKOLAH
 const galeri = document.querySelector(".galeri");
 const addElGaleri = (data, id) => {
@@ -75,3 +76,77 @@ const getAllGaleri = () => {
 }
 getAllGaleri()
 // END TAMPIL BERITA SEKOLAH
+
+
+// PAGE LIST
+function getPageList(totalPages, page, maxLength) {
+    function range(start, end) {
+        return Array.from(Array(end - start + 1), (_, i) => i + start);
+    }
+
+    var sideWidth = maxLength < 9 ? 1 : 2;
+    var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+    var rightWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+
+    if (totalPages <= maxLength) {
+        return range(1, totalPages);
+    }
+
+    if (page <= maxLength - sideWidth - 1 - rightWidth) {
+        return range(1, maxLength - sideWidth - 1).concat(0, range(totalPages - sideWidth + 1, totalPages));
+    }
+
+    if (page >= totalPages - sideWidth - 1 - rightWidth) {
+        return range(1, sideWidth).concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+    }
+
+    return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
+}
+
+$(async function () {
+    const data = await getAllGaleri()
+    var numberOfItems = data.length
+    var limitPerPage = 9;
+    var totalPages = Math.ceil(numberOfItems / limitPerPage);
+    var paginationSize = 7;
+    var currentPage;
+
+    function showPage(whichPage) {
+        if (whichPage < 1 || whichPage > totalPages) return false;
+
+        currentPage = whichPage;
+
+        $(".galeri .galeri-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+
+        $(".pagination li").slice(1, -1).remove();
+
+        getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+            $("<li>").addClass("pagination-item").addClass(item ? "current-pagination" : "dots").toggleClass("active", item === currentPage).append($("<a>").addClass("pagination-link").attr({ href: "javascript:void(0)" }).text(item || "...")).insertBefore(".next-pagination");
+        });
+
+        $(".previous-pagination").toggleClass("disable", currentPage === 1);
+        $(".next-pagination").toggleClass("disable", currentPage === totalPages);
+        return true;
+    }
+
+    $(".pagination").append(
+        $("<li>").addClass("pagination-item").addClass("previous-pagination").append($("<a>").addClass("pagination-link").attr({ href: "javascript:void(0)" }).text("Prev")),
+        $("<li>").addClass("pagination-item").addClass("next-pagination").append($("<a>").addClass("pagination-link").attr({ href: "javascript:void(0)" }).text("Next"))
+    );
+
+    $(".beritaSekolah").show();
+    showPage(1);
+
+    $(document).on("click", ".pagination li.current-pagination:not(.active)", function () {
+        return showPage(+$(this).text());
+    });
+
+    $(".next-pagination").on("click", function () {
+        return showPage(currentPage + 1);
+    });
+
+    $(".previous-pagination").on("click", function () {
+        return showPage(currentPage - 1);
+    });
+});
+// END PAGE LIST

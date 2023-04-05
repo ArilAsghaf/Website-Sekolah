@@ -32,6 +32,7 @@ const changeTimestamp = (data) => {
 }
 // END TIMESTAMP
 
+
 // LIMIT HEADLINE
 const limitBodyText = (text, long) => {
     if (text.length > long) {
@@ -41,6 +42,7 @@ const limitBodyText = (text, long) => {
     }
 };
 // END LIMIT HEADLINE
+
 
 // TAMPIL BERITA SEKOLAH
 const beritaSekolah = document.querySelector(".beritaSekolah");
