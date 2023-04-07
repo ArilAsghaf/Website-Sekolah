@@ -41,3 +41,25 @@ window.addEventListener('scroll', function () {
 // END BG NAVBAR
 
 
+var scrollBtn = document.getElementById("admin");
+// var lastScrollPosition = window.pageYOffset;
+
+// window.addEventListener('scroll', function () {
+//     var currentScrollPosition = window.pageYOffset;
+
+//     if (lastScrollPosition > currentScrollPosition) {
+//         scrollBtn.classList.remove("hide");
+//     } else {
+//         scrollBtn.classList.add("hide");
+//     }
+
+//     lastScrollPosition = currentScrollPosition;
+// });
+
+window.addEventListener('scroll', function () {
+    if (window.scrollY > 1) {
+        navbar.classList.replace('btnAdmin', 'btnAdmin2');
+    } else if (window.scrollY <= 0) {
+        navbar.classList.replace('btnAdmin2', 'btnAdmin');
+    }
+});

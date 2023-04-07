@@ -40,8 +40,8 @@ let dataInputAdmin = {
     lokasi: "",
 	isi: "",
 	url_img: "",
-	// tanggal: "",
-	tgl_uploud: + new Date()
+	tanggal: "",
+	// tgl_uploud: + new Date()
 };
 
 async function getFile() {
@@ -103,15 +103,25 @@ function uploadImage(file, name) {
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
-	const tanggal = new Date(data);
-	const tgl = tanggal.getDate();
-	const bln = tanggal.getMonth();
-	const thn = tanggal.getFullYear();
-	const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-	const bulan = dataBulan[bln];
-
-	return tgl + " " + bulan + " " + thn;
+	if(data !== undefined){
+		var dateObj = new Date(data);
+	
+		// Daftar nama bulan dalam bahasa Inggris
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+	
+		// Mengambil nilai tanggal, bulan, dan tahun dari objek Date
+		var day = dateObj.getDate();
+		var month = months[dateObj.getMonth()];
+		var year = dateObj.getFullYear();
+	
+		// Menggabungkan nilai tanggal, bulan, dan tahun menjadi format yang diinginkan
+		return day + ' ' + month + ' ' + year;
+	}
 }
+
+
+
+
 // END TIMESTAMP
 
 judulPrestasi.addEventListener("change", e => {
@@ -121,12 +131,12 @@ judulPrestasi.addEventListener("change", e => {
 	}
 })
 
-// date.addEventListener("change", e => {
-// 	dataInputAdmin = {
-// 		...dataInputAdmin,
-// 		tanggal: e.target.value
-// 	}
-// })
+date.addEventListener("change", e => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		tanggal: e.target.value
+	}
+})
 
 lokasiPrestasi.addEventListener("change", e => {
 	dataInputAdmin = {
@@ -213,7 +223,7 @@ const getAllPrestasi = () => {
 							{ data: 'judul' },
 							{
 								render: function (data, type, JsonResultRow, meta) {
-									return changeTimestamp(JsonResultRow.tgl_uploud)
+									return changeTimestamp(JsonResultRow.tanggal)
 								}
 							},
 							// { data: 'tanggal' },

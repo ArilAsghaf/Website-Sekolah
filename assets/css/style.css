@@ -2047,7 +2047,7 @@ header .kontak-title h2:after {
     color: #666;
     padding-bottom: 10px;
     text-align: justify;
-    white-space: pre;
+    white-space: pre-wrap;
 }
 /* END CSS ISI INFORMASI */
 
@@ -2241,4 +2241,12 @@ header .kontak-title h2:after {
     right: 10px;
     bottom: 10px;
     border: none;
+}
+
+#admin .btnAdmin2 {
+    background-color: red;
+}
+
+.hide {
+    display: none;
 }

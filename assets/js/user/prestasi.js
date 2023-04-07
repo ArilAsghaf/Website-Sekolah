@@ -57,7 +57,7 @@ const addElPrestasi = (data, id) => {
                 <div class="pres-item-title">
                     <h3>${data.judul}</h3>
                     <div class="pres-item-meta">
-                    <span><i class="far fa-calendar-alt"></i> ${changeTimestamp(data.tgl_uploud)}  </span>
+                    <span><i class="far fa-calendar-alt"></i> ${data.tanggal}  </span>
                     <span><i class="fas fa-map-marked-alt"></i> ${data.lokasi}</span>
                     </div>
                 </div>
@@ -82,7 +82,7 @@ let dataTemp = []
 const getAllPrestasi = () => {
     return new Promise((resolve, reject) => {
         const db = getFirestore(app);
-        getDocs(query(collection(db, "Prestasi"), orderBy('tgl_uploud', 'desc')))
+        getDocs(query(collection(db, "Prestasi"), orderBy('tanggal', 'desc'))) //??? tgl_upload
             .then(querySnapshot => {
                 let data = []
                 querySnapshot.forEach((doc) => {

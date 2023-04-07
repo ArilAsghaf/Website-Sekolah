@@ -116,10 +116,12 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="judul">
+                        <div class="keterangan">
                             <label for="exampleFormControlInput1" class="form-label">Keterangan</label>
-                            <input type="text" class="judulGaleri form-control" id="exampleFormControlInput1"
-                                placeholder="Masukan keterangan...">
+                            <form action="#">
+                                <input type="text" class="judulGaleri form-control" maxlength="35" required id="exampleFormControlInput1" placeholder="Masukan keterangan...">
+                                <span class="count"></span>
+                            </form>
                         </div>
                         <button type="submit" class="btnGaleri btn-primary">Unggah</button>
                     </div>

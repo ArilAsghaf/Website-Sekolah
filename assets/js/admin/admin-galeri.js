@@ -132,8 +132,8 @@ btnGaleri.addEventListener("click", async () => {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, url_img } =dataInputAdmin;
-	if (judul== "" || url_img== undefined ) {
+	const { keterangan, url_img } =dataInputAdmin;
+	if (keterangan== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',

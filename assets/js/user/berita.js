@@ -106,17 +106,20 @@ let dataSearch = {
 }
 btnSearch.addEventListener('click', async() => {
     beritaSekolah.innerHTML = ''
-    dataTemp[0].forEach(data => {
-        if(data.judul == cariBerita.value.toUpperCase()){
-            beritaSekolah.innerHTML += addElBerita(data, data.id)
-            pagination.style.display = 'none';
-        }else if(data.judul != cariBerita.value.toUpperCase()){
-            pagination.style.display = 'none';
-        }else if (cariBerita.value == '') {
-            beritaSekolah.innerHTML += addElBerita(data, data.id)
-            pagination.style.display = 'flex';
-        } 
-    })
+    if(cariBerita.value !== ''){
+        dataTemp[0].forEach(data => {
+            const searchData = data.judul.toLowerCase()
+            console.log(cariBerita.value == '')
+            if(searchData.includes(cariBerita.value)){
+                beritaSekolah.innerHTML += addElBerita(data, data.id)
+                pagination.style.display = 'none';
+            }else if(!searchData.includes(cariBerita.value)){
+                pagination.style.display = 'none';
+            }
+        })
+    }else {
+        location.reload()
+    }
 })
 
 cariBerita.addEventListener("change", async (e) => {

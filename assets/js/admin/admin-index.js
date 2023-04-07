@@ -244,14 +244,14 @@ isiSambutan.addEventListener("change", e => {
 
 // TAMPIL SAMBUTAN
 const sambutan = document.querySelector(".sambutan");
-const addElSambutan = (data, id,) => {
+const addElSambutan = (data, id) => {
     return `
 	<h4>Sambutan</h4>
 	<div class="card">
 		<img src=${data.url_img} alt="">
 	</div>
 	<p>${data.isi}</p>
-	<button type="submit" class="btnSunting" id="sunting" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Sunting</button>
+	<button type="submit" class="btnSunting" id=${id} data-bs-toggle="modal" data-bs-target="#staticBackdrop">Sunting</button>
 ` 
 }
 ///// ?????????
@@ -269,6 +269,7 @@ const getAllSambutan = () => {
                         id: doc.id
                     })
                     sambutan.innerHTML += addElSambutan(doc.data(), doc.id)
+					// isiSambutan.innerText= "huhu"
                 });
                 resolve(data)
                 dataTemp.push(data)
@@ -323,12 +324,12 @@ const getDataSambutan = (id) => {
 	})
 }
 
-isiSambutan.addEventListener("change", (e) => {
-	dataInputAdmin = {
-		...dataInputAdmin,
-		isi: e.target.value
-	}
-})
+// isiSambutan.addEventListener("change", (e) => {
+// 	dataInputAdmin = {
+// 		...dataInputAdmin,
+// 		isi: e.target.value
+// 	}
+// })
 
 const updateSambutan = (id, data) => {
 	return new Promise((resolve, reject) => {
