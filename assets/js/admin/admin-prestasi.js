@@ -32,7 +32,8 @@ const editIsiPrestasi = document.querySelector(".editIsiPrestasi")
 const simpanBtn = document.querySelector(".btnSimpan")
 var fileItem;
 var fileName;
-// const date = document.querySelector(".tgl")
+const tanggalPrestasi = document.querySelector(".tanggalPrestasi")
+// const kategoriData = document.querySelector(".kategoriData")
 
 
 let dataInputAdmin = {
@@ -41,6 +42,7 @@ let dataInputAdmin = {
 	isi: "",
 	url_img: "",
 	tanggal: "",
+	// kategori: "",
 	// tgl_uploud: + new Date()
 };
 
@@ -104,37 +106,26 @@ function uploadImage(file, name) {
 // TIMESTAMP
 const changeTimestamp = (data) => {
 	if(data !== undefined){
-		var dateObj = new Date(data);
+		var tanggalPrestasiObj = new Date(data);
 	
-		// Daftar nama bulan dalam bahasa Inggris
+		// Daftar nama bulan dalam bahasa Indonesia
 		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 	
 		// Mengambil nilai tanggal, bulan, dan tahun dari objek Date
-		var day = dateObj.getDate();
-		var month = months[dateObj.getMonth()];
-		var year = dateObj.getFullYear();
+		var day = tanggalPrestasiObj.getDate();
+		var month = months[tanggalPrestasiObj.getMonth()];
+		var year = tanggalPrestasiObj.getFullYear();
 	
 		// Menggabungkan nilai tanggal, bulan, dan tahun menjadi format yang diinginkan
 		return day + ' ' + month + ' ' + year;
 	}
 }
-
-
-
-
 // END TIMESTAMP
 
 judulPrestasi.addEventListener("change", e => {
 	dataInputAdmin = {
 		...dataInputAdmin,
 		judul: e.target.value
-	}
-})
-
-date.addEventListener("change", e => {
-	dataInputAdmin = {
-		...dataInputAdmin,
-		tanggal: e.target.value
 	}
 })
 
@@ -151,6 +142,20 @@ isiPrestasi.addEventListener("change", e => {
 		isi: e.target.value
 	}
 })
+
+tanggalPrestasi.addEventListener("change", e => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		tanggal: e.target.value
+	}
+})
+
+// kategoriData.addEventListener("change", e => {
+// 	dataInputAdmin = {
+// 		...dataInputAdmin,
+// 		kategori: e.target.value
+// 	}
+// })
 
 const addPrestasi = (data) => {
 	return new Promise((resolve, reject) => {
@@ -169,8 +174,8 @@ btnPrestasi.addEventListener("click", async () => {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, lokasi, isi, url_img } =dataInputAdmin;
-	if (judul== "" || lokasi== "" || isi== "" || url_img== undefined ) {
+	const { judul, tanggal, lokasi, isi, url_img } =dataInputAdmin;
+	if (judul== "" || tanggal== "" || lokasi== "" || isi== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -204,8 +209,8 @@ const getAllPrestasi = () => {
 				$(document).ready(function () {
 					$('#table1').DataTable({
 						lengthMenu: [
-							[5, 8, 10],
-							[5, 8, 10],
+							[3, 5, 7],
+							[3, 5, 7],
 						],
 						scrollY: false,
 						destroy: true,
@@ -226,7 +231,6 @@ const getAllPrestasi = () => {
 									return changeTimestamp(JsonResultRow.tanggal)
 								}
 							},
-							// { data: 'tanggal' },
 							{ data: 'lokasi' },
 							{ data: 'isi' },
 							{

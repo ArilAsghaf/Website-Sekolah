@@ -140,12 +140,3 @@ function btnImageEditActive(){
 //     }
 // });
 // END EDIT GAMBAR
-
-
-const ket = document.querySelector(".judulGaleri"),
-count = document.querySelector(".count"),
-maxLength = ket.getAttribute("maxlength");
-
-ket.onkeyup = () => {
-    count.innerText = maxLength - ket.value.length;
-}

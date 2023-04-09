@@ -65,11 +65,13 @@ const addElBerita = (data, id) => {
     `
 }
 
+// OPEN BERITA
 window.addEventListener("click", (e) => {
     if (e.target.classList == "btnPage") {
         localStorage.setItem("idBerita", e.target.id)
     }
 })
+// END OPEN BERITA
 
 let dataLenth = 0
 let dataTemp = []

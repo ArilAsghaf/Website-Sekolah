@@ -274,7 +274,7 @@ body {
 /* CSS MAIN */
 #dashboard main {
 	width: 100%;
-	padding: 36px 24px;
+	padding: 20px 24px;
 	font-family: var(--poppins);
 	max-height: calc(100vh - 56px);
 	overflow-y: auto;
@@ -434,12 +434,12 @@ body {
 
 
 /* CSS UPLOAD INFORMASI */
-#up-informasi {
+#up-informasi, #up-informasiKet {
 	margin: auto;
 	margin: 20px 30px 30px 30px;
 	background: var(--light);
 	border-radius: 20px;
-	min-height: 500px;
+	min-height: 400px;
 	overflow: hidden;
 }
 
@@ -450,13 +450,23 @@ body {
 	margin-top: 40px;
 	padding: 30px;
 	border-radius: 20px;
-	/* box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.1); */
 	border: 2px solid var(--dark);
 	object-fit: cover;
 	max-height: 100%;
 }
 
-#up-informasi .img-area {
+#up-informasiKet .upload-image {
+	width: 60%;
+	background: var(--light);
+	margin: auto;
+	padding: 30px;
+	border-radius: 20px;
+	border: 2px solid var(--dark);
+	object-fit: cover;
+	max-height: 100%;
+}
+
+#up-informasi .img-area, #up-informasiKet .img-area {
 	position: relative;
 	max-width: 100%;
 	height: 240px;
@@ -472,11 +482,11 @@ body {
 	border: 1px dashed var(--dark);
 }
 
-#up-informasi .img-area.active {
+#up-informasi .img-area.active, #up-informasiKet .img-area.active {
 	border: none;
 }
 
-#up-informasi .img-area .image {
+#up-informasi .img-area .image, #up-informasiKet .img-area .image {
 	position: absolute;
     height: 100%;
     width: 100%;
@@ -485,33 +495,33 @@ body {
     justify-content: center;
 }
 
-#up-informasi .img-area .image img {
+#up-informasi .img-area .image img, #up-informasiKet .img-area .image img {
 	height: 100%;
     width: 100%;
     object-fit: contain;
 }
 
-#up-informasi .img-area .icon {
+#up-informasi .img-area .icon, #up-informasiKet .img-area .icon {
 	font-size: 60px;
 	color: var(--blue);
 	text-align: center;
 }
 
-#up-informasi .upload-image h4 {
+#up-informasi .upload-image h4, #up-informasiKet .upload-image h4 {
 	font-size: 20px;
 	font-weight: 500;
 	margin-bottom: 6px;
 }
 
-#up-informasi .upload-image p {
+#up-informasi .upload-image p, #up-informasiKet .upload-image p {
 	color: #999;
 }
 
-#up-informasi .upload-image p span {
+#up-informasi .upload-image p span, #up-informasiKet .upload-image p span {
 	font-weight: 600;
 }
 
-#up-informasi .img-area #cancel-btn {
+#up-informasi .img-area #cancel-btn, #up-informasiKet .img-area #cancel-btn {
 	position: absolute;
 	right: 15px;
 	top: 15px;
@@ -521,15 +531,15 @@ body {
 	display: none;
 }
 
-#up-informasi .img-area.active:hover #cancel-btn {
+#up-informasi .img-area.active:hover #cancel-btn, #up-informasiKet .img-area.active:hover #cancel-btn {
 	display: block;
 }
 
-#up-informasi .img-area #cancel-btn:hover {
+#up-informasi .img-area #cancel-btn:hover, #up-informasiKet .img-area #cancel-btn:hover {
 	color: var(--dark);
 }
 
-#up-informasi .img-area .file-name{
+#up-informasi .img-area .file-name, #up-informasiKet .img-area .file-name {
 	position: absolute;
 	bottom: 0px;
 	width: 100%;
@@ -541,11 +551,11 @@ body {
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
-#up-informasi .img-area.active:hover .file-name{
+#up-informasi .img-area.active:hover .file-name, #up-informasiKet .img-area.active:hover .file-name {
 	display: block;
 }
 
-#up-informasi .select-image {
+#up-informasi .select-image, #up-informasiKet .select-image {
     width: 100%;
     height: 55px;
     border: none;
@@ -561,13 +571,13 @@ body {
     text-transform: uppercase;
 }
 
-#up-informasi .select-image:active {
+#up-informasi .select-image:active, #up-informasiKet .select-image:active {
     transform: translate(3px, 3px);
     box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
     background: var(--blue);
 }
 
-#up-informasi .input-img {
+#up-informasi .input-img, #up-informasiKet .input-img {
 	position: absolute;
 	transform: scale(4);
 	cursor: pointer;
@@ -575,14 +585,29 @@ body {
 	opacity: 0;
 }
 
-#up-informasi .judul, .berita, .lokasi {
-	margin: 40px 50px 20px 0;
-	/* align-items: flex-start; */
+#up-informasi .judul{
+	margin: 30px 10px 0 0;
+}
+
+#up-informasi .lokasi {
+	margin: 20px 0 0 0;
+}
+
+#up-informasi .tanggal {
+	margin: 20px 10px 0 0;
+}
+
+#up-informasiKet .tanggal {
+	margin: 20px 40px 0 40px;
+}
+
+#up-informasi .berita {
+	margin: 20px 10px 10px 0;
 }
 
 .keterangan {
 	background: white;
-	margin: 40px 50px 20px 0;
+	margin: 40px 40px 20px 40px;
 	border-radius: 8px;
 }
 
@@ -622,12 +647,12 @@ body {
 	color: #3498db;
 }
 
-#up-informasi .form-label {
-	font-size: 25px;
+#up-informasi .form-label, #up-informasiKet .form-label {
+	font-size: 23px;
 	font-weight: 600;
 }
 
-#up-informasi .form-control {
+#up-informasi .form-control, #up-informasiKet .form-control {
 	border: 2px solid var(--dark);
 }
 
@@ -717,7 +742,7 @@ body {
 	object-fit: contain;
 }
 
-.card-upload button, #kotak-saran button {
+.card-upload .editData, .card-upload .btnDeleteId, #kotak-saran button {
     border: none;
     padding: 12px 15px;
 	color: var(--yellow);
@@ -731,11 +756,11 @@ body {
     transition-duration: .1s;
 }
 
-.card-upload button:hover, #kotak-saran button:hover {
+.card-upload .editData:hover, .card-upload .btnDeleteId:hover, #kotak-saran button:hover {
 	color: var(--orange);
 }
 
-.card-upload button:active, #kotak-saran button:active {
+.card-upload .editData:active, .card-upload .btnDeleteId:active, #kotak-saran button:active {
     width: 50px;
 	height: 50px;
 	transform: translate(3px, 3px);
@@ -746,24 +771,24 @@ body {
 
 
 /* CSS MODAL EDIT */
-#staticBackdrop .modal-content {
+#modalEdit .modal-content {
 	margin: auto;
 	background: var(--light);
 	border-radius: 10px;
 	
 }
 
-#staticBackdrop .modal-content h5 {
+#modalEdit .modal-content h5 {
 	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: 1px;
 }
 
-#staticBackdrop .edit-informasi {
+#modalEdit .edit-informasi {
 	margin: auto;
 }
 
-#staticBackdrop .edit-image {
+#modalEdit .edit-image {
     width: 90%;
 	background: var(--light);
 	margin: auto;
@@ -776,7 +801,7 @@ body {
 	max-height: 100%;
 }
 
-#staticBackdrop .edit-img-area {
+#modalEdit .edit-img-area {
 	position: relative;
 	max-width: 100%;
 	height: 240px;
@@ -792,11 +817,11 @@ body {
 	border: 1px dashed var(--dark);
 }
 
-#staticBackdrop .edit-img-area.active {
+#modalEdit .edit-img-area.active {
 	border: none;
 }
 
-#staticBackdrop .edit-img-area .image {
+#modalEdit .edit-img-area .image {
 	position: absolute;
     height: 100%;
     width: 100%;
@@ -805,33 +830,33 @@ body {
     justify-content: center;
 }
 
-#staticBackdrop .edit-img-area .image img {
+#modalEdit .edit-img-area .image img {
 	height: 100%;
     width: 100%;
     object-fit: contain;
 }
 
-#staticBackdrop .edit-img-area .icon {
+#modalEdit .edit-img-area .icon {
 	font-size: 60px;
 	color: var(--blue);
 	text-align: center;
 }
 
-#staticBackdrop .edit-image h4 {
+#modalEdit .edit-image h4 {
 	font-size: 20px;
 	font-weight: 500;
 	margin-bottom: 6px;
 }
 
-#staticBackdrop .edit-image p {
+#modalEdit .edit-image p {
 	color: #999;
 }
 
-#staticBackdrop .edit-image p span {
+#modalEdit .edit-image p span {
 	font-weight: 600;
 }
 
-#staticBackdrop .edit-img-area #cancel-btn-edit {
+#modalEdit .edit-img-area #cancel-btn-edit {
 	position: absolute;
 	right: 15px;
 	top: 15px;
@@ -841,15 +866,15 @@ body {
 	display: none;
 }
 
-#staticBackdrop .edit-img-area.active:hover #cancel-btn-edit {
+#modalEdit .edit-img-area.active:hover #cancel-btn-edit {
 	display: block;
 }
 
-#staticBackdrop .edit-img-area #cancel-btn-edit:hover {
+#modalEdit .edit-img-area #cancel-btn-edit:hover {
 	color: var(--dark);
 }
 
-#staticBackdrop .edit-img-area .filename-edit{
+#modalEdit .edit-img-area .filename-edit{
 	position: absolute;
 	bottom: 0px;
 	width: 100%;
@@ -861,11 +886,11 @@ body {
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
-#staticBackdrop .edit-img-area.active:hover .filename-edit{
+#modalEdit .edit-img-area.active:hover .filename-edit{
 	display: block;
 }
 
-#staticBackdrop .select-image-edit {
+#modalEdit .select-image-edit {
     width: 100%;
     height: 55px;
     border: none;
@@ -881,27 +906,38 @@ body {
     text-transform: uppercase;
 }
 
-#staticBackdrop .select-image-edit:active {
+#modalEdit .select-image-edit:active {
     transform: translate(3px, 3px);
     box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
     background: var(--blue);
 }
 
-#staticBackdrop .judul, #staticBackdrop .berita {
-	margin: 30px 20px 0 10px;
-	/* align-items: flex-start; */
+#modalEdit .judul{
+	margin: 25px 40px 0 0;
 }
 
-#staticBackdrop .form-label {
+#modalEdit .lokasi {
+	margin: 10px 10px 0 0;
+}
+
+#modalEdit .tanggal {
+	margin: 10px 40px 0 0;
+}
+
+#modalEdit .berita {
+	margin: 10px 40px 10px 0;
+}
+
+#modalEdit .form-label {
 	font-size: 25px;
 	font-weight: 600;
 }
 
-#staticBackdrop .form-control {
+#modalEdit .form-control {
 	border: 2px solid var(--dark);
 }
 
-#staticBackdrop .btn-secondary {
+#modalEdit .btn-secondary, #modalTambah .btn-secondary {
 	width: 100px;
     height: 45px;
 	background: var(--light);
@@ -913,12 +949,12 @@ body {
 	border-radius: 10px;
 }
 
-#staticBackdrop .btn-secondary:hover {
+#modalEdit .btn-secondary:hover, #modalTambah .btn-secondary:hover {
 	background: var(--red);
 	color: var(--light);
 }
 
-#staticBackdrop .btn-primary {
+#modalEdit .btn-primary, #modalTambah .btn-primary {
 	width: 100px;
     height: 45px;
     border: none;
@@ -934,7 +970,22 @@ body {
 	margin:20px;
 }
 
-#staticBackdrop .btn-primary:active {
+.card-upload .btn-tambah {
+	border: none;
+    /* padding: 12px 15px; */
+	color: var(--yellow);
+    background: var(--blue);
+    cursor: pointer;
+	width: 150px;
+	height: 40px;
+	margin: 10px 20px 20px 0;
+	border-radius: 5px;
+	box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.3);
+    transform: translate(0, 0);
+    transition-duration: .1s;
+}
+
+#modalEdit .btn-primary:active,  #modalTambah .btn-primary:active, .card-upload .btn-tambah:active {
     transform: translate(3px, 3px);
     box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
     background: var(--blue);
@@ -1011,3 +1062,23 @@ body {
 	}
 }
 /* END RESPONSIVE DESIGN */
+
+
+#up-informasi .tgl, #up-informasiKet .tgl {
+	background-color: var(--b);
+    padding: 4px;
+	border: 2px solid var(--dark);
+	font-family: "Roboto Mono",monospace;
+    color: var(--blue);
+    font-size: 18px;
+	outline: none;
+    border-radius: 4px;
+}
+
+::-webkit-calendar-picker-indicator{
+    background-color: var(--grey);
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+

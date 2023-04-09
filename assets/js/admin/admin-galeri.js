@@ -21,20 +21,29 @@ const app = initializeApp(firebaseConfig)
 
 
 // INPUT GALERI SEKOLAH
-const judulGaleri = document.querySelector(".judulGaleri");
+const keteranganGaleri = document.querySelector(".keteranganGaleri");
 const btnGaleri = document.querySelector(".btnGaleri");
 const input_img = document.querySelector('.input-img');
-const editJudulGaleri = document.querySelector('.editJudulGaleri')
+const editKeteranganGaleri = document.querySelector('.editKeteranganGaleri')
 const simpanBtn = document.querySelector(".btnSimpan")
+const tanggalGaleri = document.querySelector(".tanggalGaleri") // ????
 var fileItem;
 var fileName;
 
 
 let dataInputAdmin = {
-	judul: "",
+	keterangan: "",
 	url_img: "",
-	tgl_uploud: + new Date()
+	tanggal: "",
 };
+
+const ket = document.querySelector(".keteranganGaleri"),
+count = document.querySelector(".count"),
+maxLength = ket.getAttribute("maxlength");
+
+ket.onkeyup = () => {
+    count.innerText = maxLength - ket.value.length;
+}
 
 async function getFile() {
 	fileItem = input_img.files[0];
@@ -95,23 +104,36 @@ function uploadImage(file, name) {
 // END UPLOAD IMAGE
 
 
-// TIMESTAMP
+// TIMESTAMP ?????????????
 const changeTimestamp = (data) => {
-	const tanggal = new Date(data);
-	const tgl = tanggal.getDate();
-	const bln = tanggal.getMonth();
-	const thn = tanggal.getFullYear();
-	const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-	const bulan = dataBulan[bln];
-
-	return tgl + " " + bulan + " " + thn;
+	if(data !== undefined){
+		var tanggalGaleriObj = new Date(data);
+	
+		// Daftar nama bulan dalam bahasa Indonesia
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+	
+		// Mengambil nilai tanggal, bulan, dan tahun dari objek Date
+		var day = tanggalGaleriObj.getDate();
+		var month = months[tanggalGaleriObj.getMonth()];
+		var year = tanggalGaleriObj.getFullYear();
+	
+		// Menggabungkan nilai tanggal, bulan, dan tahun menjadi format yang diinginkan
+		return day + ' ' + month + ' ' + year;
+	}
 }
 // END TIMESTAMP
 
-judulGaleri.addEventListener("change", e => {
+keteranganGaleri.addEventListener("change", e => {
 	dataInputAdmin = {
 		...dataInputAdmin,
-		judul: e.target.value
+		keterangan: e.target.value
+	}
+})
+
+tanggalGaleri.addEventListener("change", e => { // ????
+	dataInputAdmin = {
+		...dataInputAdmin,
+		tanggal: e.target.value
 	}
 })
 
@@ -132,8 +154,8 @@ btnGaleri.addEventListener("click", async () => {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { keterangan, url_img } =dataInputAdmin;
-	if (keterangan== "" || url_img== undefined ) {
+	const { keterangan, tanggal, url_img } =dataInputAdmin;
+	if (keterangan== "" || tanggal== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -162,16 +184,13 @@ const getAllGaleri = () => {
 						...doc.data(),
 						id: doc.id
 					})
-					// if(dataGaleri.length <= 5){
-					// 	beritaSekolah.innerHTML += addElGaleri(doc.data(), doc.id)
-					// }
 				});
 				console.log(dataGaleri)
 				$(document).ready(function () {
 					$('#table1').DataTable({
 						lengthMenu: [
-							[5, 8, 10],
-							[5, 8, 10],
+							[3, 5, 7],
+							[3, 5, 7],
 						],
 						scrollY: false,
 						destroy: true,
@@ -186,16 +205,16 @@ const getAllGaleri = () => {
 									return '<img src="' + JsonResultRow.url_img + '"/>'
 								}
 							},
-							{ data: 'judul' },
+							{ data: 'keterangan' },
 							{
-								render: function (data, type, JsonResultRow, meta) {
-									return changeTimestamp(JsonResultRow.tgl_uploud)
+								render: function (data, type, JsonResultRow, meta) { // ??????
+									return changeTimestamp(JsonResultRow.tanggal)
 								}
 							},
 							{
 								render: function (data, type, JsonResultRow, meta) {
 									return `
-									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#staticBackdrop"><i id=${JsonResultRow.id} class="fas fa-edit"></i></button>
+									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#modalEdit"><i id=${JsonResultRow.id} class="fas fa-edit"></i></button>
 									<button class="btnDeleteId" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
 									`
 								}
@@ -254,10 +273,10 @@ const getDataGaleri = (id) => {
 	})
 }
 
-editJudulGaleri.addEventListener("change", (e) => {
+editKeteranganGaleri.addEventListener("change", (e) => {
 	dataInputAdmin = {
 		...dataInputAdmin,
-		judul: e.target.value
+		keterangan: e.target.value
 	}
 })
 
@@ -281,8 +300,8 @@ simpanBtn.addEventListener("click", async () => {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, isi, url_img } =dataInputAdmin;
-	if (judul== "" || isi== "" || url_img== undefined ) {
+	const { keterangan, isi, url_img } =dataInputAdmin;
+	if (keterangan== "" || isi== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -311,7 +330,7 @@ window.addEventListener("click", async (e) => {
 		localStorage.setItem("idUpdate", e.target.id)
 		const resp = await getDataGaleri(e.target.id)
 		if (resp) {
-			editJudulGaleri.value = resp.judul
+			editKeteranganGaleri.value = resp.keterangan
 			dataInputAdmin = {
 				...dataInputAdmin,
 				url_img: resp.url_img
