@@ -20,34 +20,32 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT PRESTASI
-const judulPrestasi = document.querySelector(".judulPrestasi");
-const lokasiPrestasi = document.querySelector(".lokasiPrestasi");
-const isiPrestasi = document.querySelector(".isiPrestasi");
-const btnPrestasi = document.querySelector(".btnPrestasi");
-const input_img = document.querySelector(".input-img");
+const judulPrestasi = document.querySelector(".judulPrestasi")
+const lokasiPrestasi = document.querySelector(".lokasiPrestasi")
+const tanggalPrestasi = document.querySelector(".tanggalPrestasi")
+const isiPrestasi = document.querySelector(".isiPrestasi")
+const btnPrestasi = document.querySelector(".btnPrestasi")
+const inputImg = document.querySelector(".input-img");
 const editJudulPrestasi = document.querySelector('.editJudulPrestasi')
 const editLokasiPrestasi = document.querySelector('.editLokasiPrestasi')
 const editIsiPrestasi = document.querySelector(".editIsiPrestasi")
+const editTanggalPrestasi = document.querySelector(".editTanggalPrestasi")
 const simpanBtn = document.querySelector(".btnSimpan")
+const inputImgEdit = document.querySelector(".input-img-edit")
 var fileItem;
 var fileName;
-const tanggalPrestasi = document.querySelector(".tanggalPrestasi")
-// const kategoriData = document.querySelector(".kategoriData")
 
-
+// INPUT PRESTASI
 let dataInputAdmin = {
 	judul: "",
     lokasi: "",
 	isi: "",
 	url_img: "",
 	tanggal: "",
-	// kategori: "",
-	// tgl_uploud: + new Date()
 };
 
 async function getFile() {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	fileName = fileItem.name;
 	const resp = await uploadImage(fileItem, fileName)
 	if (resp) {
@@ -89,7 +87,6 @@ function uploadImage(file, name) {
 				reject(error)
 			},
 			() => {
-				// Upload completed successfully, now we can get the download URL
 				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
 					dataInputAdmin = {
 						...dataInputAdmin,
@@ -107,16 +104,11 @@ function uploadImage(file, name) {
 const changeTimestamp = (data) => {
 	if(data !== undefined){
 		var tanggalPrestasiObj = new Date(data);
-	
-		// Daftar nama bulan dalam bahasa Indonesia
 		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-	
-		// Mengambil nilai tanggal, bulan, dan tahun dari objek Date
 		var day = tanggalPrestasiObj.getDate();
 		var month = months[tanggalPrestasiObj.getMonth()];
 		var year = tanggalPrestasiObj.getFullYear();
-	
-		// Menggabungkan nilai tanggal, bulan, dan tahun menjadi format yang diinginkan
+		
 		return day + ' ' + month + ' ' + year;
 	}
 }
@@ -136,13 +128,6 @@ lokasiPrestasi.addEventListener("change", e => {
 	}
 })
 
-isiPrestasi.addEventListener("change", e => {
-	dataInputAdmin = {
-		...dataInputAdmin,
-		isi: e.target.value
-	}
-})
-
 tanggalPrestasi.addEventListener("change", e => {
 	dataInputAdmin = {
 		...dataInputAdmin,
@@ -150,12 +135,12 @@ tanggalPrestasi.addEventListener("change", e => {
 	}
 })
 
-// kategoriData.addEventListener("change", e => {
-// 	dataInputAdmin = {
-// 		...dataInputAdmin,
-// 		kategori: e.target.value
-// 	}
-// })
+isiPrestasi.addEventListener("change", e => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		isi: e.target.value
+	}
+})
 
 const addPrestasi = (data) => {
 	return new Promise((resolve, reject) => {
@@ -169,7 +154,7 @@ const addPrestasi = (data) => {
 };
 
 btnPrestasi.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
@@ -205,7 +190,6 @@ const getAllPrestasi = () => {
 						id: doc.id
 					})
 				});
-				console.log(dataPrestasi)
 				$(document).ready(function () {
 					$('#table1').DataTable({
 						lengthMenu: [
@@ -236,7 +220,7 @@ const getAllPrestasi = () => {
 							{
 								render: function (data, type, JsonResultRow, meta) {
 									return `
-									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
+									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#modalEdit"><i class="fas fa-edit"></i></button>
 									<button class="btnDeleteId" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
 									`
 								}
@@ -257,7 +241,7 @@ getAllPrestasi()
 // EDIT PRESTASI
 async function getFileUpdatePrestasi() {
 	const id = localStorage.getItem("idUpdate")
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	fileName = fileItem.name;
 
 	const resp = await uploadImage(fileItem, fileName)
@@ -309,6 +293,13 @@ editLokasiPrestasi.addEventListener("change", (e) => {
 	}
 })
 
+editTanggalPrestasi.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		tanggal: e.target.value
+	}
+})
+
 editIsiPrestasi.addEventListener("change", (e) => {
 	dataInputAdmin = {
 		...dataInputAdmin,
@@ -331,13 +322,13 @@ const updatePrestasi = (id, data) => {
 };
 
 simpanBtn.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, lokasi, isi, url_img } =dataInputAdmin;
-	if (judul== "" || lokasi== "" || isi== "" || url_img== undefined ) {
+	const { judul, lokasi, tanggal, isi, url_img } =dataInputAdmin;
+	if (judul== "" || lokasi== "" || tanggal== "" || isi== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -368,6 +359,7 @@ window.addEventListener("click", async (e) => {
 		if (resp) {
 			editJudulPrestasi.value = resp.judul
 			editLokasiPrestasi.value = resp.lokasi
+			editTanggalPrestasi.value = resp.tanggal
 			editIsiPrestasi.value = resp.isi
 			dataInputAdmin = {
 				...dataInputAdmin,
@@ -380,8 +372,7 @@ window.addEventListener("click", async (e) => {
 // END TAMPIL PRESTASI
 
 
-
-
+// LOGOUT
 const logout = document.querySelector(".logout")
 const uid = localStorage.getItem("uid")
 
@@ -389,7 +380,8 @@ logout.addEventListener("click", () => {
 	localStorage.clear()
 	window.location.href = "admin-login.html"
 })
-//cek if user login atau tidak
+
 if(uid == undefined) {
 	window.location.href = "admin-login.html"
 }
+// END LOGOUT

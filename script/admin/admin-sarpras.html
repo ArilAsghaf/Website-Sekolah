@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../assets/img/icon.png" type="image/x-icon">
 	<link rel="stylesheet" href="../../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../../assets/css/style-admin.css">
@@ -95,55 +95,24 @@
 
         <!-- Section Main -->
         <main>
-            <!-- Section Upload Sarpras -->
-            <div id="up-informasi">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="upload-image">
-                            <div class="img-area">
-                                <div class="image">
-                                    <img class="img">
-                                </div>
-                                <div class="content">
-                                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                                    <h4 class="text">Unggah Gambar</h4>
-                                </div>
-                                <div id="cancel-btn"><i class="fas fa-times"></i></div>
-                                <div class="file-name">Nama file</div>
-                            </div>
-                            <input type="file" id="btn-image" class="input-img" hidden>
-                            <button onclick="btnImageActive()" class="select-image">Pilih Gambar</button>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="judul">
-                            <label for="exampleFormControlInput1" class="form-label">Keterangan</label>
-                            <input type="text" class="judulSarpras form-control" id="exampleFormControlInput1"
-                                placeholder="Masukan keterangan...">
-                        </div>
-                        <button type="submit" class="btnSarpras btn-primary">Unggah</button>
-                    </div>
-                </div>
-            </div>
-            <!-- End Section Upload Sarpras -->
-
             <!-- Section Tabel Data Sarpras -->
             <div class="card-upload">
 				<div class="card-header-upload d-flex justify-content-between align-items-center">
 					<h4 class="card-title-upload">Tabel Data Sarana Prasarana</h4>
-					<div class="d-flex ">
-						<i data-feather="download"></i>
-					</div>
+					<button type="button" class="btn-tambah" data-bs-toggle="modal" data-bs-target="#modalTambah">
+                        Tambah Data
+                    </button>
 				</div>
 				<div class="card-body-upload px-0 pb-0">
 					<div class="table-responsive">
 						<table class='table table-striped mb-0' id="table1" style="width: 100%;">
 							<thead>
-								<tr>
-									<th style="width: 30%;">Gambar</th>
-									<th style="width: 65%;">Keterangan</th>
-									<th style="width: 5%;">Aksi</th>
-								</tr>
+                                <tr>
+                                    <th style="width: 20%;">Gambar</th>
+                                    <th style="width: 45%;">Keterangan</th>
+                                    <th style="width: 30%;">Tanggal</th>
+                                    <th style="width: 5%;">Aksi</th>
+                                </tr>
 							</thead>
 							<tbody>
 
@@ -154,43 +123,98 @@
 			</div>
             <!-- Section Tabel Data Sarpras -->
 
-			<!-- Section Modal Edit -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            <!-- Section Modal Tambah -->
+            <div class="modal fade" id="modalTambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Edit Sarana Prasarana
+                            <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Sarana Prasarana</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Section Tambah Data Galeri -->
+                            <div id="up-informasiKet">
+                                <div class="row">
+                                    <div class="upload-image">
+                                        <div class="img-area">
+                                            <div class="image">
+                                                <img class="img">
+                                            </div>
+                                            <div class="content">
+                                                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                                <h4 class="text">Unggah Gambar</h4>
+                                            </div>
+                                            <div id="cancel-btn"><i class="fas fa-times"></i></div>
+                                            <div class="file-name">Nama file</div>
+                                        </div>
+                                        <input type="file" id="btn-image" class="input-img" hidden>
+                                        <button onclick="btnImageActive()" class="select-image">Pilih
+                                            Gambar</button>
+                                    </div>
+                                    <div class="keterangan">
+                                        <label for="exampleFormControlInput1" class="form-label">Keterangan</label>
+                                        <form action="#">
+                                            <input type="text" class="ketSarpras form-control" maxlength="35"
+                                                required id="exampleFormControlInput1"
+                                                placeholder="Masukan keterangan...">
+                                            <span class="count"></span>
+                                        </form>
+                                    </div>
+                                    <div class="tanggal">
+                                        <label class="form-label">Tanggal</label>
+                                        <input id="date" type="date" class="tgl tanggalSarpras form-control" placeholder="Pilih Tanggal">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Section Tambah Data Galeri -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-secondary" data-bs-dismiss="modal">Keluar</button>
+                            <button type="submit" class="btnSarpras btn-primary">Unggah</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Section Modal Tambah -->
+
+			<!-- Section Modal Edit -->
+            <div class="modal fade" id="modalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Edit Data Sarana Prasarana
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <!-- Section Edit Sarpras -->
-                            <div class="edit-informasi">
+                            <div id="edit-informasiKet">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="edit-image">
-                                            <div class="edit-img-area">
-                                                <div class="image">
-                                                    <img class="img-edit">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                                                    <h4 class="text">Unggah Gambar</h4>
-                                                </div>
-                                                <div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
-                                                <div class="filename-edit">Nama file</div>
+                                    <div class="edit-image">
+                                        <div class="edit-img-area">
+                                            <div class="image">
+                                                <img class="img-edit">
                                             </div>
-                                            <input type="file" id="btn-image-edit" class="input-img-edit" hidden>
-                                            <button onclick="btnImageActive()" class="select-image-edit">Pilih
-                                                Gambar</button>
+                                            <div class="content">
+                                                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                                <h4 class="text">Unggah Gambar</h4>
+                                            </div>
+                                            <div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
+                                            <div class="filename-edit">Nama file</div>
                                         </div>
+                                        <input type="file" id="btn-image-edit" class="input-img-edit" hidden>
+                                        <button onclick="btnImageEditActive()" class="select-image-edit">Pilih
+                                            Gambar</button>
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="judul">
-                                            <label for="exampleFormControlInput1" class="form-label">Judul</label>
-                                            <input type="text" class="form-control editKetSarpras" id="exampleFormControlInput1">
-                                        </div>
+                                    <div class="keterangan">
+                                        <label for="exampleFormControlInput1" class="form-label">Keterangan</label>
+                                        <input type="text" class="form-control editKetSarpras" id="exampleFormControlInput1">
+                                    </div>
+                                    <div class="tanggal">
+                                        <label class="form-label">Tanggal</label>
+                                        <input id="date" type="date" class="tgl editTanggalSarpras form-control" placeholder="Pilih Tanggal">
                                     </div>
                                 </div>
                             </div>

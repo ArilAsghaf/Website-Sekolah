@@ -20,27 +20,29 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT AGENDA SEKOLAH
-const judulAgenda = document.querySelector(".judulAgenda");
-const isiAgenda = document.querySelector(".isiAgenda");
-const btnAgenda = document.querySelector(".btnAgenda");
-const input_img = document.querySelector(".input-img");
+const judulAgenda = document.querySelector(".judulAgenda")
+const tanggalAgenda = document.querySelector(".tanggalAgenda")
+const isiAgenda = document.querySelector(".isiAgenda")
+const btnAgenda = document.querySelector(".btnAgenda")
+const inputImg = document.querySelector(".input-img")
 const editJudulAgenda = document.querySelector('.editJudulAgenda')
+const editTanggalAgenda = document.querySelector(".editTanggalAgenda")
 const editIsiAgenda = document.querySelector(".editIsiAgenda")
 const simpanBtn = document.querySelector(".btnSimpan")
+const inputImgEdit = document.querySelector(".input-img-edit")
 var fileItem;
 var fileName;
 
-
+// INPUT AGENDA SEKOLAH
 let dataInputAdmin = {
 	judul: "",
 	isi: "",
 	url_img: "",
-	tgl_uploud: + new Date()
+	tanggal: "",
 };
 
 async function getFile() {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	fileName = fileItem.name;
 	const resp = await uploadImage(fileItem, fileName)
 	if (resp) {
@@ -99,14 +101,15 @@ function uploadImage(file, name) {
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
-	const tanggal = new Date(data);
-	const tgl = tanggal.getDate();
-	const bln = tanggal.getMonth();
-	const thn = tanggal.getFullYear();
-	const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-	const bulan = dataBulan[bln];
-
-	return tgl + " " + bulan + " " + thn;
+	if(data !== undefined){
+		var tanggalAgendaObj = new Date(data);
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+		var day = tanggalAgendaObj.getDate();
+		var month = months[tanggalAgendaObj.getMonth()];
+		var year = tanggalAgendaObj.getFullYear();
+		
+		return day + ' ' + month + ' ' + year;
+	}
 }
 // END TIMESTAMP
 
@@ -114,6 +117,13 @@ judulAgenda.addEventListener("change", e => {
 	dataInputAdmin = {
 		...dataInputAdmin,
 		judul: e.target.value
+	}
+})
+
+tanggalAgenda.addEventListener("change", e => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		tanggal: e.target.value
 	}
 })
 
@@ -136,13 +146,13 @@ const addAgenda = (data) => {
 };
 
 btnAgenda.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, isi, url_img } =dataInputAdmin;
-	if (judul== "" || isi== "" || url_img== undefined ) {
+	const { judul, tanggal, isi, url_img } =dataInputAdmin;
+	if (judul== "" || tanggal== "" || isi== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -172,12 +182,11 @@ const getAllAgenda = () => {
 						id: doc.id
 					})
 				});
-				console.log(dataAgenda)
 				$(document).ready(function () {
 					$('#table1').DataTable({
 						lengthMenu: [
-							[5, 8, 10],
-							[5, 8, 10],
+							[3, 5, 7],
+							[3, 5, 7],
 						],
 						scrollY: false,
 						destroy: true,
@@ -193,16 +202,16 @@ const getAllAgenda = () => {
 								}
 							},
 							{ data: 'judul' },
-							{ 
+							{
 								render: function (data, type, JsonResultRow, meta) {
-									return changeTimestamp(JsonResultRow.tgl_uploud)
+									return changeTimestamp(JsonResultRow.tanggal)
 								}
 							},
 							{ data: 'isi' },
 							{
 								render: function (data, type, JsonResultRow, meta) {
 									return `
-									<button title="Edit" class="editData" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
+									<button title="Edit" class="editData" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="fas fa-edit"></i></button>
 									<button class="btnDeleteId" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
 									`
 								}
@@ -223,7 +232,7 @@ getAllAgenda()
 // EDIT AGENDA SEKOLAH
 async function getFileUpdateAgenda() {
 	const id = localStorage.getItem("idUpdate")
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	fileName = fileItem.name;
 
 	const resp = await uploadImage(fileItem, fileName)
@@ -268,6 +277,13 @@ editJudulAgenda.addEventListener("change", (e) => {
 	}
 })
 
+editTanggalAgenda.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		tanggal: e.target.value
+	}
+})
+
 editIsiAgenda.addEventListener("change", (e) => {
 	dataInputAdmin = {
 		...dataInputAdmin,
@@ -289,13 +305,13 @@ const updateAgenda = (id, data) => {
 };
 
 simpanBtn.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, isi, url_img } =dataInputAdmin;
-	if (judul== "" || isi== "" || url_img== undefined ) {
+	const { judul, tanggal, isi, url_img } =dataInputAdmin;
+	if (judul== "" || tanggal== "" || isi== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -325,6 +341,7 @@ window.addEventListener("click", async (e) => {
 		const resp = await getDataAgenda(e.target.id)
 		if (resp) {
 			editJudulAgenda.value = resp.judul
+			editTanggalAgenda.value = resp.tanggal
 			editIsiAgenda.value = resp.isi
 			dataInputAdmin = {
 				...dataInputAdmin,
@@ -337,7 +354,7 @@ window.addEventListener("click", async (e) => {
 // END TAMPIL AGENDA SEKOLAH
 
 
-
+// LOGOUT
 const logout = document.querySelector(".logout")
 const uid = localStorage.getItem("uid")
 
@@ -345,7 +362,8 @@ logout.addEventListener("click", () => {
 	localStorage.clear()
 	window.location.href = "admin-login.html"
 })
-//cek if user login atau tidak
+
 if(uid == undefined) {
 	window.location.href = "admin-login.html"
 }
+// END LOGOUT

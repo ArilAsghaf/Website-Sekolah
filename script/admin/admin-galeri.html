@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Galeri | Admin</title>
     <link rel="icon" href="../../assets/img/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="../../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
@@ -173,38 +173,34 @@
                             <!-- Section Tambah Data Galeri -->
                             <div id="up-informasiKet">
                                 <div class="row">
-                                    <div class="">
-                                        <div class="upload-image">
-                                            <div class="img-area">
-                                                <div class="image">
-                                                    <img class="img">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                                                    <h4 class="text">Unggah Gambar</h4>
-                                                </div>
-                                                <div id="cancel-btn"><i class="fas fa-times"></i></div>
-                                                <div class="file-name">Nama file</div>
+                                    <div class="upload-image">
+                                        <div class="img-area">
+                                            <div class="image">
+                                                <img class="img">
                                             </div>
-                                            <input type="file" id="btn-image" class="input-img" hidden>
-                                            <button onclick="btnImageActive()" class="select-image">Pilih
-                                                Gambar</button>
+                                            <div class="content">
+                                                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                                <h4 class="text">Unggah Gambar</h4>
+                                            </div>
+                                            <div id="cancel-btn"><i class="fas fa-times"></i></div>
+                                            <div class="file-name">Nama file</div>
                                         </div>
+                                        <input type="file" id="btn-image" class="input-img" hidden>
+                                        <button onclick="btnImageActive()" class="select-image">Pilih
+                                            Gambar</button>
                                     </div>
-                                    <div class="">
-                                        <div class="keterangan">
-                                            <label for="exampleFormControlInput1" class="form-label">Keterangan</label>
-                                            <form action="#">
-                                                <input type="text" class="keteranganGaleri form-control" maxlength="35"
-                                                    required id="exampleFormControlInput1"
-                                                    placeholder="Masukan keterangan...">
-                                                <span class="count"></span>
-                                            </form>
-                                        </div>
-                                        <div class="tanggal">
-                                            <label class="form-label">Tanggal</label>
-                                            <input id="date" type="date" class="tgl tanggalGaleri form-control" placeholder="Pilih Tanggal">
-                                        </div>
+                                    <div class="keterangan">
+                                        <label for="exampleFormControlInput1" class="form-label">Keterangan</label>
+                                        <form action="#">
+                                            <input type="text" class="keteranganGaleri form-control" maxlength="35"
+                                                required id="exampleFormControlInput1"
+                                                placeholder="Masukan keterangan...">
+                                            <span class="count"></span>
+                                        </form>
+                                    </div>
+                                    <div class="tanggal">
+                                        <label class="form-label">Tanggal</label>
+                                        <input id="date" type="date" class="tgl tanggalGaleri form-control" placeholder="Pilih Tanggal">
                                     </div>
                                 </div>
                             </div>
@@ -222,45 +218,47 @@
             <!-- Section Modal Edit -->
             <div class="modal fade" id="modalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Edit Galeri</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">Edit Data Galeri</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Section Edit Informasi -->
-                            <div class="edit-informasi">
+                            <!-- Section Edit Galeri -->
+                            <div id="edit-informasiKet">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="edit-image">
-                                            <div class="edit-img-area">
-                                                <div class="image">
-                                                    <img class="img-edit">
-                                                </div>
-                                                <div class="content">
-                                                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                                                    <h4 class="text">Unggah Gambar</h4>
-                                                    <!-- <p>Ukuran gambar kurang dari <span>2MB</span></p> -->
-                                                </div>
-                                                <div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
-                                                <div class="filename-edit">Nama file</div>
+                                    <div class="edit-image">
+                                        <div class="edit-img-area">
+                                            <div class="image">
+                                                <img class="img-edit">
                                             </div>
-                                            <input type="file" id="btn-image-edit" class="input-img-edit" hidden>
-                                            <button onclick="btnImageActive()" class="select-image-edit">Pilih
-                                                Gambar</button>
+                                            <div class="content">
+                                                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                                <h4 class="text">Unggah Gambar</h4>
+                                            </div>
+                                            <div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
+                                            <div class="filename-edit">Nama file</div>
                                         </div>
+                                        <input type="file" id="btn-image-edit" class="input-img-edit" hidden>
+                                        <button onclick="btnImageEditActive()" class="select-image-edit">Pilih
+                                            Gambar</button>
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="judul">
-                                            <label for="exampleFormControlInput1" class="form-label">Keterangan</label>
-                                            <input type="text" class="form-control editKeteranganGaleri"
-                                                id="exampleFormControlInput1">
-                                        </div>
+                                    <div class="keterangan">
+                                        <label for="exampleFormControlInput1" class="form-label">Keterangan</label>
+                                        <form action="#">
+                                            <input type="text" class="editKetGaleri form-control" maxlength="35"
+                                                required id="exampleFormControlInput1">
+                                            <span class="editCount"></span>
+                                        </form>
+                                    </div>
+                                    <div class="tanggal">
+                                        <label class="form-label">Tanggal</label>
+                                        <input id="date" type="date" class="tgl editTanggalGaleri form-control" placeholder="Pilih Tanggal">
                                     </div>
                                 </div>
                             </div>
-                            <!-- End Section Edit Informasi -->
+                            <!-- End Section Edit Galeri -->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn-secondary" data-bs-dismiss="modal">Keluar</button>

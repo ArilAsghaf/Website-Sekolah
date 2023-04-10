@@ -20,33 +20,43 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT GALERI SEKOLAH
-const keteranganGaleri = document.querySelector(".keteranganGaleri");
-const btnGaleri = document.querySelector(".btnGaleri");
-const input_img = document.querySelector('.input-img');
-const editKeteranganGaleri = document.querySelector('.editKeteranganGaleri')
+const keteranganGaleri = document.querySelector(".keteranganGaleri")
+const tanggalGaleri = document.querySelector(".tanggalGaleri")
+const btnGaleri = document.querySelector(".btnGaleri")
+const inputImg = document.querySelector('.input-img')
+const editKetGaleri = document.querySelector('.editKetGaleri')
+const editTanggalGaleri = document.querySelector(".editTanggalGaleri")
 const simpanBtn = document.querySelector(".btnSimpan")
-const tanggalGaleri = document.querySelector(".tanggalGaleri") // ????
+const inputImgEdit = document.querySelector(".input-img-edit")
 var fileItem;
 var fileName;
 
-
+// INPUT GALERI SEKOLAH
 let dataInputAdmin = {
 	keterangan: "",
 	url_img: "",
 	tanggal: "",
 };
 
-const ket = document.querySelector(".keteranganGaleri"),
+// BATAS KARAKTER
+const ket = document.querySelector(".keteranganGaleri")
+const editKet = document.querySelector(".editKetGaleri"),
 count = document.querySelector(".count"),
-maxLength = ket.getAttribute("maxlength");
+maxLength = ket.getAttribute("maxlength"),
+editMaxLength = ket.getAttribute("maxlength"),
+editCount = document.querySelector(".editCount");
 
 ket.onkeyup = () => {
     count.innerText = maxLength - ket.value.length;
 }
 
+editKet.onkeyup = () => {
+    editCount.innerText = editMaxLength - editKet.value.length;
+}
+// END BATAS KARAKTER
+
 async function getFile() {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	fileName = fileItem.name;
 	const resp = await uploadImage(fileItem, fileName)
 	if (resp) {
@@ -89,7 +99,6 @@ function uploadImage(file, name) {
 				reject(error)
 			},
 			() => {
-				// Upload completed successfully, now we can get the download URL
 				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
 					dataInputAdmin = {
 						...dataInputAdmin,
@@ -104,20 +113,15 @@ function uploadImage(file, name) {
 // END UPLOAD IMAGE
 
 
-// TIMESTAMP ?????????????
+// TIMESTAMP
 const changeTimestamp = (data) => {
 	if(data !== undefined){
 		var tanggalGaleriObj = new Date(data);
-	
-		// Daftar nama bulan dalam bahasa Indonesia
 		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-	
-		// Mengambil nilai tanggal, bulan, dan tahun dari objek Date
 		var day = tanggalGaleriObj.getDate();
 		var month = months[tanggalGaleriObj.getMonth()];
 		var year = tanggalGaleriObj.getFullYear();
-	
-		// Menggabungkan nilai tanggal, bulan, dan tahun menjadi format yang diinginkan
+
 		return day + ' ' + month + ' ' + year;
 	}
 }
@@ -130,7 +134,7 @@ keteranganGaleri.addEventListener("change", e => {
 	}
 })
 
-tanggalGaleri.addEventListener("change", e => { // ????
+tanggalGaleri.addEventListener("change", e => {
 	dataInputAdmin = {
 		...dataInputAdmin,
 		tanggal: e.target.value
@@ -143,13 +147,13 @@ const addGaleri = (data) => {
 		addDoc(collection(db, "Galeri"), data)
 			.then(() => {
 				console.log("succes !!!")
-				resolve(true) //TRIGGER SWEET ALERT SUCCES
+				resolve(true)
 			})
 	});
 };
 
 btnGaleri.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
@@ -185,7 +189,6 @@ const getAllGaleri = () => {
 						id: doc.id
 					})
 				});
-				console.log(dataGaleri)
 				$(document).ready(function () {
 					$('#table1').DataTable({
 						lengthMenu: [
@@ -207,7 +210,7 @@ const getAllGaleri = () => {
 							},
 							{ data: 'keterangan' },
 							{
-								render: function (data, type, JsonResultRow, meta) { // ??????
+								render: function (data, type, JsonResultRow, meta) {
 									return changeTimestamp(JsonResultRow.tanggal)
 								}
 							},
@@ -235,7 +238,7 @@ getAllGaleri()
 // EDIT GALERI SEKOLAH
 async function getFileUpdateGaleri() {
 	const id = localStorage.getItem("idUpdate")
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	fileName = fileItem.name;
 
 	const resp = await uploadImage(fileItem, fileName)
@@ -273,13 +276,19 @@ const getDataGaleri = (id) => {
 	})
 }
 
-editKeteranganGaleri.addEventListener("change", (e) => {
+editKetGaleri.addEventListener("change", (e) => {
 	dataInputAdmin = {
 		...dataInputAdmin,
 		keterangan: e.target.value
 	}
 })
 
+editTanggalGaleri.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		tanggal: e.target.value
+	}
+})
 
 const updateGaleri = (id, data) => {
 	return new Promise((resolve, reject) => {
@@ -295,13 +304,13 @@ const updateGaleri = (id, data) => {
 };
 
 simpanBtn.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { keterangan, isi, url_img } =dataInputAdmin;
-	if (keterangan== "" || isi== "" || url_img== undefined ) {
+	const { keterangan, tanggal, url_img } =dataInputAdmin;
+	if (keterangan== "" || tanggal== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -330,7 +339,8 @@ window.addEventListener("click", async (e) => {
 		localStorage.setItem("idUpdate", e.target.id)
 		const resp = await getDataGaleri(e.target.id)
 		if (resp) {
-			editKeteranganGaleri.value = resp.keterangan
+			editKetGaleri.value = resp.keterangan
+			editTanggalGaleri.value = resp.tanggal
 			dataInputAdmin = {
 				...dataInputAdmin,
 				url_img: resp.url_img
@@ -342,7 +352,7 @@ window.addEventListener("click", async (e) => {
 // END TAMPIL GALERI SEKOLAH
 
 
-
+// LOGOUT
 const logout = document.querySelector(".logout")
 const uid = localStorage.getItem("uid")
 
@@ -350,7 +360,8 @@ logout.addEventListener("click", () => {
 	localStorage.clear()
 	window.location.href = "admin-login.html"
 })
-//cek if user login atau tidak
+
 if(uid == undefined) {
 	window.location.href = "admin-login.html"
 }
+// END LOGOUT

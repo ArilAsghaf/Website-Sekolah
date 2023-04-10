@@ -20,23 +20,26 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT SARPRAS SEKOLAH
-const judulSarpras = document.querySelector(".judulSarpras");
+const ketSarpras = document.querySelector(".ketSarpras");
 const btnSarpras = document.querySelector(".btnSarpras");
-const input_img = document.querySelector('.input-img');
+const inputImg = document.querySelector('.input-img');
 const editKetSarpras = document.querySelector('.editKetSarpras')
 const simpanBtn = document.querySelector(".btnSimpan")
+const inputImgEdit = document.querySelector(".input-img-edit")
+const tanggalSarpras = document.querySelector(".tanggalSarpras")
+const editTanggalSarpras = document.querySelector(".editTanggalSarpras")
 var fileItem;
 var fileName;
 
-
+// INPUT SARPRAS
 let dataInputAdmin = {
-	judul: "",
+	keterangan: "",
 	url_img: "",
+	tanggal: "",
 };
 
 async function getFile() {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	fileName = fileItem.name;
 	const resp = await uploadImage(fileItem, fileName)
 	if (resp) {
@@ -55,7 +58,6 @@ async function getFile() {
 		}
 	}
 }
-
 
 // UPLOAD IMAGE
 function uploadImage(file, name) {
@@ -92,10 +94,31 @@ function uploadImage(file, name) {
 }
 // END UPLOAD IMAGE
 
-judulSarpras.addEventListener("change", e => {
+// TIMESTAMP
+const changeTimestamp = (data) => {
+	if(data !== undefined){
+		var tanggalSarprasObj = new Date(data);
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+		var day = tanggalSarprasObj.getDate();
+		var month = months[tanggalSarprasObj.getMonth()];
+		var year = tanggalSarprasObj.getFullYear();
+	
+		return day + ' ' + month + ' ' + year;
+	}
+}
+// END TIMESTAMP
+
+ketSarpras.addEventListener("change", e => {
 	dataInputAdmin = {
 		...dataInputAdmin,
-		judul: e.target.value
+		keterangan: e.target.value
+	}
+})
+
+tanggalSarpras.addEventListener("change", e => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		tanggal: e.target.value
 	}
 })
 
@@ -105,19 +128,19 @@ const addSarpras = (data) => {
 		addDoc(collection(db, "Sarpras"), data)
 			.then(() => {
 				console.log("succes !!!")
-				resolve(true) //TRIGGER SWEET ALERT SUCCES
+				resolve(true)
 			})
 	});
 };
 
 btnSarpras.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, url_img } =dataInputAdmin;
-	if (judul== "" || url_img== undefined ) {
+	const { keterangan, tanggal, url_img } =dataInputAdmin;
+	if (keterangan== "" || tanggal== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -129,10 +152,10 @@ btnSarpras.addEventListener("click", async () => {
 		getFile()
 	}
 })
-// END INPUT SARPRAS SEKOLAH
+// END INPUT SARPRAS
 
 
-// TAMPIL SARPRAS SEKOLAH
+// TAMPIL SARPRAS
 // DATA TABEL
 let dataSarpras = [];
 
@@ -147,12 +170,11 @@ const getAllSarpras = () => {
 						id: doc.id
 					})
 				});
-				console.log(dataSarpras)
 				$(document).ready(function () {
 					$('#table1').DataTable({
 						lengthMenu: [
-							[5, 8, 10],
-							[5, 8, 10],
+							[3, 5, 7],
+							[3, 5, 7],
 						],
 						scrollY: false,
 						destroy: true,
@@ -167,11 +189,16 @@ const getAllSarpras = () => {
 									return '<img src="' + JsonResultRow.url_img + '"/>'
 								}
 							},
-							{ data: 'judul' },
+							{ data: 'keterangan' },
+							{
+								render: function (data, type, JsonResultRow, meta) { // ??????
+									return changeTimestamp(JsonResultRow.tanggal)
+								}
+							},
 							{
 								render: function (data, type, JsonResultRow, meta) {
 									return `
-									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#staticBackdrop"><i id=${JsonResultRow.id} class="fas fa-edit"></i></button>
+									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#modalEdit"><i id=${JsonResultRow.id} class="fas fa-edit"></i></button>
 									<button class="btnDeleteId" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
 									`
 								}
@@ -189,10 +216,10 @@ getAllSarpras()
 //  END DATA TABEL
 
 
-// EDIT SARPRAS SEKOLAH
+// EDIT SARPRAS
 async function getFileUpdateSarpras() {
 	const id = localStorage.getItem("idUpdate")
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	fileName = fileItem.name;
 
 	const resp = await uploadImage(fileItem, fileName)
@@ -233,7 +260,14 @@ const getDataSarpras = (id) => {
 editKetSarpras.addEventListener("change", (e) => {
 	dataInputAdmin = {
 		...dataInputAdmin,
-		judul: e.target.value
+		keterangan: e.target.value
+	}
+})
+
+editTanggalSarpras.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		tanggal: e.target.value
 	}
 })
 
@@ -252,13 +286,13 @@ const updateSarpras = (id, data) => {
 };
 
 simpanBtn.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, url_img } =dataInputAdmin;
-	if (judul== "" || url_img== undefined ) {
+	const { keterangan, tanggal, url_img } =dataInputAdmin;
+	if (keterangan== "" || tanggal== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -270,7 +304,7 @@ simpanBtn.addEventListener("click", async () => {
 		await getFileUpdateSarpras()
 	}
 })
-// END EDIT SARPRAS SEKOLAH
+// END EDIT SARPRAS
 
 
 // BUTTON ACTION
@@ -287,7 +321,8 @@ window.addEventListener("click", async (e) => {
 		localStorage.setItem("idUpdate", e.target.id)
 		const resp = await getDataSarpras(e.target.id)
 		if (resp) {
-			editKetSarpras.value = resp.judul
+			editKetSarpras.value = resp.keterangan
+			editTanggalSarpras.value = resp.tanggal
 			dataInputAdmin = {
 				...dataInputAdmin,
 				url_img: resp.url_img
@@ -296,11 +331,10 @@ window.addEventListener("click", async (e) => {
 	}
 })
 //  END BUTTON ACTION
-// END TAMPIL SARPRAS SEKOLAH
+// END TAMPIL SARPRAS
 
 
-
-
+// LOGOUT
 const logout = document.querySelector(".logout")
 const uid = localStorage.getItem("uid")
 
@@ -308,7 +342,8 @@ logout.addEventListener("click", () => {
 	localStorage.clear()
 	window.location.href = "admin-login.html"
 })
-//cek if user login atau tidak
+
 if(uid == undefined) {
 	window.location.href = "admin-login.html"
 }
+// LOGOUT

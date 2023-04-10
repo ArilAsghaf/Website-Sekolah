@@ -114,29 +114,28 @@ const btnImageEdit = document.querySelector("#btn-image-edit");
 const selectImageEdit = document.querySelector(".select-image-edit");
 const imgEdit = document.querySelector(".img-edit");
 var regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\, \$\=\!\-\#\(\)\ . \%\+\~\_ ]+$/;
-console.log(btnImageEdit)
 function btnImageEditActive(){
     btnImageEdit.click();
 }
 
-// btnImageEdit.addEventListener("change", function(){
-//     const file = this.files[0];
-//     if(file){
-//         const reader = new FileReader();
-//         reader.onload = function(){
-//             const result = reader.result;
-//             imgEdit.src = result;
-//             editImgArea.classList.add("active");
-//         }
-//         cancelBtnEdit.addEventListener("click", function(){
-//             imgEdit.src = "";
-//             editImgArea.classList.remove("active");
-//         }); // ???
-//         reader.readAsDataURL(file);
-//     }
-//     if(this.value){
-//         let valueStore = this.value.match(regExp);
-//         filenameEdit.textContent = valueStore;
-//     }
-// });
+btnImageEdit.addEventListener("change", function(){
+    const file = this.files[0];
+    if(file){
+        const reader = new FileReader();
+        reader.onload = function(){
+            const result = reader.result;
+            imgEdit.src = result;
+            editImgArea.classList.add("active");
+        }
+        cancelBtnEdit.addEventListener("click", function(){
+            imgEdit.src = "";
+            editImgArea.classList.remove("active");
+        }); // ???
+        reader.readAsDataURL(file);
+    }
+    if(this.value){
+        let valueStore = this.value.match(regExp);
+        filenameEdit.textContent = valueStore;
+    }
+});
 // END EDIT GAMBAR

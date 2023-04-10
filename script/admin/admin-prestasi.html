@@ -180,11 +180,11 @@
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Galeri</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Prestasi</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Section Tambah Data Galeri -->
+                            <!-- Section Tambah Data Prestasi -->
                             <div id="up-informasi">
 								<div class="row">
 									<div class="col-md-4">
@@ -227,11 +227,10 @@
 											<label for="exampleFormControlTextarea1" class="form-label">Isi Prestasi</label>
 											<textarea class="isiPrestasi form-control" rows="5" placeholder="Masukan isi prestasi..."></textarea>
 										</div>
-										<!-- <button type="submit" class="btnPrestasi btn-primary">Unggah</button> -->
 									</div>
 								</div>
 							</div>
-                            <!-- End Section Tambah Data Galeri -->
+                            <!-- End Section Tambah Data Prestasi -->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn-secondary" data-bs-dismiss="modal">Keluar</button>
@@ -243,17 +242,17 @@
             <!-- End Section Modal Tambah -->
 
 			<!-- Modal -->
-			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+			<div class="modal fade" id="modalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 				aria-labelledby="staticBackdropLabel" aria-hidden="true">
 				<div class="modal-dialog modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="staticBackdropLabel">Edit Prestasi</h5>
+							<h5 class="modal-title" id="staticBackdropLabel">Edit Data Prestasi</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
 							<!-- Section Edit Prestasi -->
-							<div class="edit-informasi">
+							<div id="edit-informasi">
 								<div class="row">
 									<div class="col-md-4">
 										<div class="edit-image">
@@ -288,13 +287,13 @@
 											<div class="col-md-5">
 												<div class="tanggal">
 													<label class="form-label">Tanggal</label>
-													<input id="date" type="date" class="tanggalPrestasi form-control" placeholder="Pilih Tanggal">
+													<input id="date" type="date" class="tgl editTanggalPrestasi form-control" placeholder="Pilih Tanggal">
 												</div>
 											</div>
 										</div>
 										<div class="berita">
 											<label for="exampleFormControlTextarea1" class="form-label">Isi Prestasi</label>
-											<textarea class="form-control editIsiPrestasi" id="FormControlInformasi" rows="6"></textarea>
+											<textarea class="form-control editIsiPrestasi" id="FormControlInformasi" rows="5"></textarea>
 										</div>
 									</div>
 								</div>

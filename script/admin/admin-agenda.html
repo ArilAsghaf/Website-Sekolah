@@ -96,51 +96,13 @@
 
 		<!-- Section Main -->
 		<main>
-			<!-- Section Upload Informasi -->
-			<div id="up-informasi">
-				<div class="row">
-					<div class="col-md-4">
-						<div class="upload-image">
-							<div class="img-area">
-								<div class="image">
-									<img class="img">
-								</div>
-								<div class="content">
-									<div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-									<h4 class="text">Unggah Gambar</h4>
-									<!-- <p>Ukuran gambar kurang dari <span>2MB</span></p> -->
-								</div>
-								<div id="cancel-btn"><i class="fas fa-times"></i></div>
-								<div class="file-name">Nama file</div>
-							</div>
-							<input type="file" id="btn-image" class="input-img" hidden>
-							<button onclick="btnImageActive()" class="select-image">Pilih Gambar</button>
-						</div>
-					</div>
-					<div class="col-md-8">
-						<div class="judul">
-							<label for="exampleFormControlInput1" class="form-label">Judul</label>
-							<input type="text" class="judulAgenda form-control" id="exampleFormControlInput1"
-								placeholder="Masukan judul agenda...">
-						</div>
-						<div class="berita">
-							<label for="exampleFormControlTextarea1" class="form-label">Isi Agenda</label>
-							<textarea class="isiAgenda form-control" id="FormControlInformasi" rows="5"
-								placeholder="Masukan isi agenda..."></textarea>
-						</div>
-						<button type="submit" class="btnAgenda btn-primary">Unggah</button>
-					</div>
-				</div>
-			</div>
-			<!-- End Section Upload Informasi -->
-
 			<!-- Section Tabel Data Agenda -->
 			<div class="card-upload">
 				<div class="card-header-upload d-flex justify-content-between align-items-center">
 					<h4 class="card-title-upload">Tabel Data Agenda</h4>
-					<div class="d-flex ">
-						<i data-feather="download"></i>
-					</div>
+					<button type="button" class="btn-tambah" data-bs-toggle="modal" data-bs-target="#modalTambah">
+						Tambah Data
+					</button>
 				</div>
 				<div class="card-body-upload px-0 pb-0">
 					<div class="table-responsive">
@@ -163,18 +125,81 @@
 			</div>
 			<!-- Section Tabel Data Agenda -->
 
+			<!-- Section Modal Tambah -->
+            <div class="modal fade" id="modalTambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Agenda</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Section Tambah Data Agenda -->
+                            <div id="up-informasi">
+								<div class="row">
+									<div class="col-md-4">
+										<div class="upload-image">
+											<div class="img-area">
+												<div class="image">
+													<img class="img">
+												</div>
+												<div class="content">
+													<div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+													<h4 class="text">Unggah Gambar</h4>
+												</div>
+												<div id="cancel-btn"><i class="fas fa-times"></i></div>
+												<div class="file-name">Nama file</div>
+											</div>
+											<input type="file" id="btn-image" class="input-img" hidden>
+											<button onclick="btnImageActive()" class="select-image">Pilih Gambar</button>
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="row">
+											<div class="col-md-9">
+												<div class="judul">
+													<label class="form-label">Judul</label>
+													<input type="text" class="judulAgenda form-control" placeholder="Masukan judul agenda...">
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="tanggal">
+													<label class="form-label">Tanggal</label>
+													<input id="date" type="date" class="tgl tanggalAgenda form-control" placeholder="Pilih Tanggal">
+												</div>
+											</div>
+										</div>
+										<div class="berita">
+											<label class="form-label">Isi Agenda</label>
+											<textarea class="isiAgenda form-control" rows="9" placeholder="Masukan isi agenda..."></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+                            <!-- End Section Tambah Data Agenda -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-secondary" data-bs-dismiss="modal">Keluar</button>
+                            <button type="submit" class="btnAgenda btn-primary">Unggah</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Section Modal Tambah -->
+
 			<!-- Section Modal Edit -->
-			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+			<div class="modal fade" id="modalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 				aria-labelledby="staticBackdropLabel" aria-hidden="true">
 				<div class="modal-dialog modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="staticBackdropLabel">Edit Agenda Sekolah</h5>
+							<h5 class="modal-title" id="staticBackdropLabel">Edit Data Agenda</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
 							<!-- Section Edit Agenda -->
-							<div class="edit-informasi">
+							<div id="edit-informasi">
 								<div class="row">
 									<div class="col-md-4">
 										<div class="edit-image">
@@ -185,7 +210,6 @@
 												<div class="content">
 													<div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
 													<h4 class="text">Unggah Gambar</h4>
-													<!-- <p>Ukuran gambar kurang dari <span>2MB</span></p> -->
 												</div>
 												<div id="cancel-btn-edit"><i class="fas fa-times"></i></div>
 												<div class="filename-edit">Nama file</div>
@@ -196,14 +220,23 @@
 										</div>
 									</div>
 									<div class="col-md-8">
-										<div class="judul">
-											<label for="exampleFormControlInput1" class="form-label">Judul</label>
-											<input type="text" class="form-control editJudulAgenda" id="exampleFormControlInput1">
+										<div class="row">
+											<div class="col-md-9">
+												<div class="judul">
+													<label class="form-label">Judul</label>
+													<input type="text" class="form-control editJudulAgenda">
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="tanggal">
+													<label class="form-label">Tanggal</label>
+													<input id="date" type="date" class="tgl editTanggalAgenda form-control">
+												</div>
+											</div>
 										</div>
 										<div class="berita">
-											<label for="exampleFormControlTextarea1" class="form-label">Isi
-												Agenda</label>
-											<textarea class="form-control editIsiAgenda" id="FormControlInformasi" rows="5"></textarea>
+											<label class="form-label">Isi Agenda</label>
+											<textarea class="form-control editIsiAgenda" rows="9"></textarea>
 										</div>
 									</div>
 								</div>
@@ -212,7 +245,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn-secondary" data-bs-dismiss="modal">Keluar</button>
-							<button type="button" class="btn btn-primary btnSimpan">Simpan</button>
+							<button type="button" class="btn-primary btnSimpan">Simpan</button>
 						</div>
 					</div>
 				</div>

@@ -20,18 +20,18 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT EKSTRAKULIKULER SEKOLAH
 const judulEkstrakulikuler = document.querySelector(".judulEkstrakulikuler");
 const isiEkstrakulikuler = document.querySelector(".isiEkstrakulikuler");
 const btnEkstrakulikuler = document.querySelector(".btnEkstrakulikuler");
-const input_img = document.querySelector('.input-img');
-const editJudulEkstrakulikuler = document.querySelector('.editModal')
-const editIsiEkstrakulikuler = document.querySelector(".editTextarea")
+const inputImg = document.querySelector('.input-img');
+const editJudulEkstrakulikuler = document.querySelector('.editJudulEkstrakulikuler')
+const editIsiEkstrakulikuler = document.querySelector(".editIsiEkstrakulikuler")
 const simpanBtn = document.querySelector(".btnSimpan")
+const inputImgEdit = document.querySelector(".input-img-edit")
 var fileItem;
 var fileName;
 
-
+// INPUT EKSTRAKULIKULER
 let dataInputAdmin = {
 	judul: "",
 	isi: "",
@@ -39,7 +39,7 @@ let dataInputAdmin = {
 };
 
 async function getFile() {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	fileName = fileItem.name;
 	const resp = await uploadImage(fileItem, fileName)
 	if (resp) {
@@ -115,13 +115,13 @@ const addEkstrakulikuler = (data) => {
 		addDoc(collection(db, "Ekstrakulikuler"), data)
 			.then(() => {
 				console.log("succes !!!")
-				resolve(true) //TRIGGER SWEET ALERT SUCCES
+				resolve(true)
 			})
 	});
 };
 
 btnEkstrakulikuler.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
@@ -139,10 +139,10 @@ btnEkstrakulikuler.addEventListener("click", async () => {
 		getFile()
 	}
 })
-// END INPUT EKSTRAKULIKULER SEKOLAH
+// END INPUT EKSTRAKULIKULER
 
 
-// TAMPIL EKSTRAKULIKULER SEKOLAH
+// TAMPIL EKSTRAKULIKULER
 // DATA TABEL
 let dataEkstrakulikuler = [];
 
@@ -156,16 +156,12 @@ const getAllEkstrakulikuler = () => {
 						...doc.data(),
 						id: doc.id
 					})
-					// if(dataEkstrakulikuler.length <= 5){
-					// 	beritaSekolah.innerHTML += addElEkstrakulikuler(doc.data(), doc.id)
-					// }
 				});
-				console.log(dataEkstrakulikuler)
 				$(document).ready(function () {
 					$('#table1').DataTable({
 						lengthMenu: [
-							[5, 8, 10],
-							[5, 8, 10],
+							[3, 5, 7],
+							[3, 5, 7],
 						],
 						scrollY: false,
 						destroy: true,
@@ -185,7 +181,7 @@ const getAllEkstrakulikuler = () => {
 							{
 								render: function (data, type, JsonResultRow, meta) {
 									return `
-									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#staticBackdrop"><i id=${JsonResultRow.id} class="fas fa-edit"></i></button>
+									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#modalEdit"><i id=${JsonResultRow.id} class="fas fa-edit"></i></button>
 									<button class="btnDeleteId" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
 									`
 								}
@@ -203,10 +199,10 @@ getAllEkstrakulikuler()
 //  END DATA TABEL
 
 
-// EDIT EKSTRAKULIKULER SEKOLAH
+// EDIT EKSTRAKULIKULER
 async function getFileUpdateEkstrakulikuler() {
 	const id = localStorage.getItem("idUpdate")
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	fileName = fileItem.name;
 
 	const resp = await uploadImage(fileItem, fileName)
@@ -272,7 +268,7 @@ const updateEkstrakulikuler = (id, data) => {
 };
 
 simpanBtn.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
@@ -290,7 +286,7 @@ simpanBtn.addEventListener("click", async () => {
 		await getFileUpdateEkstrakulikuler()
 	}
 })
-// END EDIT EKSTRAKULIKULER SEKOLAH
+// END EDIT EKSTRAKULIKULER
 
 
 // BUTTON ACTION
@@ -317,11 +313,10 @@ window.addEventListener("click", async (e) => {
 	}
 })
 //  END BUTTON ACTION
-// END TAMPIL EKSTRAKULIKULER SEKOLAH
+// END TAMPIL EKSTRAKULIKULER
 
 
-
-
+// LOGOUT
 const logout = document.querySelector(".logout")
 const uid = localStorage.getItem("uid")
 
@@ -329,7 +324,8 @@ logout.addEventListener("click", () => {
 	localStorage.clear()
 	window.location.href = "admin-login.html"
 })
-//cek if user login atau tidak
+
 if(uid == undefined) {
 	window.location.href = "admin-login.html"
 }
+// END LOGOUT

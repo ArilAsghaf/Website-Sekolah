@@ -20,27 +20,32 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// INPUT BERITA SEKOLAH
-const judulBerita = document.querySelector(".judulBerita");
-const isiBerita = document.querySelector(".isiBerita");
-const btnBerita = document.querySelector(".btnBerita");
-const input_img = document.querySelector('.input-img');
+const judulBerita = document.querySelector(".judulBerita")
+const tanggalBerita = document.querySelector(".tanggalBerita")
+const isiBerita = document.querySelector(".isiBerita")
+const btnBerita = document.querySelector(".btnBerita")
+const inputImg = document.querySelector('.input-img')
 const editJudulBerita = document.querySelector('.editJudulBerita')
+const editTanggalBerita = document.querySelector(".editTanggalBerita")
 const editIsiBerita = document.querySelector(".editIsiBerita")
 const simpanBtn = document.querySelector(".btnSimpan")
+const inputImgEdit = document.querySelector(".input-img-edit")
 var fileItem;
 var fileName;
+// const kategoriData = document.querySelector(".kategoriData")
 
-
+// INPUT BERITA SEKOLAH
 let dataInputAdmin = {
 	judul: "",
 	isi: "",
 	url_img: "",
-	tgl_uploud: + new Date()
+	tanggal: "",
+	// kategori: "",
+	// tgl_uploud: + new Date()
 };
 
 async function getFile() {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	fileName = fileItem.name;
 	const resp = await uploadImage(fileItem, fileName)
 	if (resp) {
@@ -100,15 +105,31 @@ function uploadImage(file, name) {
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
-	const tanggal = new Date(data);
-	const tgl = tanggal.getDate();
-	const bln = tanggal.getMonth();
-	const thn = tanggal.getFullYear();
-	const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-	const bulan = dataBulan[bln];
+	if(data !== undefined){
+		var tanggalBeritaObj = new Date(data);
 
-	return tgl + " " + bulan + " " + thn;
+		// Daftar nama bulan dalam bahasa Indonesia
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+		// Mengambil nilai tanggal, bulan, dan tahun dari objek Date
+		var day = tanggalBeritaObj.getDate();
+		var month = months[tanggalBeritaObj.getMonth()];
+		var year = tanggalBeritaObj.getFullYear();
+
+		// Menggabungkan nilai tanggal, bulan, dan tahun menjadi format yang diinginkan
+		return day + ' ' + month + ' ' + year;
+	}
 }
+// const changeTimestamp = (data) => {
+// 	const tanggal = new Date(data);
+// 	const tgl = tanggal.getDate();
+// 	const bln = tanggal.getMonth();
+// 	const thn = tanggal.getFullYear();
+// 	const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+// 	const bulan = dataBulan[bln];
+
+// 	return tgl + " " + bulan + " " + thn;
+// }
 // END TIMESTAMP
 
 judulBerita.addEventListener("change", e => {
@@ -118,12 +139,26 @@ judulBerita.addEventListener("change", e => {
 	}
 })
 
+tanggalBerita.addEventListener("change", e => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		tanggal: e.target.value
+	}
+})
+
 isiBerita.addEventListener("change", e => {
 	dataInputAdmin = {
 		...dataInputAdmin,
 		isi: e.target.value
 	}
 })
+
+// kategoriData.addEventListener("change", e => {
+// 	dataInputAdmin = {
+// 		...dataInputAdmin,
+// 		kategori: e.target.value
+// 	}
+// })
 
 const addBerita = (data) => {
 	return new Promise((resolve, reject) => {
@@ -137,13 +172,13 @@ const addBerita = (data) => {
 };
 
 btnBerita.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImg.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, isi, url_img } =dataInputAdmin;
-	if (judul== "" || isi== "" || url_img== undefined ) {
+	const { judul, tanggal, isi, url_img } =dataInputAdmin;
+	if (judul== "" || tanggal== "" || isi== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -176,12 +211,12 @@ const getAllBerita = () => {
 					// 	beritaSekolah.innerHTML += addElBerita(doc.data(), doc.id)
 					// }
 				});
-				console.log(dataBerita)
+				// console.log(dataBerita)
 				$(document).ready(function () {
 					$('#table1').DataTable({
 						lengthMenu: [
-							[5, 8, 10],
-							[5, 8, 10],
+							[3, 5, 7],
+							[3, 5, 7],
 						],
 						scrollY: false,
 						destroy: true,
@@ -199,14 +234,19 @@ const getAllBerita = () => {
 							{ data: 'judul' },
 							{
 								render: function (data, type, JsonResultRow, meta) {
-									return changeTimestamp(JsonResultRow.tgl_uploud)
+									return changeTimestamp(JsonResultRow.tanggal)
 								}
 							},
+							// {
+							// 	render: function (data, type, JsonResultRow, meta) {
+							// 		return changeTimestamp(JsonResultRow.tgl_uploud)
+							// 	}
+							// },
 							{ data: 'isi' },
 							{
 								render: function (data, type, JsonResultRow, meta) {
 									return `
-									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#staticBackdrop"><i id=${JsonResultRow.id} class="fas fa-edit"></i></button>
+									<button title="Edit" class="editData" data-bs-toggle="modal" id=${JsonResultRow.id} data-bs-target="#modalEdit"><i id=${JsonResultRow.id} class="fas fa-edit"></i></button>
 									<button class="btnDeleteId" id=${JsonResultRow.id} data-bs-toggle="modal" data-bs-target="#modalHapus" title="Hapus"><i class="fas fa-trash"></i></button>
 									`
 								}
@@ -227,7 +267,7 @@ getAllBerita()
 // EDIT BERITA SEKOLAH
 async function getFileUpdateBerita() {
 	const id = localStorage.getItem("idUpdate")
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	fileName = fileItem.name;
 
 	const resp = await uploadImage(fileItem, fileName)
@@ -272,6 +312,13 @@ editJudulBerita.addEventListener("change", (e) => {
 	}
 })
 
+editTanggalBerita.addEventListener("change", (e) => {
+	dataInputAdmin = {
+		...dataInputAdmin,
+		tanggal: e.target.value
+	}
+})
+
 editIsiBerita.addEventListener("change", (e) => {
 	dataInputAdmin = {
 		...dataInputAdmin,
@@ -293,13 +340,13 @@ const updateBerita = (id, data) => {
 };
 
 simpanBtn.addEventListener("click", async () => {
-	fileItem = input_img.files[0];
+	fileItem = inputImgEdit.files[0];
 	dataInputAdmin = {
 		...dataInputAdmin,
 		url_img: fileItem
 	}
-	const { judul, isi, url_img } =dataInputAdmin;
-	if (judul== "" || isi== "" || url_img== undefined ) {
+	const { judul, tanggal, isi, url_img } =dataInputAdmin;
+	if (judul== "" || tanggal== "" || isi== "" || url_img== undefined ) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -329,6 +376,7 @@ window.addEventListener("click", async (e) => {
 		const resp = await getDataBerita(e.target.id)
 		if (resp) {
 			editJudulBerita.value = resp.judul
+			editTanggalBerita.value = resp.tanggal
 			editIsiBerita.value = resp.isi
 			dataInputAdmin = {
 				...dataInputAdmin,
@@ -341,7 +389,7 @@ window.addEventListener("click", async (e) => {
 // END TAMPIL BERITA SEKOLAH
 
 
-
+// LOGOUT
 const logout = document.querySelector(".logout")
 const uid = localStorage.getItem("uid")
 
@@ -353,6 +401,7 @@ logout.addEventListener("click", () => {
 if(uid == undefined) {
 	window.location.href = "admin-login.html"
 }
+// END LOGOUT
 
 
 

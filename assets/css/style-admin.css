@@ -434,7 +434,7 @@ body {
 
 
 /* CSS UPLOAD INFORMASI */
-#up-informasi, #up-informasiKet {
+#up-informasi, #up-informasiKet, #edit-informasi, #edit-informasiKet {
 	margin: auto;
 	margin: 20px 30px 30px 30px;
 	background: var(--light);
@@ -443,7 +443,7 @@ body {
 	overflow: hidden;
 }
 
-#up-informasi .upload-image {
+#up-informasi .upload-image, #edit-informasi .edit-image {
     width: 90%;
 	background: var(--light);
 	margin: auto;
@@ -455,7 +455,7 @@ body {
 	max-height: 100%;
 }
 
-#up-informasiKet .upload-image {
+#up-informasiKet .upload-image, #edit-informasiKet .edit-image {
 	width: 60%;
 	background: var(--light);
 	margin: auto;
@@ -466,7 +466,7 @@ body {
 	max-height: 100%;
 }
 
-#up-informasi .img-area, #up-informasiKet .img-area {
+#up-informasi .img-area, #up-informasiKet .img-area, #edit-informasi .edit-img-area, #edit-informasiKet .edit-img-area {
 	position: relative;
 	max-width: 100%;
 	height: 240px;
@@ -482,11 +482,11 @@ body {
 	border: 1px dashed var(--dark);
 }
 
-#up-informasi .img-area.active, #up-informasiKet .img-area.active {
+#up-informasi .img-area.active, #up-informasiKet .img-area.active, #edit-informasi .edit-img-area.active, #edit-informasiKet .edit-img-area.active {
 	border: none;
 }
 
-#up-informasi .img-area .image, #up-informasiKet .img-area .image {
+#up-informasi .img-area .image, #up-informasiKet .img-area .image, #edit-informasi .edit-img-area .image, #edit-informasiKet .edit-img-area .image {
 	position: absolute;
     height: 100%;
     width: 100%;
@@ -495,33 +495,33 @@ body {
     justify-content: center;
 }
 
-#up-informasi .img-area .image img, #up-informasiKet .img-area .image img {
+#up-informasi .img-area .image img, #up-informasiKet .img-area .image img, #edit-informasi .edit-img-area .image img, #edit-informasiKet .edit-img-area .image img {
 	height: 100%;
     width: 100%;
     object-fit: contain;
 }
 
-#up-informasi .img-area .icon, #up-informasiKet .img-area .icon {
+#up-informasi .img-area .icon, #up-informasiKet .img-area .icon, #edit-informasi .edit-img-area .icon, #edit-informasiKet .edit-img-area .icon {
 	font-size: 60px;
 	color: var(--blue);
 	text-align: center;
 }
 
-#up-informasi .upload-image h4, #up-informasiKet .upload-image h4 {
+#up-informasi .upload-image h4, #up-informasiKet .upload-image h4, #edit-informasi .edit-image h4, #edit-informasiKet .edit-image h4 {
 	font-size: 20px;
 	font-weight: 500;
 	margin-bottom: 6px;
 }
 
-#up-informasi .upload-image p, #up-informasiKet .upload-image p {
+#up-informasi .upload-image p, #up-informasiKet .upload-image p, #edit-informasi .edit-image p, #edit-informasiKet .edit-image p {
 	color: #999;
 }
 
-#up-informasi .upload-image p span, #up-informasiKet .upload-image p span {
+#up-informasi .upload-image p span, #up-informasiKet .upload-image p span, #edit-informasi .edit-image p span, #edit-informasiKet .edit-image p span {
 	font-weight: 600;
 }
 
-#up-informasi .img-area #cancel-btn, #up-informasiKet .img-area #cancel-btn {
+#up-informasi .img-area #cancel-btn, #up-informasiKet .img-area #cancel-btn, #edit-informasi .edit-img-area #cancel-btn-edit, #edit-informasiKet .edit-img-area #cancel-btn-edit {
 	position: absolute;
 	right: 15px;
 	top: 15px;
@@ -531,15 +531,15 @@ body {
 	display: none;
 }
 
-#up-informasi .img-area.active:hover #cancel-btn, #up-informasiKet .img-area.active:hover #cancel-btn {
+#up-informasi .img-area.active:hover #cancel-btn, #up-informasiKet .img-area.active:hover #cancel-btn, #edit-informasi .edit-img-area:hover #cancel-btn-edit, #edit-informasiKet .edit-img-area.active:hover #cancel-btn-edit {
 	display: block;
 }
 
-#up-informasi .img-area #cancel-btn:hover, #up-informasiKet .img-area #cancel-btn:hover {
+#up-informasi .img-area #cancel-btn:hover, #up-informasiKet .img-area #cancel-btn:hover, #edit-informasi .edit-img-area #cancel-btn-edit:hover, #edit-informasiKet .edit-img-area #cancel-btn-edit:hover {
 	color: var(--dark);
 }
 
-#up-informasi .img-area .file-name, #up-informasiKet .img-area .file-name {
+#up-informasi .img-area .file-name, #up-informasiKet .img-area .file-name, #edit-informasi .edit-img-area .filename-edit, #edit-informasiKet .edit-img-area .filename-edit {
 	position: absolute;
 	bottom: 0px;
 	width: 100%;
@@ -551,11 +551,11 @@ body {
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
-#up-informasi .img-area.active:hover .file-name, #up-informasiKet .img-area.active:hover .file-name {
+#up-informasi .img-area.active:hover .file-name, #up-informasiKet .img-area.active:hover .file-name, #edit-informasi .edit-img-area.active:hover .filename-edit, #edit-informasiKet .edit-img-area.active:hover .filename-edit {
 	display: block;
 }
 
-#up-informasi .select-image, #up-informasiKet .select-image {
+#up-informasi .select-image, #up-informasiKet .select-image, #edit-informasi .select-image-edit, #edit-informasiKet .select-image-edit {
     width: 100%;
     height: 55px;
     border: none;
@@ -571,13 +571,13 @@ body {
     text-transform: uppercase;
 }
 
-#up-informasi .select-image:active, #up-informasiKet .select-image:active {
+#up-informasi .select-image:active, #up-informasiKet .select-image:active, #edit-informasi .select-image-edit:active, #edit-informasiKet .select-image-edit:active {
     transform: translate(3px, 3px);
     box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
     background: var(--blue);
 }
 
-#up-informasi .input-img, #up-informasiKet .input-img {
+#up-informasi .input-img, #up-informasiKet .input-img, #edit-informasi .input-img-edit, #edit-informasiKet .input-img-edit {
 	position: absolute;
 	transform: scale(4);
 	cursor: pointer;
@@ -585,29 +585,33 @@ body {
 	opacity: 0;
 }
 
-#up-informasi .judul{
+#up-informasi .judul, #edit-informasi .judul {
 	margin: 30px 10px 0 0;
 }
 
-#up-informasi .lokasi {
-	margin: 20px 0 0 0;
+#up-informasi .lokasi, #edit-informasi .lokasi {
+	margin: 30px 0 0 0;
 }
 
-#up-informasi .tanggal {
-	margin: 20px 10px 0 0;
+#up-informasi .tanggal, #edit-informasi .tanggal {
+	margin: 28px 10px 0 0;
 }
 
-#up-informasiKet .tanggal {
-	margin: 20px 40px 0 40px;
+#up-informasiKet .tanggal, #edit-informasiKet .tanggal {
+	width: 85%;
+	margin: auto;
+	margin-top: 20px;
 }
 
-#up-informasi .berita {
+#up-informasi .berita, #edit-informasi .berita {
 	margin: 20px 10px 10px 0;
 }
 
-.keterangan {
+.keterangan, #edit-informasiKet .keterangan {
 	background: white;
-	margin: 40px 40px 20px 40px;
+	width: 85%;
+	margin: auto;
+	margin-top: 40px;
 	border-radius: 8px;
 }
 
@@ -647,16 +651,16 @@ body {
 	color: #3498db;
 }
 
-#up-informasi .form-label, #up-informasiKet .form-label {
+#up-informasi .form-label, #up-informasiKet .form-label, #edit-informasi .form-label, #edit-informasiKet .form-label {
 	font-size: 23px;
 	font-weight: 600;
 }
 
-#up-informasi .form-control, #up-informasiKet .form-control {
+#up-informasi .form-control, #up-informasiKet .form-control, #edit-informasi .form-control, #edit-informasiKet .form-control {
 	border: 2px solid var(--dark);
 }
 
-#up-informasi .btn-primary {
+/* #up-informasi .btn-primary {
 	width: 200px;
     height: 55px;
     border: none;
@@ -677,7 +681,7 @@ body {
     transform: translate(3px, 3px);
     box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
     background: var(--blue);
-}
+} */
 /* END CSS UPLOAD INFORMASI */
 
 
@@ -771,7 +775,7 @@ body {
 
 
 /* CSS MODAL EDIT */
-#modalEdit .modal-content {
+/* #modalEdit .modal-content {
 	margin: auto;
 	background: var(--light);
 	border-radius: 10px;
@@ -788,18 +792,7 @@ body {
 	margin: auto;
 }
 
-#modalEdit .edit-image {
-    width: 90%;
-	background: var(--light);
-	margin: auto;
-	margin-top: 40px;
-	padding: 30px;
-	border-radius: 20px;
-	/* box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.1); */
-	border: 2px solid var(--dark);
-	object-fit: cover;
-	max-height: 100%;
-}
+
 
 #modalEdit .edit-img-area {
 	position: relative;
@@ -972,7 +965,6 @@ body {
 
 .card-upload .btn-tambah {
 	border: none;
-    /* padding: 12px 15px; */
 	color: var(--yellow);
     background: var(--blue);
     cursor: pointer;
@@ -989,7 +981,7 @@ body {
     transform: translate(3px, 3px);
     box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
     background: var(--blue);
-}
+} */
 /* CSS MODAL EDIT */
 
 
@@ -1064,15 +1056,15 @@ body {
 /* END RESPONSIVE DESIGN */
 
 
-#up-informasi .tgl, #up-informasiKet .tgl {
+#modalEdit .tgl, #modalTambah .tgl {
 	background-color: var(--b);
-    padding: 4px;
+    padding: 5px;
 	border: 2px solid var(--dark);
 	font-family: "Roboto Mono",monospace;
     color: var(--blue);
     font-size: 18px;
 	outline: none;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 ::-webkit-calendar-picker-indicator{
@@ -1082,3 +1074,58 @@ body {
     border-radius: 3px;
 }
 
+
+
+
+#modalEdit .btn-secondary, #modalTambah .btn-secondary {
+	width: 100px;
+    height: 45px;
+	background: var(--light);
+    color: var(--red);
+	border: 2px solid var(--red);
+	font-size: 16px;
+	font-weight: 500;
+	text-transform: uppercase;
+	border-radius: 10px;
+}
+
+#modalEdit .btn-secondary:hover, #modalTambah .btn-secondary:hover {
+	background: var(--red);
+	color: var(--light);
+}
+
+#modalEdit .btn-primary, #modalTambah .btn-primary {
+	width: 100px;
+    height: 45px;
+    border: none;
+    background: var(--blue);
+    color: var(--yellow);
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.2);
+    transform: translate(0, 0);
+    transition-duration: .1s;
+    text-transform: uppercase;
+	margin:20px;
+}
+
+.card-upload .btn-tambah {
+	border: none;
+	color: var(--yellow);
+    background: var(--blue);
+    cursor: pointer;
+	width: 150px;
+	height: 40px;
+	margin: 10px 20px 20px 0;
+	border-radius: 5px;
+	box-shadow: 4px 5px 6px rgba(0, 0, 0, 0.3);
+    transform: translate(0, 0);
+    transition-duration: .1s;
+}
+
+#modalEdit .btn-primary:active,  #modalTambah .btn-primary:active, .card-upload .btn-tambah:active {
+    transform: translate(3px, 3px);
+    box-shadow: 4px 5px 6px rgba(0, 0, 0, 0);
+    background: var(--blue);
+}
