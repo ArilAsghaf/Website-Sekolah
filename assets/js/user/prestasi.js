@@ -21,14 +21,15 @@ const app = initializeApp(firebaseConfig)
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
-    const tanggal = new Date(data);
-    const tgl = tanggal.getDate();
-    const bln = tanggal.getMonth();
-    const thn = tanggal.getFullYear();
-    const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    const bulan = dataBulan[bln];
-
-    return tgl + " " + bulan + " " + thn;
+	if(data !== undefined){
+		var tanggalBeritaObj = new Date(data);
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+		var day = tanggalBeritaObj.getDate();
+		var month = months[tanggalBeritaObj.getMonth()];
+		var year = tanggalBeritaObj.getFullYear();
+        
+		return day + ' ' + month + ' ' + year;
+	}
 }
 // END TIMESTAMP
 
@@ -44,8 +45,6 @@ const limitBodyText = (text, long) => {
 
 // TAMPIL BERITA SEKOLAH
 const prestasi = document.querySelector(".prestasi");
-const btnSearch = document.querySelector(".input-group-append")
-const pagination = document.querySelector(".pagination")
 const addElPrestasi = (data, id) => {
     return `
     <div class="pres-item">
@@ -57,12 +56,12 @@ const addElPrestasi = (data, id) => {
                 <div class="pres-item-title">
                     <h3>${data.judul}</h3>
                     <div class="pres-item-meta">
-                    <span><i class="far fa-calendar-alt"></i> ${data.tanggal}  </span>
+                    <span><i class="far fa-calendar-alt"></i> ${changeTimestamp(data.tanggal)}  </span>
                     <span><i class="fas fa-map-marked-alt"></i> ${data.lokasi}</span>
                     </div>
                 </div>
                 <div class="pres-item-body">
-                    <p>${limitBodyText(data.isi, 100)}</p>
+                    <p>${limitBodyText(data.isi, 400)}</p>
                 </div>
             </div>
         </div>
@@ -76,7 +75,6 @@ window.addEventListener("click", (e) => {
     }
 })
 
-let dataLenth = 0
 let dataTemp = []
 
 const getAllPrestasi = () => {
@@ -105,31 +103,31 @@ getAllPrestasi()
 
 
 // SEARCH
-const cariPrestasi = document.querySelector(".cariPrestasi")
-let dataSearch = {
-    txt : ''
-}
-btnSearch.addEventListener('click', async() => {
-    prestasi.innerHTML = ''
-    dataTemp[0].forEach(data => {
-        if(data.judul == cariPrestasi.value.toUpperCase()){
-            prestasi.innerHTML += addElPrestasi(data, data.id)
-            pagination.style.display = 'none';
-        }else if(data.judul != cariPrestasi.value.toUpperCase()){
-            pagination.style.display = 'none';
-        }else if (cariPrestasi.value == '') {
-            prestasi.innerHTML += addElPrestasi(data, data.id)
-            pagination.style.display = 'flex';
-        } 
-    })
-})
+// const cariPrestasi = document.querySelector(".cariPrestasi")
+// let dataSearch = {
+//     txt : ''
+// }
+// btnSearch.addEventListener('click', async() => {
+//     prestasi.innerHTML = ''
+//     dataTemp[0].forEach(data => {
+//         if(data.judul == cariPrestasi.value.toUpperCase()){
+//             prestasi.innerHTML += addElPrestasi(data, data.id)
+//             pagination.style.display = 'none';
+//         }else if(data.judul != cariPrestasi.value.toUpperCase()){
+//             pagination.style.display = 'none';
+//         }else if (cariPrestasi.value == '') {
+//             prestasi.innerHTML += addElPrestasi(data, data.id)
+//             pagination.style.display = 'flex';
+//         } 
+//     })
+// })
 
-cariPrestasi.addEventListener("change", async (e) => {
-    dataSearch = {
-        txt : e.target.value
-    }
+// cariPrestasi.addEventListener("change", async (e) => {
+//     dataSearch = {
+//         txt : e.target.value
+//     }
     
-})
+// })
 // END SEARCH
 
 
@@ -171,7 +169,7 @@ $(async function () {
 
         currentPage = whichPage;
 
-        $(".prestasi .berita-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+        $(".prestasi .pres-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
 
         $(".pagination li").slice(1, -1).remove();
 

@@ -21,14 +21,15 @@ const app = initializeApp(firebaseConfig)
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
-    const tanggal = new Date(data);
-    const tgl = tanggal.getDate();
-    const bln = tanggal.getMonth();
-    const thn = tanggal.getFullYear();
-    const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    const bulan = dataBulan[bln];
-
-    return tgl + " " + bulan + " " + thn;
+	if(data !== undefined){
+		var tanggalBeritaObj = new Date(data);
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+		var day = tanggalBeritaObj.getDate();
+		var month = months[tanggalBeritaObj.getMonth()];
+		var year = tanggalBeritaObj.getFullYear();
+        
+		return day + ' ' + month + ' ' + year;
+	}
 }
 // END TIMESTAMP
 
@@ -42,7 +43,7 @@ const addElGaleri = (data, id) => {
             <div class="card">
                 <img src=${data.url_img} alt="">
                     <div class="img-title">
-                        <p>${changeTimestamp(data.tgl_uploud)}</p>
+                        <p>${changeTimestamp(data.tanggal)}</p>
                         <h5>${data.judul}</h5>
                     </div>
                 </div>
@@ -56,7 +57,7 @@ let dataTemp = []
 const getAllGaleri = () => {
     return new Promise((resolve, reject) => {
         const db = getFirestore(app);
-        getDocs(query(collection(db, "Galeri"), orderBy('tgl_uploud', 'desc')))
+        getDocs(query(collection(db, "Galeri"), orderBy('tanggal', 'desc')))
             .then(querySnapshot => {
                 let data = []
                 querySnapshot.forEach((doc) => {

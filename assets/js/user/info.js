@@ -21,14 +21,15 @@ const app = initializeApp(firebaseConfig)
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
-    const tanggal = new Date(data);
-    const tgl = tanggal.getDate();
-    const bln = tanggal.getMonth();
-    const thn = tanggal.getFullYear();
-    const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    const bulan = dataBulan[bln];
-
-    return tgl + " " + bulan + " " + thn;
+	if(data !== undefined){
+		var tanggalBeritaObj = new Date(data);
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+		var day = tanggalBeritaObj.getDate();
+		var month = months[tanggalBeritaObj.getMonth()];
+		var year = tanggalBeritaObj.getFullYear();
+        
+		return day + ' ' + month + ' ' + year;
+	}
 }
 // END TIMESTAMP
 
@@ -51,7 +52,7 @@ const addElInfo = (data, id) => {
 	<div class="info-item">
         <div class="card">
             <img src=${data.url_img}>
-            <span>${changeTimestamp(data.tgl_uploud)}</span>
+            <span>${changeTimestamp(data.tanggal)}</span>
         </div>
         <div class="info-item-title">
             <a href="isi-infor.html"><h3 id=${id} class="btnPage">${data.judul}</h3></a>
@@ -75,7 +76,7 @@ let dataTemp = []
 const getAllInfo = () => {
     return new Promise((resolve, reject) => {
         const db = getFirestore(app);
-        getDocs(query(collection(db, "Info"), orderBy('tgl_uploud', 'desc')))
+        getDocs(query(collection(db, "Info"), orderBy('tanggal', 'desc')))
             .then(querySnapshot => {
                 let data = []
                 querySnapshot.forEach((doc) => {
@@ -97,6 +98,7 @@ getAllInfo()
 // END TAMPIL BERITA SEKOLAH
 
 
+// PAGE LIST
 function getPageList(totalPages, page, maxLength) {
     function range(start, end) {
         return Array.from(Array(end - start + 1), (_, i) => i + start);
@@ -167,3 +169,4 @@ $(async function () {
         return showPage(currentPage - 1);
     });
 });
+// END PAGE LIST

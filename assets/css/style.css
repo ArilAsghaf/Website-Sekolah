@@ -852,7 +852,7 @@ header .sambutan-title h2:after {
 
 #sambutan p {
     text-align: justify;
-    /* white-space: pre; */
+    white-space: pre-wrap;
 }
 /* END CSS PAGE SAMBUTAN */
 

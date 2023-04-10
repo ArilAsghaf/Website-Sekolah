@@ -21,14 +21,15 @@ const app = initializeApp(firebaseConfig)
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
-    const tanggal = new Date(data);
-    const tgl = tanggal.getDate();
-    const bln = tanggal.getMonth();
-    const thn = tanggal.getFullYear();
-    const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    const bulan = dataBulan[bln];
-
-    return tgl + " " + bulan + " " + thn;
+	if(data !== undefined){
+		var tanggalBeritaObj = new Date(data);
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+		var day = tanggalBeritaObj.getDate();
+		var month = months[tanggalBeritaObj.getMonth()];
+		var year = tanggalBeritaObj.getFullYear();
+        
+		return day + ' ' + month + ' ' + year;
+	}
 }
 // END TIMESTAMP
 
@@ -53,7 +54,7 @@ const addElBerita = (data, id) => {
     <div class="berita-item">
         <div class="card">
             <img src=${data.url_img} alt="">
-            <span>${changeTimestamp(data.tgl_uploud)}</span>
+            <span>${changeTimestamp(data.tanggal)}</span>
         </div>
         <div class="berita-item-title">
             <a href="isi-infor.html" ><h3 id=${id} class="btnPage">${data.judul}</h3></a>
@@ -73,13 +74,12 @@ window.addEventListener("click", (e) => {
 })
 // END OPEN BERITA
 
-let dataLenth = 0
 let dataTemp = []
 
 const getAllBerita = () => {
     return new Promise((resolve, reject) => {
         const db = getFirestore(app);
-        getDocs(query(collection(db, "Berita"), orderBy('tgl_uploud', 'desc')))
+        getDocs(query(collection(db, "Berita"), orderBy('tanggal', 'desc')))
             .then(querySnapshot => {
                 let data = []
                 querySnapshot.forEach((doc) => {

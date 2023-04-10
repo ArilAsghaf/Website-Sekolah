@@ -19,19 +19,6 @@ const app = initializeApp(firebaseConfig)
 
 
 
-// TIMESTAMP
-const changeTimestamp = (data) => {
-    const tanggal = new Date(data);
-    const tgl = tanggal.getDate();
-    const bln = tanggal.getMonth();
-    const thn = tanggal.getFullYear();
-    const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    const bulan = dataBulan[bln];
-
-    return tgl + " " + bulan + " " + thn;
-}
-// END TIMESTAMP
-
 // LIMIT HEADLINE
 const limitBodyText = (text, long) => {
     if (text.length > long) {
@@ -43,8 +30,7 @@ const limitBodyText = (text, long) => {
 // END LIMIT HEADLINE
 
 // TAMPIL BERITA SEKOLAH
-const ekstrakulikuler = document.querySelector(".ekstrakulikuler");
-const btnSearch = document.querySelector(".input-group-append")
+const ekstrakulikuler = document.querySelector(".ekstrakulikuler")
 const pagination = document.querySelector(".pagination")
 const addElEkstrakulikuler = (data, id) => {
     return `

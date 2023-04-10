@@ -254,7 +254,7 @@ const addElSambutan = (data, id) => {
 	<button type="submit" class="btnSunting" id=${id} data-bs-toggle="modal" data-bs-target="#staticBackdrop">Sunting</button>
 ` 
 }
-///// ?????????
+
 let dataTemp = []
 
 const getAllSambutan = () => {
@@ -269,7 +269,6 @@ const getAllSambutan = () => {
                         id: doc.id
                     })
                     sambutan.innerHTML += addElSambutan(doc.data(), doc.id)
-					// isiSambutan.innerText= "huhu"
                 });
                 resolve(data)
                 dataTemp.push(data)

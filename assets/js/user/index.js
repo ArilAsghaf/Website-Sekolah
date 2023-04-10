@@ -23,14 +23,15 @@ let dataTemp = []
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
-    const tanggal = new Date(data);
-    const tgl = tanggal.getDate();
-    const bln = tanggal.getMonth();
-    const thn = tanggal.getFullYear();
-    const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    const bulan = dataBulan[bln];
-
-    return tgl + " " + bulan + " " + thn;
+	if(data !== undefined){
+		var tanggalBeritaObj = new Date(data);
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+		var day = tanggalBeritaObj.getDate();
+		var month = months[tanggalBeritaObj.getMonth()];
+		var year = tanggalBeritaObj.getFullYear();
+        
+		return day + ' ' + month + ' ' + year;
+	}
 }
 // END TIMESTAMP
 
@@ -52,13 +53,13 @@ const addElBerita = (data, id) => {
         <div class="berita-beranda-item">
             <div class="card">
                 <img src=${data.url_img} alt="">
-                <span>${changeTimestamp(data.tgl_uploud)}</span>
+                <span>${changeTimestamp(data.tanggal)}</span>
             </div>
             <div class="berita-beranda-item-title">
                 <a href="isi-infor.html" ><h3 id=${id} class="btnPage">${data.judul}</h3></a>
             </div>
             <div class="berita-beranda-item-body">
-                <p>${limitBodyText(data.isi, 100)}</p>
+                <p>${limitBodyText(data.isi, 400)}</p>
             </div>
         </div>
     </div>
@@ -75,7 +76,7 @@ window.addEventListener("click", (e) => {
 const getLimitedBerita = (limitData) => {
     return new Promise((resolve, reject) => {
         const db = getFirestore(app);
-        getDocs(query(collection(db, "Berita"), orderBy('tgl_uploud', 'desc'), limit(limitData)))
+        getDocs(query(collection(db, "Berita"), orderBy('tanggal', 'desc'), limit(limitData)))
             .then(querySnapshot => {
                 let data = [];
                 querySnapshot.forEach(doc => {
@@ -115,9 +116,9 @@ const addElPrestasi = (data, id) => {
             </div>
             <div class="col-md-6">
                 <div class="prestasi-item-title">
-                <h3>${data.judul}<</h3>
+                <h3>${data.judul}</h3>
                 <div class="prestasi-item-meta">
-                    <span><i class="far fa-calendar-alt"></i> ${changeTimestamp(data.tgl_uploud)} </span>
+                    <span><i class="far fa-calendar-alt"></i> ${changeTimestamp(data.tanggal)} </span>
                     <span><i class="fas fa-map-marked-alt"></i> ${data.lokasi}</span>
                 </div>
                 </div>
@@ -139,7 +140,7 @@ window.addEventListener("click", (e) => {
 const getLimitedPrestasi = (limitData) => {
     return new Promise((resolve, reject) => {
         const db = getFirestore(app);
-        getDocs(query(collection(db, "Prestasi"), orderBy('tgl_uploud', 'desc'), limit(limitData)))
+        getDocs(query(collection(db, "Prestasi"), orderBy('tanggal', 'desc'), limit(limitData)))
             .then(querySnapshot => {
                 let data = [];
                 querySnapshot.forEach(doc => {
