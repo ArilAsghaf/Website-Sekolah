@@ -22,11 +22,11 @@ const app = initializeApp(firebaseConfig)
 // TIMESTAMP
 const changeTimestamp = (data) => {
 	if(data !== undefined){
-		var tanggalBeritaObj = new Date(data);
+		var tanggalInfoObj = new Date(data);
 		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-		var day = tanggalBeritaObj.getDate();
-		var month = months[tanggalBeritaObj.getMonth()];
-		var year = tanggalBeritaObj.getFullYear();
+		var day = tanggalInfoObj.getDate();
+		var month = months[tanggalInfoObj.getMonth()];
+		var year = tanggalInfoObj.getFullYear();
         
 		return day + ' ' + month + ' ' + year;
 	}
@@ -43,7 +43,7 @@ const limitBodyText = (text, long) => {
 };
 // END LIMIT HEADLINE
 
-// TAMPIL BERITA SEKOLAH
+// TAMPIL INFO SEKOLAH
 const infoSekolah = document.querySelector(".infoSekolah")
 const pagination = document.querySelector(".pagination")
 
@@ -55,20 +55,22 @@ const addElInfo = (data, id) => {
             <span>${changeTimestamp(data.tanggal)}</span>
         </div>
         <div class="info-item-title">
-            <a href="isi-infor.html"><h3 id=${id} class="btnPage">${data.judul}</h3></a>
+            <a href="isi-info.html"><h3 id=${id} class="btnPage">${data.judul}</h3></a>
         </div>
         <div class="info-item-body">
-            <p>${limitBodyText(data.isi, 100)}</p>
+            <p>${limitBodyText(data.isi, 400)}</p>
         </div>
     </div>
 	`
 }
 
+// OPEN INFO
 window.addEventListener("click", (e) => {
     if (e.target.classList == "btnPage") {
-        localStorage.setItem("idBerita", e.target.id)
+        localStorage.setItem("idInfo", e.target.id)
     }
 })
+// END OPEN INFO
 
 let dataTemp = []
 
@@ -95,7 +97,7 @@ const getAllInfo = () => {
     })
 }
 getAllInfo()
-// END TAMPIL BERITA SEKOLAH
+// END TAMPIL INFO SEKOLAH
 
 
 // PAGE LIST

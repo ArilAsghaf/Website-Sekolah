@@ -57,10 +57,10 @@ const addElBerita = (data, id) => {
             <span>${changeTimestamp(data.tanggal)}</span>
         </div>
         <div class="berita-item-title">
-            <a href="isi-infor.html" ><h3 id=${id} class="btnPage">${data.judul}</h3></a>
+            <a href="isi-berita.html" ><h3 id=${id} class="btnPage">${data.judul}</h3></a>
         </div>
         <div class="berita-item-body">
-            <p>${limitBodyText(data.isi, 100)}</p>
+            <p>${limitBodyText(data.isi, 400)}</p>
         </div>
     </div>
     `

@@ -20,7 +20,7 @@ const app = initializeApp(firebaseConfig)
 
 
 // TAMPIL BERITA SEKOLAH
-const sarpras = document.querySelector(".sarprass");
+const sarpras = document.querySelector(".sarpras");
 const addElSarpras = (data, id) => {
     return `
     <div class="col-md-4">
@@ -28,7 +28,7 @@ const addElSarpras = (data, id) => {
             <div class="card">
                 <img src=${data.url_img} alt="">
                     <div class="img-title">
-                        <h5>${data.judul}</h5>
+                        <h5>${data.keterangan}</h5>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@ $(async function () {
 
         $(".sarpras .sarpras-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
 
-        $(".pagination-item").not(".previous-pagination, .next-pagination").remove();
+        $(".pagination li").slice(1, -1).remove();
 
         getPageList(totalPages, currentPage, paginationSize).forEach(item => {
             $("<li>").addClass("pagination-item").addClass(item ? "current-pagination" : "dots").toggleClass("active", item === currentPage).append($("<a>").addClass("pagination-link").attr({ href: "javascript:void(0)" }).text(item || "...")).insertBefore(".next-pagination");

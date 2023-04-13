@@ -5,17 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SMP NEGERI 2 PATI</title>
-    <!-- Logo Titile Bar -->
     <link rel="icon" href="../../assets/img/icon.png" type="image/x-icon" />
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="../../assets/css/bootstrap.css" />
-    <!-- Font Awesome / Icon -->
     <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css" />
-    <!-- Style CSS  -->
     <link rel="stylesheet" href="../../assets/css/style.css" />
-    <!-- library AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -94,7 +88,7 @@
                     </li>
                     <li>
                         <i class="fas fa-caret-right"></i><a class="breadcrumbPage" href="berita.html"
-                            style="margin: 0 10px 0 10px; color: #000">Berita</a>
+                            style="margin: 0 10px 0 10px; color: #000">Berita Sekolah</a>
                     </li>
                     <li>
                         <i class="fas fa-caret-right"></i><a href="#"
@@ -114,7 +108,7 @@
                     
                 </div>
                 <div class="col-md-4">
-                    <div class="searchbox">
+                    <!-- <div class="searchbox">
                         <div class="search">
                             <h4>Cari Berita</h4>
                         </div>
@@ -127,7 +121,7 @@
                         <div class="input-group-append">
                             <a class="btn btn-primary" id="search-button">Search</a>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="kategori">
                         <div class="kategori-berita">
                             <h4>Kategori Berita</h4>
@@ -229,81 +223,8 @@
     <!-- <script type="module" src="../../assets/js/main.js"></script> -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../../assets/js/aos.js"></script>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-        import { doc, setDoc, getFirestore, getDoc, updateDoc, Timestamp, addDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAc4tRSj1ENgI3oGU5ZUsAk684_fKyFVfU",
-            authDomain: "smpn-2-pati.firebaseapp.com",
-            projectId: "smpn-2-pati",
-            storageBucket: "smpn-2-pati.appspot.com",
-            messagingSenderId: "392087494788",
-            appId: "1:392087494788:web:924c46eb0a810c6067a2d1"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig)
-
-
-
-        
-        const changeTimestamp = (data) => {
-            const tanggal = new Date(data);
-            const tgl = tanggal.getDate();
-            const bln = tanggal.getMonth();
-            const thn = tanggal.getFullYear();
-            const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-            const bulan = dataBulan[bln];
-
-            return tgl + " " + bulan + " " + thn;
-        }
-
-        const infor_sekolah = document.querySelector(".infor_sekolah");
-        const page_isi = document.querySelector(" .page_isi");
-        // const breadcrumbPage = document.querySelector(".breadcrumbPage")
-        const addElb = (data) => {
-            // breadcrumbPage.innerText = ''
-            page_isi.innerText = data.judul
-            return `
-            <div class="isi-item">
-                <div class="card">
-                    <img src=${data.url_img} alt="">
-                    <span>${changeTimestamp(data.tgl_uploud)}</span>
-                </div>
-                <div class="isi-item-title">
-                    <div>
-                        <h3>${data.judul}</h3>
-                    </div>
-                </div>
-                <div class="isi-item-body">
-                    <p>${data.isi}</p>
-                </div>
-            </div>
-        `
-        }
-
-        const id = localStorage.getItem("idBerita")
-        const getDataBerita = () => {
-            return new Promise((resolve, reject) => {
-                const db = getFirestore(app);
-                getDoc(doc(db, "Berita", id))
-                    .then(docSnap => {
-                        if (docSnap.exists()) {
-                            infor_sekolah.innerHTML += addElb(docSnap.data())
-                        }
-                    })
-                    .catch((error) => {
-                        reject(error)
-                    });
-            })
-        }
-        getDataBerita()
-    </script>
+    <script type="module" src="../../assets/js/user/isi-berita.js"></script>
+    <!-- <script type="module" src="../../assets/js/user/isi-info.js"></script> -->
 
 </body>
 

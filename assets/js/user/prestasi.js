@@ -54,7 +54,7 @@ const addElPrestasi = (data, id) => {
             </div>
             <div class="col-md-6">
                 <div class="pres-item-title">
-                    <h3>${data.judul}</h3>
+                <a href="isi-prestasi.html"><h3 id=${id} class="btnPage">${data.judul}</h3></a>
                     <div class="pres-item-meta">
                     <span><i class="far fa-calendar-alt"></i> ${changeTimestamp(data.tanggal)}  </span>
                     <span><i class="fas fa-map-marked-alt"></i> ${data.lokasi}</span>
@@ -69,11 +69,13 @@ const addElPrestasi = (data, id) => {
     `
 }
 
+// OPEN INFO
 window.addEventListener("click", (e) => {
     if (e.target.classList == "btnPage") {
         localStorage.setItem("idPrestasi", e.target.id)
     }
 })
+// END OPEN INFO
 
 let dataTemp = []
 

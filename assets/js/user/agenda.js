@@ -21,14 +21,15 @@ const app = initializeApp(firebaseConfig)
 
 // TIMESTAMP
 const changeTimestamp = (data) => {
-    const tanggal = new Date(data);
-    const tgl = tanggal.getDate();
-    const bln = tanggal.getMonth();
-    const thn = tanggal.getFullYear();
-    const dataBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    const bulan = dataBulan[bln];
-
-    return tgl + " " + bulan + " " + thn;
+	if(data !== undefined){
+		var tanggalInfoObj = new Date(data);
+		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+		var day = tanggalInfoObj.getDate();
+		var month = months[tanggalInfoObj.getMonth()];
+		var year = tanggalInfoObj.getFullYear();
+        
+		return day + ' ' + month + ' ' + year;
+	}
 }
 // END TIMESTAMP
 
@@ -42,7 +43,7 @@ const limitBodyText = (text, long) => {
 };
 // END LIMIT HEADLINE
 
-// TAMPIL BERITA SEKOLAH
+// TAMPIL AGENDA
 const agendaSekolah = document.querySelector(".agendaSekolah");
 const btnSearch = document.querySelector(".input-group-append")
 const pagination = document.querySelector(".pagination")
@@ -51,30 +52,32 @@ const addElAgenda = (data, id) => {
     <div class="agenda-item">
         <div class="card">
             <img src=${data.url_img} alt="">
-            <span>${changeTimestamp(data.tgl_uploud)}</span>
+            <span>${changeTimestamp(data.tanggal)}</span>
         </div>
         <div class="agenda-item-title">
-            <a href="isi-infor.html" ><h3 id=${id} class="btnPage">${data.judul}</h3></a>
+            <a href="isi-agenda.html" ><h3 id=${id} class="btnPage">${data.judul}</h3></a>
         </div>
         <div class="agenda-item-body">
-            <p>${limitBodyText(data.isi, 100)}</p>
+            <p>${limitBodyText(data.isi, 400)}</p>
         </div>
     </div>
     `
 }
 
+// OPEN INFO
 window.addEventListener("click", (e) => {
     if (e.target.classList == "btnPage") {
-        localStorage.setItem("idBerita", e.target.id)
+        localStorage.setItem("idAgenda", e.target.id)
     }
 })
+// END OPEN INFO
 
 let dataTemp = []
 
 const getAllAgenda = () => {
     return new Promise((resolve, reject) => {
         const db = getFirestore(app);
-        getDocs(query(collection(db, "Agenda"), orderBy('tgl_uploud', 'desc')))
+        getDocs(query(collection(db, "Agenda"), orderBy('tanggal', 'desc')))
             .then(querySnapshot => {
                 let data = []
                 querySnapshot.forEach((doc) => {
@@ -93,7 +96,7 @@ const getAllAgenda = () => {
     })
 }
 getAllAgenda()
-// END TAMPIL BERITA SEKOLAH
+// END TAMPIL AGENDA
 
 
 // SEARCH

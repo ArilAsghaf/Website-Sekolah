@@ -22,11 +22,11 @@ const app = initializeApp(firebaseConfig)
 // TIMESTAMP
 const changeTimestamp = (data) => {
 	if(data !== undefined){
-		var tanggalBeritaObj = new Date(data);
+		var tanggalGaleriObj = new Date(data);
 		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-		var day = tanggalBeritaObj.getDate();
-		var month = months[tanggalBeritaObj.getMonth()];
-		var year = tanggalBeritaObj.getFullYear();
+		var day = tanggalGaleriObj.getDate();
+		var month = months[tanggalGaleriObj.getMonth()];
+		var year = tanggalGaleriObj.getFullYear();
         
 		return day + ' ' + month + ' ' + year;
 	}
@@ -44,7 +44,7 @@ const addElGaleri = (data, id) => {
                 <img src=${data.url_img} alt="">
                     <div class="img-title">
                         <p>${changeTimestamp(data.tanggal)}</p>
-                        <h5>${data.judul}</h5>
+                        <h5>${data.keterangan}</h5>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@ $(async function () {
         $("<li>").addClass("pagination-item").addClass("next-pagination").append($("<a>").addClass("pagination-link").attr({ href: "javascript:void(0)" }).text("Next"))
     );
 
-    $(".beritaSekolah").show();
+    $(".galeri").show();
     showPage(1);
 
     $(document).on("click", ".pagination li.current-pagination:not(.active)", function () {
