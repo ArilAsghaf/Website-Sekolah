@@ -2131,15 +2131,15 @@ header .kontak-title h2:after {
         font-size: 12px
     }
     
-    #berita-beranda .berita-beranda-title {
+    #berita-beranda .berita-beranda-title, #ekstrakul .section-title, #prestasi-beranda .section-title {
         margin-bottom: 70px;
     }
 
-    #berita-beranda .berita-beranda-title h2 {
+    #berita-beranda .berita-beranda-title h2, #ekstrakul .section-title h2, #prestasi-beranda .section-title h2 {
         font-size: 25px;
     }
 
-    #berita-beranda .berita-beranda-title h2:after {
+    #berita-beranda .berita-beranda-title h2:after, #ekstrakul .section-title h2:after, #prestasi-beranda .section-title h2:after {
         width: 190px;
         height: 2px;
     }
