@@ -2126,6 +2126,15 @@ header .kontak-title h2:after {
     /* END CSS BG PARALLAX */
 
     /* CSS BERITA BERANDA */
+    #berita-beranda .card span {
+        top: 255px;
+        font-size: 12px
+    }
+    
+    #berita-beranda .berita-beranda-title {
+        margin-bottom: 70px;
+    }
+
     #berita-beranda .berita-beranda-title h2 {
         font-size: 25px;
     }
@@ -2146,9 +2155,14 @@ header .kontak-title h2:after {
     #berita-beranda .berita-beranda-item-title {
         margin: 0 10px 20px 10px;
     }
+
+    #berita-beranda .berita-beranda-item-title h3 {
+        font-size: 16px;
+    }
     
     #berita-beranda .berita-beranda-item-body p {
         margin: 0 10px 0 10px;
+        font-size: 13px
     }
     /* END CSS BERITA BERANDA */
 
