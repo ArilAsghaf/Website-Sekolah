@@ -432,7 +432,7 @@ header .bg-header:after {
     padding-bottom: 10px;
 }
 
-#berita-beranda .berita-beranda-button {
+/* #berita-beranda .berita-beranda-button {
     margin-left: auto;
     margin-right: auto;
 }
@@ -454,7 +454,7 @@ header .bg-header:after {
     background-color: #11418A;
     color: #FEF501;
     transition-duration: 0.3s;
-}
+} */
 /* END CSS BERITA BERANDA */
 
 
@@ -620,12 +620,12 @@ header .bg-header:after {
     text-align: justify;
 }
 
-#prestasi-beranda .prestasi-button {
+#berita-beranda .berita-beranda-button, #prestasi-beranda .prestasi-button {
     margin-left: auto;
     margin-right: auto;
 }
 
-#prestasi-beranda a.btn.btn-primary {
+#berita-beranda a.btn.btn-primary, #prestasi-beranda a.btn.btn-primary {
     background-color: #fff;
     color: #11418A;
     border-color: #11418A;
@@ -638,7 +638,7 @@ header .bg-header:after {
     font-size: 15px;
 }
 
-#prestasi-beranda a.btn.btn-primary:hover {
+#berita-beranda a.btn.btn-primary:hover, #prestasi-beranda a.btn.btn-primary:hover {
     background-color: #11418A;
     color: #FEF501;
     transition-duration: 0.3s;
@@ -694,7 +694,7 @@ footer .sosmed {
 
 footer .sosmed li {
     display: inline-block;
-    margin-right: 20px;
+    margin: 0 10px 0 10px;
 }
 
 footer .sosmed li a {
@@ -713,19 +713,6 @@ footer .sosmed li a:hover {
     color: #FEF501;
     transition-duration: 0.3s;
 }
-
-/* .lokasi-footer h2 {
-    font-size: 20px;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.lokasi-footer {
-    width: 100%;
-    margin: auto;
-} */
 
 .footer-col h2 {
     font-size: 20px;
@@ -2096,7 +2083,7 @@ header .kontak-title h2:after {
 
     .navbar-brand h2 {
         margin-top: 10px;
-        margin-left: 75px;
+        margin-left: 70px;
         font-size: 20px;
     }
 
@@ -2180,6 +2167,46 @@ header .kontak-title h2:after {
     }
     /* END CSS PRESTASI BERANDA */
 
+    .ekstrakul-body h4 {
+        font-size: 20px;
+    }
+
+    /* header .bg-header {
+        width: 100%;
+        height: 450px;
+        background-position: 0 -200px;
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        position: relative;
+        text-shadow: 2px 2px 5px #000;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    header .bg-header:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+    } */
+
+    header .sambutan-title {
+        padding-top: 40px;
+    }
+    
+    header .sambutan-title h2 {
+        font-size: 20px;
+    }
+    
+    header .sambutan-title h2:after {
+        width: 110px;
+    }
+
     /* CSS PAGE VISI MISI */
     #visi-misi ol {
         width: 95%;
@@ -2255,8 +2282,37 @@ header .kontak-title h2:after {
     /* END CSS PAGE KONTAK */
 
     /* CSS FOOTER */
+    footer .brand img {
+        width: 30px;
+        height: 45px;
+    }
+    
+    footer .brand h1 {
+        margin-top: 10px;
+        font-size: 20px;
+    }
+
+    footer .footer-col:first-of-type {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    footer .sosmed {
+        width: 90%;
+        margin: auto;
+    }
+
+    .footer-col h2 {
+        font-size: 18px;
+    }
+    
+    .footer-col .alamat, .footer-col .kontak, .footer-col .footer-nav a, .footer-copyright h6 a {
+        font-size: 12px;
+    }
+
     .footer-col {
-        margin-left: 20px;
+        width: 90%;
+        margin: auto;
     }
     /* END CSS FOOTER */
 
