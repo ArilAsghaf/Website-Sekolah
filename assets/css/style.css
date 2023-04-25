@@ -939,6 +939,11 @@ header .galeri-title h2:after {
     border-radius: 5px;
 }
 
+.galeri-item img {
+    width: 100%;
+    height: 100%;
+}
+
 .img-title {
     position: absolute;
     width: 100%;
@@ -2113,7 +2118,7 @@ header .kontak-title h2:after {
     /* END CSS BG PARALLAX */
 
     /* CSS BERITA BERANDA */
-    #berita-beranda .card span {
+    #berita-beranda .card span, #berita .card span, #info .card span {
         top: 255px;
         font-size: 12px
     }
@@ -2135,19 +2140,19 @@ header .kontak-title h2:after {
         width: 100%;
     }
 
-    #berita-beranda .berita-beranda-item {
+    #berita-beranda .berita-beranda-item, .berita-item, .info-item {
         margin: 0 0 50px 0;
     }
 
-    #berita-beranda .berita-beranda-item-title {
+    #berita-beranda .berita-beranda-item-title, .berita-item-title, .info-item-title {
         margin: 0 10px 20px 10px;
     }
 
-    #berita-beranda .berita-beranda-item-title h3 {
+    #berita-beranda .berita-beranda-item-title h3, .berita-item-title h3, .info-item-title h3 {
         font-size: 16px;
     }
     
-    #berita-beranda .berita-beranda-item-body p {
+    #berita-beranda .berita-beranda-item-body p, .berita-item-body p, .info-item-body p {
         margin: 0 10px 0 10px;
         font-size: 13px
     }
@@ -2171,20 +2176,19 @@ header .kontak-title h2:after {
         font-size: 20px;
     }
 
-    /* header .bg-header {
-        width: 100%;
-        height: 450px;
-        background-position: 0 -200px;
-        background-size: cover;
+    header .bg-header {
+        height: 300px;
+        background-position: -400px -100px;
+        /* background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
         position: relative;
         text-shadow: 2px 2px 5px #000;
         background-size: cover;
-        background-attachment: fixed;
+        background-attachment: fixed; */
     }
 
-    header .bg-header:after {
+    /* header .bg-header:after {
         content: '';
         display: block;
         position: absolute;
@@ -2195,20 +2199,65 @@ header .kontak-title h2:after {
         background-color: rgba(0, 0, 0, 0.6);
     } */
 
-    header .sambutan-title {
-        padding-top: 40px;
+    header .sambutan-title, header .visimisi-title, header .galeri-title, header .berita-title, header .info-title {
+        padding-top: 20px;
     }
     
-    header .sambutan-title h2 {
+    header .sambutan-title h2, header .visimisi-title h2, header .galeri-title h2, header .berita-title h2, header .info-title h2 {
         font-size: 20px;
     }
     
     header .sambutan-title h2:after {
         width: 110px;
+        height: 3px;
+    }
+
+    header .visimisi-title h2:after {
+        width: 140px;
+        height: 3px;
+    }
+
+    header .galeri-title h2:after {
+        width: 70px;
+        height: 3px;
+    }
+
+    header .berita-title h2:after {
+        width: 180px;
+        height: 3px;
+    }
+
+    header .info-title h2:after {
+        width: 160px;
+        height: 3px;
+    }
+
+    .page-item {
+        font-size: 12px;
+        padding: 15px 20px 1px 20px;
+    }
+
+    #sambutan .card {
+        width: 100%;
+        margin: 0 0 30px 0;
+    }
+
+    #sambutan p {
+        font-size: 14px;
     }
 
     /* CSS PAGE VISI MISI */
+    .visi,
+    .misi {
+    font-size: 18px;
+    }
+
+    #visi-misi p {
+        font-size: 14px;
+    }
+
     #visi-misi ol {
+        font-size: 14px;
         width: 95%;
         margin: auto;
         text-align: justify;
@@ -2216,14 +2265,33 @@ header .kontak-title h2:after {
     /* END CSS PAGE VISI MISI */
 
     /* CSS PAGE GALERI */
+    .galeri-item .card {
+        max-width: 410px;
+        height: 240px;
+    }
+
     .img-title p,h5 {
-        top: 210px;
+        top: 200px;
     }
     /* END PAGE CSS GALERI */
 
+    .searchbox {
+        width: 100%;
+        margin: auto;
+        margin-top: 30px;
+    }
+
     /* CSS PAGE BERITA SEKOLAH */
+    #berita {
+        margin-top: 30px;
+    }
+
     #berita .berita {
         width: 100%;
+    }
+
+    #berita .card, #info .card {
+        max-height: 300px;
     }
     /* END CSS PAGE BERITA SEKOLAH */
 
@@ -2263,7 +2331,6 @@ header .kontak-title h2:after {
     }
     
     .pres-item-body p {
-
         margin: 0 20px 0 20px;
         padding-bottom: 20px;
     }
@@ -2298,7 +2365,7 @@ header .kontak-title h2:after {
     }
 
     footer .sosmed {
-        width: 90%;
+        width: 95%;
         margin: auto;
     }
 
