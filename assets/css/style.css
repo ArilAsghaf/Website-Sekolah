@@ -219,16 +219,15 @@ a:hover {
 header .bg-header {
     width: 100%;
     height: 450px;
-    background-position: 0 -200px;
+    background-position: center;
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
     position: relative;
     text-shadow: 2px 2px 5px #000;
-    /* background-position: center; */
-    /* background-position: bottom; */
-    background-size: cover;
-    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 header .bg-header:after {
@@ -787,15 +786,14 @@ footer .sosmed li a:hover {
 
 
 /* CSS PAGE SAMBUTAN */
-header .sambutan-title {
-    padding-top: 80px;
+header .sambutan-title, header .visimisi-title, header .galeri-title, header .berita-title, header .info-title, header .agenda-title, header .ekstra-title, header .prestasi-title, header .sarpras-title, header .kontak-title {
     text-align: center;
 }
 
-header .sambutan-title h2 {
+header .sambutan-title h2, header .visimisi-title h2, header .galeri-title h2, header .berita-title h2, header .info-title h2, header .agenda-title h2, header .ekstra-title h2, header .prestasi-title h2, header .sarpras-title h2, header .kontak-title h2 {
     position: relative;
     display: inline-block;
-    margin-top: 130px;
+    margin-top: 50px;
     font-size: 30px;
     text-transform: uppercase;
     color: #fff;
@@ -848,7 +846,7 @@ header .sambutan-title h2:after {
 
 
 /* CSS PAGE VISI MISI */
-header .visimisi-title {
+/* header .visimisi-title {
     padding-top: 80px;
     text-align: center;
 }
@@ -862,7 +860,7 @@ header .visimisi-title h2 {
     color: #fff;
     font-weight: bold;
     letter-spacing: 3px;
-}
+} */
 
 header .visimisi-title h2:after {
     position: absolute;
@@ -899,7 +897,7 @@ header .visimisi-title h2:after {
 
 
 /* CSS PAGE GALERI */
-header .galeri-title {
+/* header .galeri-title {
     padding-top: 80px;
     text-align: center;
 }
@@ -913,7 +911,7 @@ header .galeri-title h2 {
     color: #fff;
     font-weight: bold;
     letter-spacing: 3px;
-}
+} */
 
 header .galeri-title h2:after {
     position: absolute;
@@ -995,96 +993,6 @@ header .galeri-title h2:after {
 
 
 
-/* CSS PAGE PETA LOKASI */
-/* header .lokasi-title {
-    padding-top: 80px;
-    text-align: center;
-}
-
-header .lokasi-title h2 {
-    position: relative;
-    display: inline-block;
-    margin-top: 130px;
-    font-size: 30px;
-    text-transform: uppercase;
-    color: #fff;
-    font-weight: bold;
-    letter-spacing: 3px;
-}
-
-header .lokasi-title h2:after {
-    position: absolute;
-    content: "";
-    width: 190px;
-    height: 5px;
-    background-color: #D6261A;
-    bottom: -20px;
-    left: 50%;
-    transform: translate(-50%);
-}
-
-#lokasi {
-    margin-top: 50px;
-}
-
-#lokasi i {
-    font-size: 50px;
-    color: #0a0092;
-}
-
-#lokasi h3 {
-    margin-left: 20px;
-    margin-bottom: 30px;
-    font-weight: bold;
-}
-
-#lokasi .lokasi-alamat {
-    width: 90%;
-    margin: auto;
-}
-
-#lokasi .lokasi-alamat h4 {
-    margin-left: 70px;
-    font-size: 18px;
-    line-height: 30px;
-    letter-spacing: 1px;
-}
-
-#lokasi .card {
-    width: 98%;
-    height: 400px;
-    border-radius: 5px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 2px 2px 2px rgba(103, 103, 103, 0.8);
-    padding: 20px;
-    margin: auto;
-}
-
-#lokasi img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.9;
-    transition: transform .5s;
-}
-
-#lokasi .card:hover img {
-    transform: scale(1.1);
-    opacity: 1;
-}
-
-.lokasi-item {
-    width: 95%;
-    margin: auto;
-    margin-top: 100px;
-} */
-/* END CSS PAGE LOKASI */
-
-
-
 /* CSS SECTION SEARCHBOX DAN KATEGORI BERITA */
 .searchbox {
     background-color: #FBF9FF;
@@ -1158,7 +1066,7 @@ header .lokasi-title h2:after {
 
 
 /* CSS PAGE BERITA */
-header .berita-title {
+/* header .berita-title {
     padding-top: 80px;
     text-align: center;
 }
@@ -1172,7 +1080,7 @@ header .berita-title h2 {
     color: #fff;
     font-weight: bold;
     letter-spacing: 3px;
-}
+} */
 
 header .berita-title h2:after {
     position: absolute;
@@ -1275,7 +1183,7 @@ header .berita-title h2:after {
 
 
 /* CSS PAGE INFO */
-header .info-title {
+/* header .info-title {
     padding-top: 80px;
     text-align: center;
 }
@@ -1289,7 +1197,7 @@ header .info-title h2 {
     color: #fff;
     font-weight: bold;
     letter-spacing: 3px;
-}
+} */
 
 header .info-title h2:after {
     position: absolute;
@@ -1398,7 +1306,7 @@ header .info-title h2:after {
 
 
 /* CSS PAGE AGENDA */
-header .agenda-title {
+/* header .agenda-title {
     padding-top: 80px;
     text-align: center;
 }
@@ -1412,7 +1320,7 @@ header .agenda-title h2 {
     color: #fff;
     font-weight: bold;
     letter-spacing: 3px;
-}
+} */
 
 header .agenda-title h2:after {
     position: absolute;
@@ -1515,7 +1423,7 @@ header .agenda-title h2:after {
 
 
 /* CSS PAGE EKSTRAKULIKULER */
-header .ekstra-title {
+/* header .ekstra-title {
     padding-top: 80px;
     text-align: center;
 }
@@ -1529,12 +1437,12 @@ header .ekstra-title h2 {
     color: #fff;
     font-weight: bold;
     letter-spacing: 3px;
-}
+} */
 
 header .ekstra-title h2:after {
     position: absolute;
     content: "";
-    width: 250px;
+    width: 290px;
     height: 5px;
     background-color: #D6261A;
     bottom: -20px;
@@ -1614,7 +1522,7 @@ header .ekstra-title h2:after {
 
 
 /* CSS PAGE PRESTASI */
-header .prestasi-title {
+/* header .prestasi-title {
     padding-top: 80px;
     text-align: center;
 }
@@ -1628,7 +1536,7 @@ header .prestasi-title h2 {
     color: #fff;
     font-weight: bold;
     letter-spacing: 3px;
-}
+} */
 
 header .prestasi-title h2:after {
     position: absolute;
@@ -1700,7 +1608,7 @@ header .prestasi-title h2:after {
 
 
 /* CSS PAGE SARANA PRASARANA */
-header .sarpras-title {
+/* header .sarpras-title {
     padding-top: 80px;
     text-align: center;
 }
@@ -1714,7 +1622,7 @@ header .sarpras-title h2 {
     color: #fff;
     font-weight: bold;
     letter-spacing: 3px;
-}
+} */
 
 header .sarpras-title h2:after {
     position: absolute;
@@ -1792,7 +1700,7 @@ header .sarpras-title h2:after {
 
 
 /* CSS PAGE KONTAK */
-header .kontak-title {
+/* header .kontak-title {
     padding-top: 80px;
     text-align: center;
 }
@@ -1806,7 +1714,7 @@ header .kontak-title h2 {
     color: #fff;
     font-weight: bold;
     letter-spacing: 3px;
-}
+} */
 
 header .kontak-title h2:after {
     position: absolute;
@@ -2183,14 +2091,7 @@ header .kontak-title h2:after {
 
     header .bg-header {
         height: 300px;
-        background-position: -445px -100px;
-        /* background-size: cover;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        position: relative;
-        text-shadow: 2px 2px 5px #000;
-        background-size: cover;
-        background-attachment: fixed; */
+        /* background-position: center; */
     }
 
     /* header .bg-header:after {
