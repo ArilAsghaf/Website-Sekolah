@@ -1976,6 +1976,31 @@ header .kontak-title h2:after {
 /* END CSS PAGE 404 */
 
 
+#admin .btnAdmin {
+    width: 45px;
+    height: 45px;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30%;
+    color: #dfd701;
+    font-size: 20px;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    border: none;
+}
+
+#admin .btnAdmin2 {
+    background-color: red;
+}
+
+.hide {
+    display: none;
+}
+
+
 
 
 /* RESPONSIVE DESIGN */
@@ -2309,29 +2334,10 @@ header .kontak-title h2:after {
     }
     /* END CSS INFORMASI */
 
-}
+    #admin .btnAdmin {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
 
-
-#admin .btnAdmin {
-    width: 45px;
-    height: 45px;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 30%;
-    color: #dfd701;
-    font-size: 20px;
-    position: fixed;
-    right: 10px;
-    bottom: 10px;
-    border: none;
-}
-
-#admin .btnAdmin2 {
-    background-color: red;
-}
-
-.hide {
-    display: none;
 }
