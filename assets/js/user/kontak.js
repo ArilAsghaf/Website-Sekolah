@@ -63,12 +63,48 @@ const addSaran = (data) => {
         addDoc(collection(db, "Saran"), data)
             .then(() => {
                 console.log("jaii")
+                resolve(true)
             })
     });
 };
 
 btnPesan.addEventListener("click", async () => {
-    const resp = await addSaran(dataInputUser)
-    console.log(dataInputUser)
+    const { nama, email, subjek, pesan } =dataInputUser;
+	if (nama== "" || email== "" || subjek== "" || pesan== "" ) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Harap isi semua data !!!',
+		})
+	}
+    else if (!isValidEmail(email)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harap masukkan email dengan benar !!!',
+        })
+    }
+    else {
+        const resp = await addSaran(dataInputUser)
+		console.log(dataInputUser)
+        // getFile()
+        if (dataInputUser) {
+			Swal.fire({
+				icon: 'success',
+				title: 'Pesan berhasil dikirim',
+				showConfirmButton: false,
+				timer: 1500
+			})
+			setTimeout(() => {
+				location.reload()
+			}, 1610);
+		}
+		
+	}
 })
+
+function isValidEmail(email) {
+    const regexEmail = /\S+@\S+\.\S+/;
+    return regexEmail.test(email);
+}
 // END INPUT KOTAK SARAN

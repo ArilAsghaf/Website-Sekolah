@@ -100,12 +100,14 @@ a:hover {
 
 /* CSS PARALLAX */
 #bg-beranda .img {
+    height: 100vh;
     width: 100%;
-    min-height: 950px;
-    background-position: center;
+    max-height: 1000px;
     background-size: cover;
+    background-position: center center;
     background-attachment: fixed;
 }
+
 
 #bg-beranda .search-beranda {
     position: absolute;
@@ -2033,9 +2035,9 @@ header .kontak-title h2:after {
     /* END CSS NAVBAR */
 
     /* CSS BG PARALLAX */
-    #bg-beranda .img {
+    /* #bg-beranda .img {
         min-height: 670px;
-    }
+    } */
 
     #bg-beranda .search-beranda {
         top: 50%;
@@ -2309,10 +2311,10 @@ header .kontak-title h2:after {
         margin-bottom: 20px;
     }
 
-    footer .sosmed {
-        width: 95%;
+    /* footer .sosmed {
+        width: 80%;
         margin: auto;
-    }
+    } */
 
     .footer-col h2 {
         font-size: 18px;
