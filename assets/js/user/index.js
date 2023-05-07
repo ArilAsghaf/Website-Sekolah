@@ -56,7 +56,7 @@ const addElBerita = (data, id) => {
                 <span>${changeTimestamp(data.tanggal)}</span>
             </div>
             <div class="berita-beranda-item-title">
-                <a href="isi-infor.html" ><h3 id=${id} class="btnPage">${data.judul}</h3></a>
+                <a href="script/user/isi-berita.html" ><h3 id=${id} class="btnPage">${data.judul}</h3></a>
             </div>
             <div class="berita-beranda-item-body">
                 <p>${limitBodyText(data.isi, 400)}</p>
@@ -116,7 +116,7 @@ const addElPrestasi = (data, id) => {
             </div>
             <div class="col-md-6">
                 <div class="prestasi-item-title">
-                <h3>${data.judul}</h3>
+                <a href="script/user/isi-prestasi.html" ><h3 id=${id} class="btnPage">${data.judul}</h3></a>
                 <div class="prestasi-item-meta">
                     <span><i class="far fa-calendar-alt"></i> ${changeTimestamp(data.tanggal)} </span>
                     <span><i class="fas fa-map-marked-alt"></i> ${data.lokasi}</span>

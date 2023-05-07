@@ -119,10 +119,11 @@ a:hover {
     padding: 50px 80px 50px 80px;
     /* border-radius: 27% 73% 18% 82% / 100% 0% 100% 0% ; */
     border-radius: 30px;
+    border: #fff dashed 1px;
 }
 
 #bg-beranda h1 {
-    font-size: 65px;
+    font-size: 55px;
     color: #fff;
     font-weight: bold;
     text-align: center;
@@ -130,21 +131,22 @@ a:hover {
     letter-spacing: 5px;
     /* margin-bottom: 40px; */
     text-shadow: 2px 2px 5px #000;
+    margin-bottom: 50px;
 
 }
 
 #bg-beranda h3 {
-    font-size: 30px;
-    color: #fff;
+    font-size: 20px;
+    color: #dfd701;
     font-weight: bold;
     text-align: center;
     top: 50%;
     letter-spacing: 2px;
-    margin-bottom: 60px;
-    text-shadow: 2px 2px 5px #000;
+    margin: 0 40px 0 40px;
+    /* text-shadow: 2px 2px 5px #000; */
 }
 
-#bg-beranda h3:after {
+/* #bg-beranda h3:after {
     position: absolute;
     content: "";
     width: 80px;
@@ -153,7 +155,7 @@ a:hover {
     bottom: 165px;
     left: 50%;
     transform: translate(-50%);
-}
+} */
 
 /* .input-box {
     position: absolute;
@@ -2067,15 +2069,29 @@ header .kontak-title h2:after {
 
     #bg-beranda .search-beranda {
         top: 50%;
-        left: 35%;
-        transform: translate(-27%, -50%);
-        
+        left: 20%;
+        transform: translate(-12%, -50%);
+        padding: 20px 5px 20px 5px;
+        border-radius: 10px;
     }
 
     #bg-beranda .search-beranda h1 {
         font-size: 22px;
         letter-spacing: 2px;
     }
+
+    /* #bg-beranda h3 {
+        font-size: 15px;
+        margin-bottom: 30px;
+        padding: 20px;
+    } */
+
+    /* #bg-beranda h3:after {
+        bottom: 80px;
+        height: 2px;
+        width: 30px;
+        background-color: #D6261A;
+    } */
     /* END CSS BG PARALLAX */
 
     /* CSS BERITA BERANDA */
