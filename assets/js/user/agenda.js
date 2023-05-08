@@ -105,24 +105,28 @@ let dataSearch = {
     txt : ''
 }
 btnSearch.addEventListener('click', async() => {
-    agendaSekolah.innerHTML = ''
-    dataTemp[0].forEach(data => {
-        if(data.judul == cariAgenda.value.toUpperCase()){
-            agendaSekolah.innerHTML += addElAgenda(data, data.id)
-            pagination.style.display = 'none';
-        }else if(data.judul != cariAgenda.value.toUpperCase()){
-            pagination.style.display = 'none';
-        }else if (cariAgenda.value == '') {
-            agendaSekolah.innerHTML += addElAgenda(data, data.id)
-            pagination.style.display = 'flex';
-        } 
-    })
+    beritaSekolah.innerHTML = ''
+    if(cariAgenda.value !== ''){
+        dataTemp[0].forEach(data => {
+            const searchData = data.judul.toLowerCase()
+            console.log(cariAgenda.value == '')
+            if(searchData.includes(cariAgenda.value)){
+                beritaSekolah.innerHTML += addElAgenda(data, data.id)
+                pagination.style.display = 'none';
+            }else if(!searchData.includes(cariAgenda.value)){
+                pagination.style.display = 'none';
+            }
+        })
+    }else {
+        location.reload()
+    }
 })
 
 cariAgenda.addEventListener("change", async (e) => {
     dataSearch = {
         txt : e.target.value
     }
+    
 })
 // END SEARCH
 
@@ -183,7 +187,7 @@ $(async function () {
         $("<li>").addClass("pagination-item").addClass("next-pagination").append($("<a>").addClass("pagination-link").attr({ href: "javascript:void(0)" }).text("Next"))
     );
 
-    $(".beritaSekolah").show();
+    $(".agendaSekolah").show();
     showPage(1);
 
     $(document).on("click", ".pagination li.current-pagination:not(.active)", function () {

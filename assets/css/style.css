@@ -2078,13 +2078,12 @@ header .kontak-title h2:after {
     #bg-beranda .search-beranda h1 {
         font-size: 22px;
         letter-spacing: 2px;
+        margin-bottom: 20px;
     }
 
-    /* #bg-beranda h3 {
-        font-size: 15px;
-        margin-bottom: 30px;
-        padding: 20px;
-    } */
+    #bg-beranda h3 {
+        font-size: 13px;
+    }
 
     /* #bg-beranda h3:after {
         bottom: 80px;

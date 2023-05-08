@@ -100,6 +100,38 @@ getAllInfo()
 // END TAMPIL INFO SEKOLAH
 
 
+// SEARCH
+const cariInfo = document.querySelector(".cariInfo")
+let dataSearch = {
+    txt : ''
+}
+btnSearch.addEventListener('click', async() => {
+    beritaSekolah.innerHTML = ''
+    if(cariInfo.value !== ''){
+        dataTemp[0].forEach(data => {
+            const searchData = data.judul.toLowerCase()
+            console.log(cariInfo.value == '')
+            if(searchData.includes(cariInfo.value)){
+                beritaSekolah.innerHTML += addElInfo(data, data.id)
+                pagination.style.display = 'none';
+            }else if(!searchData.includes(cariInfo.value)){
+                pagination.style.display = 'none';
+            }
+        })
+    }else {
+        location.reload()
+    }
+})
+
+cariInfo.addEventListener("change", async (e) => {
+    dataSearch = {
+        txt : e.target.value
+    }
+    
+})
+// END SEARCH
+
+
 // PAGE LIST
 function getPageList(totalPages, page, maxLength) {
     function range(start, end) {
