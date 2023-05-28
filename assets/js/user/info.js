@@ -45,8 +45,8 @@ const limitBodyText = (text, long) => {
 
 // TAMPIL INFO SEKOLAH
 const infoSekolah = document.querySelector(".infoSekolah")
+// const btnSearch = document.querySelector(".input-group-append")
 const pagination = document.querySelector(".pagination")
-
 const addElInfo = (data, id) => {
     return `
 	<div class="info-item">

@@ -2051,7 +2051,7 @@ header .kontak-title h2:after {
 
     .navbar-brand h2 {
         margin-top: 10px;
-        margin-left: 70px;
+        margin-left: 85px;
         font-size: 20px;
     }
 
@@ -2381,6 +2381,19 @@ header .kontak-title h2:after {
         width: 30px;
         height: 30px;
         font-size: 14px;
+    }
+
+    .pagination li a {
+        font-size: 0.8em;
+        line-height: 30px;
+    }
+    .pagination .previous-pagination,.pagination .next-pagination {
+        width: 50px;
+        height: 30px;
+    }
+    .pagination .current-pagination, .dots {
+        width: 30px;
+        height: 30px;
     }
 
 }

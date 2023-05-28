@@ -62,7 +62,7 @@ const addSaran = (data) => {
         const db = getFirestore(app);
         addDoc(collection(db, "Saran"), data)
             .then(() => {
-                console.log("jaii")
+                console.log("succes !!!")
                 resolve(true)
             })
     });

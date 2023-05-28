@@ -105,13 +105,13 @@ let dataSearch = {
     txt : ''
 }
 btnSearch.addEventListener('click', async() => {
-    beritaSekolah.innerHTML = ''
+    agendaSekolah.innerHTML = ''
     if(cariAgenda.value !== ''){
         dataTemp[0].forEach(data => {
             const searchData = data.judul.toLowerCase()
             console.log(cariAgenda.value == '')
             if(searchData.includes(cariAgenda.value)){
-                beritaSekolah.innerHTML += addElAgenda(data, data.id)
+                agendaSekolah.innerHTML += addElAgenda(data, data.id)
                 pagination.style.display = 'none';
             }else if(!searchData.includes(cariAgenda.value)){
                 pagination.style.display = 'none';
