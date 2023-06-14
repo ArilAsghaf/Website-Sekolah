@@ -45,7 +45,7 @@ const limitBodyText = (text, long) => {
 
 // TAMPIL INFO SEKOLAH
 const infoSekolah = document.querySelector(".infoSekolah")
-// const btnSearch = document.querySelector(".input-group-append")
+const btnSearch = document.querySelector(".input-group-append")
 const pagination = document.querySelector(".pagination")
 const addElInfo = (data, id) => {
     return `
@@ -105,14 +105,52 @@ const cariInfo = document.querySelector(".cariInfo")
 let dataSearch = {
     txt : ''
 }
+// btnSearch.addEventListener('click', async() => {
+//     beritaSekolah.innerHTML = ''
+//     if(cariInfo.value !== ''){
+//         dataTemp[0].forEach(data => {
+//             const searchData = data.judul.toLowerCase()
+//             console.log(cariInfo.value == '')
+//             if(searchData.includes(cariInfo.value)){
+//                 beritaSekolah.innerHTML += addElInfo(data, data.id)
+//                 pagination.style.display = 'none';
+//             }else if(!searchData.includes(cariInfo.value)){
+//                 pagination.style.display = 'none';
+//             }
+//         })
+//     }else {
+//         location.reload()
+//     }
+// })
+
+cariInfo.addEventListener("keydown", async (e) => {
+    if (e.key === "Enter") {
+        e.searchData(); // Menghentikan aksi default dari tombol enter (misalnya submit form)
+        
+        dataSearch = {
+            txt: e.target.value
+        };
+    }
+})
+
 btnSearch.addEventListener('click', async() => {
-    beritaSekolah.innerHTML = ''
+	searchData();
+});
+
+// cariInfo.addEventListener('keypress', (e) => {
+//     if (e.key === 'Enter') {
+//         searchData()
+//     }
+// });
+
+function searchData() {
+	infoSekolah.innerHTML = ''
     if(cariInfo.value !== ''){
         dataTemp[0].forEach(data => {
             const searchData = data.judul.toLowerCase()
             console.log(cariInfo.value == '')
             if(searchData.includes(cariInfo.value)){
-                beritaSekolah.innerHTML += addElInfo(data, data.id)
+                infoSekolah.innerHTML += addElInfo(data, data.id)
                 pagination.style.display = 'none';
             }else if(!searchData.includes(cariInfo.value)){
                 pagination.style.display = 'none';
@@ -120,15 +158,8 @@ btnSearch.addEventListener('click', async() => {
         })
     }else {
         location.reload()
-    }
-})
-
-cariInfo.addEventListener("change", async (e) => {
-    dataSearch = {
-        txt : e.target.value
-    }
-    
-})
+    }	
+}
 // END SEARCH
 
 
@@ -162,6 +193,9 @@ $(async function () {
     var numberOfItems = data.length
     var limitPerPage = 4;
     var totalPages = Math.ceil(numberOfItems / limitPerPage);
+    if (totalPages === 0) {
+    totalPages = 1;
+    }
     var paginationSize = 7;
     var currentPage;
 
@@ -170,7 +204,7 @@ $(async function () {
 
         currentPage = whichPage;
 
-        $(".infoSekolah .info-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+        $(".infoSekolah .info-item").hide().slice((currentPage - 1) * limitPerPage, Math.min(currentPage * limitPerPage, numberOfItems)).show();
 
         $(".pagination li").slice(1, -1).remove();
 

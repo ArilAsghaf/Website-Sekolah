@@ -368,7 +368,7 @@ header .bg-header:after {
     content: "";
     width: 220px;
     height: 3px;
-    background-color: #D6261A;
+    background-color: #dfd701;
     bottom: -20px;
     left: 50%;
     transform: translate(-50%);
