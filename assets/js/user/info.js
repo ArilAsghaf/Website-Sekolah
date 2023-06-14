@@ -125,11 +125,12 @@ let dataSearch = {
 
 cariInfo.addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
-        e.searchData(); // Menghentikan aksi default dari tombol enter (misalnya submit form)
+        e.preventDefault(); // Menghentikan aksi default dari tombol enter (misalnya submit form)
         
         dataSearch = {
             txt: e.target.value
         };
+        searchData();
     }
 })
 
@@ -149,7 +150,7 @@ function searchData() {
         dataTemp[0].forEach(data => {
             const searchData = data.judul.toLowerCase()
             console.log(cariInfo.value == '')
-            if(searchData.includes(cariInfo.value)){
+            if(searchData.includes(cariInfo.value.toLowerCase())){
                 infoSekolah.innerHTML += addElInfo(data, data.id)
                 pagination.style.display = 'none';
             }else if(!searchData.includes(cariInfo.value)){
