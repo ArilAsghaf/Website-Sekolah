@@ -22,11 +22,11 @@ const app = initializeApp(firebaseConfig)
 // TIMESTAMP
 const changeTimestamp = (data) => {
 	if(data !== undefined){
-		var tanggalInfoObj = new Date(data);
+		var tanggalAgendaObj = new Date(data);
 		var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-		var day = tanggalInfoObj.getDate();
-		var month = months[tanggalInfoObj.getMonth()];
-		var year = tanggalInfoObj.getFullYear();
+		var day = tanggalAgendaObj.getDate();
+		var month = months[tanggalAgendaObj.getMonth()];
+		var year = tanggalAgendaObj.getFullYear();
         
 		return day + ' ' + month + ' ' + year;
 	}
@@ -104,13 +104,27 @@ const cariAgenda = document.querySelector(".cariAgenda")
 let dataSearch = {
     txt : ''
 }
+
+cariAgenda.addEventListener("keydown", async (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        dataSearch = {
+            txt: e.target.value
+        };
+        searchData();
+    }
+})
 btnSearch.addEventListener('click', async() => {
-    agendaSekolah.innerHTML = ''
+	searchData();
+});
+
+function searchData() {
+	agendaSekolah.innerHTML = ''
     if(cariAgenda.value !== ''){
         dataTemp[0].forEach(data => {
             const searchData = data.judul.toLowerCase()
             console.log(cariAgenda.value == '')
-            if(searchData.includes(cariAgenda.value)){
+            if(searchData.includes(cariAgenda.value.toLowerCase())){
                 agendaSekolah.innerHTML += addElAgenda(data, data.id)
                 pagination.style.display = 'none';
             }else if(!searchData.includes(cariAgenda.value)){
@@ -119,15 +133,8 @@ btnSearch.addEventListener('click', async() => {
         })
     }else {
         location.reload()
-    }
-})
-
-cariAgenda.addEventListener("change", async (e) => {
-    dataSearch = {
-        txt : e.target.value
-    }
-    
-})
+    }	
+}
 // END SEARCH
 
 
@@ -169,7 +176,7 @@ $(async function () {
 
         currentPage = whichPage;
 
-        $(".agendaSekolah .agenda-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+        $(".agendaSekolah .agenda-item").hide().slice((currentPage - 1) * limitPerPage, Math.min(currentPage * limitPerPage, numberOfItems)).show();
 
         $(".pagination li").slice(1, -1).remove();
 

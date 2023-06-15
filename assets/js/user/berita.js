@@ -106,13 +106,52 @@ const cariBerita = document.querySelector(".cariBerita")
 let dataSearch = {
     txt : ''
 }
+// btnSearch.addEventListener('click', async() => {
+//     beritaSekolah.innerHTML = ''
+//     if(cariBerita.value !== ''){
+//         dataTemp[0].forEach(data => {
+//             const searchData = data.judul.toLowerCase()
+//             console.log(cariBerita.value == '')
+//             if(searchData.includes(cariBerita.value)){
+//                 beritaSekolah.innerHTML += addElBerita(data, data.id)
+//                 pagination.style.display = 'none';
+//             }else if(!searchData.includes(cariBerita.value)){
+//                 pagination.style.display = 'none';
+//             }
+//         })
+//     }else {
+//         location.reload()
+//     }
+// })
+
+cariBerita.addEventListener("keydown", async (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault(); // Menghentikan aksi default dari tombol enter (misalnya submit form)
+        
+        dataSearch = {
+            txt: e.target.value
+        };
+        searchData();
+    }
+})
+
 btnSearch.addEventListener('click', async() => {
-    beritaSekolah.innerHTML = ''
+	searchData();
+});
+
+// cariInfo.addEventListener('keypress', (e) => {
+//     if (e.key === 'Enter') {
+//         searchData()
+//     }
+// });
+
+function searchData() {
+	beritaSekolah.innerHTML = ''
     if(cariBerita.value !== ''){
         dataTemp[0].forEach(data => {
             const searchData = data.judul.toLowerCase()
             console.log(cariBerita.value == '')
-            if(searchData.includes(cariBerita.value)){
+            if(searchData.includes(cariBerita.value.toLowerCase())){
                 beritaSekolah.innerHTML += addElBerita(data, data.id)
                 pagination.style.display = 'none';
             }else if(!searchData.includes(cariBerita.value)){
@@ -121,15 +160,8 @@ btnSearch.addEventListener('click', async() => {
         })
     }else {
         location.reload()
-    }
-})
-
-cariBerita.addEventListener("change", async (e) => {
-    dataSearch = {
-        txt : e.target.value
-    }
-    
-})
+    }	
+}
 // END SEARCH
 
 
@@ -163,6 +195,9 @@ $(async function () {
     var numberOfItems = data.length
     var limitPerPage = 4;
     var totalPages = Math.ceil(numberOfItems / limitPerPage);
+    // if (totalPages === 0) {
+    //     totalPages = 1;
+    // }
     var paginationSize = 7;
     var currentPage;
 
@@ -171,7 +206,7 @@ $(async function () {
 
         currentPage = whichPage;
 
-        $(".beritaSekolah .berita-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+        $(".beritaSekolah .berita-item").hide().slice((currentPage - 1) * limitPerPage, Math.min(currentPage * limitPerPage, numberOfItems)).show();
 
         $(".pagination li").slice(1, -1).remove();
 

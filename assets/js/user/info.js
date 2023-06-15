@@ -105,44 +105,20 @@ const cariInfo = document.querySelector(".cariInfo")
 let dataSearch = {
     txt : ''
 }
-// btnSearch.addEventListener('click', async() => {
-//     beritaSekolah.innerHTML = ''
-//     if(cariInfo.value !== ''){
-//         dataTemp[0].forEach(data => {
-//             const searchData = data.judul.toLowerCase()
-//             console.log(cariInfo.value == '')
-//             if(searchData.includes(cariInfo.value)){
-//                 beritaSekolah.innerHTML += addElInfo(data, data.id)
-//                 pagination.style.display = 'none';
-//             }else if(!searchData.includes(cariInfo.value)){
-//                 pagination.style.display = 'none';
-//             }
-//         })
-//     }else {
-//         location.reload()
-//     }
-// })
 
 cariInfo.addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
-        e.preventDefault(); // Menghentikan aksi default dari tombol enter (misalnya submit form)
-        
+        e.preventDefault();
         dataSearch = {
             txt: e.target.value
         };
         searchData();
     }
 })
-
 btnSearch.addEventListener('click', async() => {
 	searchData();
 });
 
-// cariInfo.addEventListener('keypress', (e) => {
-//     if (e.key === 'Enter') {
-//         searchData()
-//     }
-// });
 
 function searchData() {
 	infoSekolah.innerHTML = ''
@@ -194,9 +170,6 @@ $(async function () {
     var numberOfItems = data.length
     var limitPerPage = 4;
     var totalPages = Math.ceil(numberOfItems / limitPerPage);
-    if (totalPages === 0) {
-    totalPages = 1;
-    }
     var paginationSize = 7;
     var currentPage;
 
