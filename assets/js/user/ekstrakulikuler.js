@@ -122,7 +122,7 @@ $(async function () {
 
         currentPage = whichPage;
 
-        $(".ekstrakulikuler .ekstra-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+        $(".ekstrakulikuler .ekstra-item").hide().slice((currentPage - 1) * limitPerPage, Math.min(currentPage * limitPerPage, numberOfItems)).show();
 
         $(".pagination li").slice(1, -1).remove();
 

@@ -117,7 +117,7 @@ $(async function () {
 
         currentPage = whichPage;
 
-        $(".galeri .galeri-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+        $(".galeri .galeri-item").hide().slice((currentPage - 1) * limitPerPage, Math.min(currentPage * limitPerPage, numberOfItems)).show();
 
         $(".pagination li").slice(1, -1).remove();
 

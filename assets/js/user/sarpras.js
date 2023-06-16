@@ -101,7 +101,7 @@ $(async function () {
 
         currentPage = whichPage;
 
-        $(".sarpras .sarpras-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+        $(".sarpras .sarpras-item").hide().slice((currentPage - 1) * limitPerPage, Math.min(currentPage * limitPerPage, numberOfItems)).show();
 
         $(".pagination li").slice(1, -1).remove();
 

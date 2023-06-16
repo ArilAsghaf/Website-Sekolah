@@ -171,7 +171,7 @@ $(async function () {
 
         currentPage = whichPage;
 
-        $(".prestasi .pres-item").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+        $(".prestasi .pres-item").hide().slice((currentPage - 1) * limitPerPage, Math.min(currentPage * limitPerPage, numberOfItems)).show();
 
         $(".pagination li").slice(1, -1).remove();
 
